@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 body{
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: "Poppins", sans-serif;
     color: var(--brown);
     background-color: var(--light);
@@ -115,6 +115,8 @@ input:focus {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    margin-top: -10px;
+    margin-bottom: 5px;
 }
 .star-rating input {
     display: none;
