@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lattefy | Loyalty Automation</title>
     <link rel="stylesheet" href="assets/style.css">
+    <!-- PHOSPHORICONS -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
 <body id="login">
     <div id="loader"></div>
-    <form>
+    <form class="container">
         <h1>Conseguir Descuento ;)</h1>
         <p>
-           Completa el formulario con la informacion correcta para poder recibir el cupon.
+           Completa el formulario con la informacion correcta para poder recibir el descuento.
         </p>
-        <input type='text' id='name' placeholder='nombre' required>
+        <input type='text' id='name' placeholder='nombre completo' required>
         <input type='email' id='email' placeholder='email' required>
-        <input type="number" id="phone-number" placeholder="celular" required>
+        <label for="birthdate" class="birthdate-label">Fecha de nacimiento: </label>
+        <input type='date' id='birthdate' placeholder="fecha de nacimiento" required>
         <p>Califica tu experiencia</p>
         <div class="star-rating">
             <input type="radio" id="5-stars" name="rating" value="5">
@@ -29,7 +32,7 @@
             <input type="radio" id="1-stars" name="rating" value="1">
             <label for="1-stars" class="star">&#9733;</label>
         </div>
-        <a href="#" class="btn" id="btn">Conseguir Descuento</a>
+        <a href="#" class="btn" id="btn">Enviar Respuesta</a>
     </form>
 
     <!-- General Js File -->
