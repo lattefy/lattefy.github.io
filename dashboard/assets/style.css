@@ -1,0 +1,582 @@
+/* Lattefy Uy | Dashboard - Style */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Color Pallette */
+
+:root {
+    --brown: #312015;
+    --lightBrown: #9d561c;
+    --light: #f9dcbf;
+}
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- GENERAL STYLING ---------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+
+body {
+    color: var(--brown);
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+
+    /* Grid Layout */
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 75px 1fr;
+    grid-template-areas: 
+        "side header"
+        "side main"
+    ;
+}
+a {
+    text-decoration: none;
+}
+i {
+    font-size: 30px;
+}
+ul {
+    list-style: none;
+}
+p {
+    font-size: 12px;
+}
+
+
+/* --------------------------------------- Collapsed Sidebar --------------------------------------- */
+
+body.collapsed-sidebar {
+    grid-template-columns: 55px 1fr;
+}
+
+.main.full-width,
+.navbar.full-width {
+    grid-column: span 2;
+    margin-left: 75px; 
+}
+
+
+
+/* -------------------------------------------- Button --------------------------------------------- */
+
+.btn {
+    width: 100%;
+    height: 8vh;
+    border: solid var(--lightBrown);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--lightBrown);
+    color: white;
+}
+.btn:hover {
+    background-color: transparent;
+    border-color: var(--lightBrown);
+    color: var(--lightBrown);
+}
+
+/* ------------------------------------------- Container ------------------------------------------- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+/* --------------------------------------------- Input --------------------------------------------- */
+
+input {
+    height: 8vh;
+    width: 92%;
+    padding: 0 15px;
+    margin-bottom: 10px;
+
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid white;
+
+    color: var(--brown);
+    background-color: #eee;
+
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+}
+input:focus {
+    border-color: var(--lightBrown);
+}
+
+
+/* ----------------------------------------- Navigation Bar ---------------------------------------- */
+
+.navbar {
+    background-color: white;
+    grid-area: header; 
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 0;
+}
+.navbar h2 {
+    font-weight: 200;
+}
+.navbar .btn {
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+}
+
+
+/* ------------------------------------------- Side Bar -------------------------------------------- */
+
+.sidebar {
+    color: var(--light);
+    background-color: var(--lightBrown);
+    transition: all 0.1s ease-in;
+
+    grid-area: side;
+    padding: 0px 20px;
+    height: 100vh;
+    width: 260px;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+
+    z-index: 1;
+}
+
+/* Sidebar Top */
+
+.sidebar .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .top #sidebar-btn {
+    cursor: pointer;
+}
+
+/* Sidebar - logo */
+
+.sidebar .top .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+.sidebar .top .logo i {
+    margin: 0 10px 5px 0;
+}
+
+/* Sidebar - Menu List */
+
+.sidebar .menu{
+    margin: 10px 0;
+    padding: 0;
+    flex: 1;
+}
+.sidebar .menu li {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 5px;
+
+    border-radius: 10px;
+    color: var(--light);
+}
+.sidebar .menu li:hover {
+    background-color: var(--brown);
+}
+.sidebar .menu li a {
+    display: block;
+    color: var(--light);
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.sidebar .menu li a i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* Sidebar - log out */
+
+.log-out {
+    margin: auto 0 20px 0;
+    display: block;
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+}
+.log-out:hover {
+    background-color: var(--brown);
+}
+.log-out i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* ---------------------------------------- ACTIVE | Sidebar --------------------------------------- */
+
+/* ACTIVE | SIDEBAR */
+
+.sidebar.active {
+    padding: 10px;
+    width: 55px;
+}
+
+/* ACTIVE | Sidebar - Top */
+
+.sidebar.active .menu {
+    margin: 0 auto;
+}
+
+.sidebar.active .top #sidebar-btn {
+    font-size: 35px;
+    position: absolute;
+    transform: translate(10px, -10px);
+}
+.sidebar.active .top .logo {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ACTIVE | Sidebar - Menu List */
+
+.sidebar.active .menu li a {
+    justify-content: center !important;
+}
+.sidebar.active .menu li a i {
+    margin-right: 0;
+}
+.sidebar.active .menu li a .link {
+    display: none;
+}
+
+/* ACTIVE | Sidebar - Log out */
+
+.sidebar.active .log-out {
+    justify-content: center;
+    width: 50%;
+    margin-left: 3.5px;
+}
+.sidebar.active .log-out i {
+    margin-right: 0;
+    width: 90%;
+}
+.sidebar.active .log-out .link {
+    display: none;
+}
+
+
+/* ------------------------------------------ Main Content ----------------------------------------- */
+
+.main {
+    background-color: var(--light);
+    padding: 20px;
+    grid-area: main;
+
+    z-index: 0;
+}
+.main .card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px 20px;
+    overflow: hidden; 
+}
+.main .card p {
+    font-size: 30px;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- DASHBOARD ------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Dashboard grid Layout */
+
+#dashboard .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c5 c6"
+    ;
+    gap: 10px;
+}
+
+/* Dashboard Link */
+
+body#dashboard .sidebar .menu li:nth-child(1) {
+    background-color: var(--brown);
+}
+
+/* Dashboard Cards */
+
+#dashboard .main .card:nth-child(1) {
+    grid-area: c1;
+}
+#dashboard .main .card:nth-child(2) {
+    grid-area: c2;
+}
+#dashboard .main .card:nth-child(3) {
+    grid-area: c3;
+}
+#dashboard .main .card:nth-child(4) {
+    grid-area: c4;
+}
+#dashboard .main .card:nth-child(5) {
+    grid-area: c5;
+}
+#dashboard .main .card:nth-child(6) {
+    grid-area: c6;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- CLIENTS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Clients grid Layout */
+
+#clients .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "c1"
+    ;
+    gap: 10px;
+}
+
+/* Clients Link */
+
+body#clients .sidebar .menu li:nth-child(2) {
+    background-color: var(--brown);
+}
+
+#clients .main .card {
+    grid-area: c1;
+}
+
+#clients .main .card .table-container {
+    flex-grow: 1;
+    overflow: auto; 
+    margin: 10px;
+}
+
+#clients .main .card table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: white;
+}
+
+#clients .main .card table th,
+#clients .main .card table td {
+    padding: 5px; 
+    text-align: left; 
+}
+
+#clients .main .card table thead {
+    color: var(--brown); 
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- PURCHASE -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Purchase - layout */
+
+#purchase .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Purchase Link */
+
+body#purchase .sidebar .menu li:nth-child(3) {
+    background-color: var(--brown);
+}
+
+#purchase .main .container h2 {
+    margin: 0;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------ CAMPAIGNS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Campaigns - layout */
+
+#campaigns .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Campaigns Link */
+
+body#campaigns .sidebar .menu li:nth-child(4) {
+    background-color: var(--brown);
+}
+
+/* Campaigns - texts */
+
+#campaigns .main .container h2,
+#campaigns .main .container h4,
+#campaigns .main .container p 
+{
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Campaigns - Icon */
+
+#campaigns .main .container i {
+    font-size: 40px;
+}
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- RESPONSIVE ------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 950px) {
+
+    body {
+        overflow-y: scroll;
+
+        display: grid;
+        grid-template-columns: 55px 1fr;
+        grid-template-rows: 75px 1fr;
+        grid-template-areas: 
+            "side header"
+            "side main"
+        ;
+    }
+
+    /* RESPONSIVE | NAVBAR */
+
+    .navbar {
+        grid-column: span 2;
+        margin-left: 75px; 
+    }
+    .navbar .btn {
+        display: none;
+    }
+
+    /* RESPONSIVE | SIDEBAR */
+
+    .sidebar.active {
+        padding: 10px;
+        width: 55px;
+    }
+
+    /* RESPONSIVE | Sidebar - Top */
+
+    .sidebar.active .menu {
+        margin: 0 auto;
+    }
+
+    .sidebar.active .top #sidebar-btn {
+        font-size: 35px;
+        position: absolute;
+        transform: translate(10px, -10px);
+    }
+    .sidebar.active .top .logo {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* RESPONSIVE | Sidebar - Menu List */
+
+    .sidebar.active .menu li a {
+        justify-content: center !important;
+    }
+    .sidebar.active .menu li a i {
+        margin-right: 0;
+    }
+    .sidebar.active .menu li a .link {
+        display: none;
+    }
+
+    /* RESPONSIVE | Sidebar - Log out */
+
+    .sidebar.active .log-out {
+        justify-content: center;
+        width: 50%;
+        margin-left: 3.5px;
+    }
+    .sidebar.active .log-out i {
+        margin-right: 0;
+        width: 90%;
+    }
+    .sidebar.active .log-out .link {
+        display: none;
+    }
+
+    /* RESPONSIVE | MAIN CONTENT */
+
+    .main {
+        grid-column: span 2;
+        margin-left: 75px;
+    }
+
+    /* RESPONSIVE | DASHBOARD */
+
+    #dashboard .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 180px);
+        grid-template-areas: initial;
+    }
+    #dashboard .main .card {
+        grid-area: initial !important;
+    }
+
+
+}

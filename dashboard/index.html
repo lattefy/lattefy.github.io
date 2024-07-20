@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Lattefy</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- PHOSPHORICONS -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body id="dashboard" class="collapsed-sidebar">
+
+    <!-- Navigation Bar -->
+    <header class="navbar full-width">
+        <h2>Dashboard</h2>
+        <a href="../form/index.html" class="btn">Cargar Cliente</a>
+    </header>
+
+    <!-- Side Bar -->
+    <section class="sidebar active">
+
+        <div class="top">
+            <div class="logo">
+                <i class="ph ph-coffee"></i>
+                <h1>Lattefy</h1>
+            </div>
+            <i class="ph ph-list" id="sidebar-btn"></i>
+        </div>
+
+        <ul class="menu">
+            <li>
+                <a href="index.html">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="link">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="clients.html">
+                    <i class="ph ph-user-circle"></i>
+                    <span class="link">Clientes</span>
+                </a>
+            </li>
+            <li>
+                <a href="purchase.html">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="link">Cargar compra</span>
+                </a>
+            </li>
+            <li>
+                <a href="campaigns.html">
+                    <i class="ph ph-bell"></i>
+                    <span class="link">Campaigns</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="ph ph-export"></i>
+                    <span class="link">Exportar Info.</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="log-out">
+            <i class="ph ph-sign-out"></i>
+            <span class="link">Log out</span>
+        </div>
+
+    </section>
+
+    <!-- Main Content -->
+    <main class="main full-width">
+
+        <div class="card">
+            <h2>Total Clients</h2>
+            <p id="client-amount"></p>
+        </div>
+        <div class="card">
+            <h2>Descuentos Conseguidos</h2>
+            <p id="discounts-gotten"></p>
+        </div>
+        <div class="card">
+            <h2>Descuentos Reclamados</h2>
+            <p id="discounts-claimed"></p>
+        </div>
+        <div class="card">
+            <h2>Rating Promedio</h2>
+            <p id="sentiment-analysis"></p>
+        </div>
+        <div class="card">
+            <h2>Gasto Promedio</h2>
+            <p id="average-expenditure"></p>
+        </div>
+        <div class="card">
+            <h2>Total Facturado</h2>
+            <p id="total-profit"></p>
+        </div>
+        
+
+    </main>
+
+    <!-- Js File to connect with the server -->
+    <script src="assets/dashboard.js"></script>
+
+    <!---------- General Js File ------------->
+    <script src="assets/script.js"></script>
+
+</body>
+</html>

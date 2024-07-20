@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lattefy | Loyalty Automation</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="form">
+  <form class="container">
+    <h1>Conseguir Descuento ;)</h1>
+    <p>Completa el formulario con la informacion correcta para poder recibir el descuento.</p>
+    <input type='text' id='name' placeholder='nombre completo' required>
+    <input type='email' id='email' placeholder='email' required>
+    <input type='tel' id='phoneNumber' placeholder='número de teléfono' required>
+    <label for="birthdate" class="birthdate-label">Fecha de nacimiento:</label>
+    <input type='date' id='birthdate' placeholder="fecha de nacimiento" required>
+    <p>Califica tu experiencia</p>
+    <div class="star-rating">
+      <input type="radio" id="5-stars" name="rating" value="5">
+      <label for="5-stars" class="star">&#9733;</label>
+      <input type="radio" id="4-stars" name="rating" value="4">
+      <label for="4-stars" class="star">&#9733;</label>
+      <input type="radio" id="3-stars" name="rating" value="3">
+      <label for="3-stars" class="star">&#9733;</label>
+      <input type="radio" id="2-stars" name="rating" value="2">
+      <label for="2-stars" class="star">&#9733;</label>
+      <input type="radio" id="1-stars" name="rating" value="1">
+      <label for="1-stars" class="star">&#9733;</label>
+  </div>
+    <a href="#" class="btn" id="btn">Enviar Respuesta</a>
+  </form>
+
+  <!-- Js File to connect with the server -->
+  <script src="assets/form.js"></script>
+</body>
+</html>
