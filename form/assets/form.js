@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
           window.location.href = 'done.html'
         } else {
           const existingClient = await getClientByEmail(email)
-          if (existingClient) {
+          if (existingClient && !existingClient.discountAvailable) {
             averageRating = ((existingClient.averageRating + lastRating) / 2).toFixed(2)
             const updates = {
               lastRating,
@@ -159,6 +159,8 @@ document.addEventListener('DOMContentLoaded', function () {
             await updateClient(email, updates)
             console.log('Client updated successfully')
             window.location.href = 'done.html'
+          } else {
+            alert('Descuento ya disponible')
           }
         }
       } catch (error) {
