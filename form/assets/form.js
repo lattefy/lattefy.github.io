@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let averageRating = lastRating / discountsGotten
 
       try {
-        if (await authenticateEmail(email)) {
+        if (await authenticateEmail(email) && lastRating !== null) {
           const clientData = {
             name,
             phoneNumber,
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
           window.location.href = 'done.html'
         } else {
           const existingClient = await getClientByEmail(email)
-          if (existingClient && !existingClient.discountAvailable) {
+          if (existingClient && !existingClient.discountAvailable && rating !== null) {
             averageRating = ((existingClient.averageRating + lastRating) / 2).toFixed(2)
             const updates = {
               lastRating,
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Client updated successfully')
             window.location.href = 'done.html'
           } else {
-            alert('Descuento ya disponible')
+            alert('Descuento no disponible, asegurate de haber completado la informacion correctamente.')
           }
         }
       } catch (error) {
