@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
           window.location.href = 'done.html'
         } else {
           const existingClient = await getClientByEmail(email)
-          if (existingClient && !existingClient.discountAvailable && rating !== null) {
+          if (existingClient && !existingClient.discountAvailable && lastRating !== null) {
             averageRating = ((existingClient.averageRating + lastRating) / 2).toFixed(2)
             const updates = {
               lastRating,
