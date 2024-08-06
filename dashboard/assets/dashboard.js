@@ -175,7 +175,8 @@ function isDateExpired(date) {
 }
 
 // Upload Purchase
-async function uploadPurchase(clients, email, amountSpentNow) {
+async function uploadPurchase(email, amountSpentNow) {
+  const clients =  await getAll()
   const client = getClientByEmail(clients, email)
   if (client) {
     const amountSpentNowNum = parseFloat(amountSpentNow)
@@ -257,7 +258,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     purchaseBtn.addEventListener('click', function () {
       const email = document.getElementById('email').value
       const amountSpentNow = parseFloat(document.getElementById('amount-spent').value)
-      uploadPurchase(clients, email, amountSpentNow)
+      uploadPurchase(email, amountSpentNow)
     })
   }
 })
