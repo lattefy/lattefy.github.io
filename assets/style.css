@@ -1,0 +1,664 @@
+/* Lattefy | Uy Software Company - landing page */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+
+/* Color Pallette */
+
+:root {
+    --brown: #312015;
+    --lightBrown: #9d561c;
+    --light: #f9dcbf;
+
+    --white: #fbeee1;
+    --black: #191717;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- GENERAL STYLING ---------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+*, 
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+    color: var(--brown);
+    background-color: var(--white);
+}
+html {
+    scroll-behavior: smooth;
+}
+img {
+    width: 100%;
+}
+a {
+    text-decoration: none;
+}
+main {
+    width: 100vw;
+}
+div {
+    padding: 0;
+}
+section{
+    height: 100vh;
+    width: 100vw;
+    padding-top: 15vh;
+    position: relative;
+}
+h1 {
+    font-size: 50px;
+}
+h2 {
+    font-size: 40px;
+}
+h3 {
+    font-size: 20px;
+    color: var(--lightBrown);
+}
+h4 {
+    font-size: 16px;
+    color: var(--lightBrown);
+}
+
+/* On Scroll effect */
+
+.reveal{
+    transform: translateY(150px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal.active{
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+
+/* ------------------------------------------- BUTTON ---------------------------------------------- */
+
+.btn1, .btn2, .btn3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    width: 14vw;
+    height: 8vh;
+    border-radius: 10px;
+}
+
+/* Button 1 */
+
+.btn1{
+    border-style: solid;
+    border-color: var(--lightBrown);
+    color: var(--light);
+    background-color: var(--lightBrown);
+}
+.btn1:hover{
+    background-color: transparent;
+    color: var(--lightBrown);
+}
+
+/* Button 2 */
+
+.btn2{
+    border-style: solid;
+    border-color: var(--light);
+    color: var(--lightBrown);
+    background-color: var(--light);
+}
+.btn2:hover{
+    background-color: transparent;
+    border-color: var(--lightBrown);
+}
+
+/* Button 3 */
+
+.btn3{
+    border-style: solid;
+    border-color: var(--lightBrown);
+    color: var(--lightBrown);
+    background-color: transparent;
+}
+.btn3:hover{
+    background-color: var(--lightBrown);
+    border-color: var(--lightBrown);
+    color: var(--light);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- NAVIGATION BAR ----------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+
+    width: 100vw;
+    height: 15vh;
+    padding: 2vh 6vw;
+    margin-bottom: 20vh;
+    z-index: 1;
+
+    background-color: var(--white);
+}
+
+/* Navigation Bar - logo */
+
+nav a .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+nav a .logo i {
+    font-size: 40px;
+    color: var(--lightBrown);
+    margin: 0 10px 10px 0;
+}
+nav a .logo h2{
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--lightBrown);
+}
+
+/* Navigation Bar - burger */
+
+.burger{
+    display: none;
+}
+
+/* Navigation Bar - menu */
+
+nav .menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .menu a {
+    margin: 0 1vw;
+    text-decoration: none;
+    position: relative;
+    color: var(--lightBrown);
+}
+nav .menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%; 
+    height: 2px;
+    transition: 0.25s ease-in-out; 
+}
+nav .menu a:hover::after {
+    width: 100%; 
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ----------------------------------------- HERO SECTION ------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------*/
+
+#hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#hero .text,
+#hero .image {
+    width: 100%;
+}
+
+/* Hero Section - text */
+
+#hero .text {
+    padding-left: 6vw;
+    transform: translateY(-20%);
+}
+#hero .text h1{
+    font-size: 50px;
+    margin-bottom: 1vh;
+}
+#hero .text p {
+    margin-bottom: 5vh;
+}
+
+/* Hero Section - buttons */
+
+#hero .hero-btns{
+    display: flex;
+}
+#hero .hero-btns .btn1{
+    margin-right: 10px;
+    width: 16vw;
+}
+#hero .hero-btns .btn2 {
+    width: 12vw;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- SOFTWARE -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+
+#software {
+    display: flex;
+    padding: 0 6vw;
+    padding-top: 7.5vh;
+}
+#software .text, 
+#software .features{
+    width: 50vw;
+}
+
+/* Software - text */
+
+#software .text{
+    color: var(--brown);
+    margin-top: -5vh;
+    padding-right: 2.5vw;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+}
+#software .text h2{
+    margin-bottom: 1vh;
+}
+#software .text p {
+    margin-bottom: 2vh;
+}
+#software .text p:last-of-type {
+    margin-bottom: 5vh;
+}
+
+/* Software - features */
+
+#software .features{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#software .features .top, #software .features .bottom{
+    display: flex;
+}
+#software .features .feature{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+
+    height: 32vh;
+    width: 20vw;
+    margin: 2.25vh 0.85vw;
+    padding: 1vh 1.25vw;
+
+    border-radius: 10px;
+    color: var(--lightBrown);
+    background-color: var(--light);
+    transition: 0.25s ease-in-out;
+}
+#software .features .feature:hover{
+    background-color: var(--lightBrown);
+    color: var(--light);
+    transform: translateY(-2vh);
+}
+#software .features .feature p {
+    margin: 0 1vw;
+}
+
+/* Software - icon */
+
+#software .features .feature i{
+    font-size: 4vw;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- ROADMAP -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+#roadmap{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Roadmap - title */
+
+#roadmap h4,
+#roadmap h2 {
+    margin: 0 0 0 6vw;
+}
+#roadmap h2 {
+    margin: 0 0 8vh 6vw;
+}
+
+/* Roadmap - timeline */
+
+#roadmap .timeline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh auto;
+}
+#roadmap .timeline .line{
+    height: 2px;
+    width: 70vw;
+    background-color: var(--light);
+}
+#roadmap .timeline .numbers{
+    display: flex;
+    justify-content: space-between;
+    width: 72vw;
+    margin-top: -2vh;
+}
+#roadmap .timeline .numbers .num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light);
+    color: var(--brown);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+/* Roadmap - steps */
+
+#roadmap .all-steps{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#roadmap .all-steps .step{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+
+    width: 16vw;
+    height: 45vh;
+    padding: 4vh 2vw;
+    
+    border-radius: 10px;
+    border-style: solid var(--light);
+    background-color: var(--light);
+    color: var(--brown);
+}
+#roadmap .all-steps .step i{
+    font-size: 5vw;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------ CONTACT US ------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+#contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-bottom: 24vh;
+}
+
+/* Contact Us - Form */
+
+#contact-us .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 85vw;
+    margin: 0 auto;
+    color: var(--light);
+    border-radius: 10px; 
+}
+#contact-us .form .top input[type="text"],
+#contact-us .form input[type="email"],
+#contact-us .form textarea {
+    height: 9vh;
+    width: 84vw;
+    color: var(--lightBrown);
+    background-color: var(--light);
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid var(--grey);
+    transition: all 0.3s ease;
+    padding: 2vh 1vw;
+    margin: 1vh 0.25vw;
+}
+#contact-us .form .top input[type="text"]:focus,
+#contact-us .form input[type="email"]:focus,
+#contact-us .form textarea:focus {
+    border-color: var(--light);
+}
+#contact-us .form .top input[type="text"]{
+    width: 27.75vw;
+}
+#contact-us .form input[type="email"]{
+    width: 85vw;
+}
+#contact-us .form textarea {
+    resize: none; 
+    width: 85vw;
+    height: 20vh;
+    margin-bottom: 2.5vh;
+}
+
+/* Contact Us - Buttons */
+
+#contact-us .form .contact-buttons{
+    display: flex;
+    margin-left: 0.5vw;
+}
+#contact-us .form .contact-buttons .btn1{
+    font-family: 'Montserrat', sans-serif;
+}
+#contact-us .form .contact-buttons .btn2{
+    width: 6vw;
+    margin-left: 1vw;
+    background-color: rgb(53, 236, 151);
+    border-color: rgb(53, 236, 151);
+}
+#contact-us .form .contact-buttons .btn2 img{
+    width: 3vw;
+}
+#contact-us .form .contact-buttons .btn3{
+    margin: 0 1vw;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- FOOTER --------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5vh 4vw;
+    width: 100vw;
+    height: 45vh;
+    color: var(--light);
+    background-color: var(--lightBrown);
+}
+
+/* Footer - logo */
+
+footer .logo{
+    display: flex;
+}
+footer .logo img{
+    width: 60px;
+}
+footer .logo h3{
+    color: var(--light);
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    transform: translateY(14px);
+}
+
+/* Footer - social media */
+
+footer .social-media img{
+    width: 40px;
+    padding: 5px;
+    margin: 0 0.5vw;
+    transition: 0.2 ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- RESPONSIVE ----------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 900px) {
+
+    /* RESPONSIVE | Navigation Bar */
+
+    nav {
+        height: 15vh;
+        padding: 2vh 6vw;
+    }
+
+    /* RESPONSIVE | Navigation Bar - burger */
+
+    nav .burger {
+      display: block;
+      cursor: pointer;
+    }
+    nav .burger div {
+      position: relative;
+      margin-right: 30px;
+    }
+    nav .burger span {
+      width: 30px;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--lightBrown);
+      transition: 0.4s;
+    }
+    nav .burger .line-1 {
+      transform: translate(-50%, -10px);
+    }
+    nav .burger .line-3 {
+      transform: translate(-50%, 7px);
+    }
+    nav .burger.active .line-1 {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    nav .burger.active .line-2 {
+      width: 0;
+    }
+    nav .burger.active .line-3 {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    /* RESPONSIVE | Navigation Bar - menu */
+
+    nav .menu {
+      height: 0;
+      width: 100vw;
+
+      left: 0;
+      right: 4.5vw;
+      top: 15vh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+
+      overflow: hidden;
+      opacity: 0;
+      transition: 0.4s;
+      background-color: var(--lightBrown);
+    }
+    nav .menu.active {
+      height: 85vh;
+      opacity: 1;
+    }
+    nav .menu a {
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+      color: var(--light);
+    }
+    nav .menu a:hover::after {
+        width: 0%; 
+    }
+
+    /* RESPONSIVE | Navigation Bar - button */ 
+    
+    nav .btn2{
+        display: none;
+    }
+
+}
