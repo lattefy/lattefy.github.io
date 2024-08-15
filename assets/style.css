@@ -345,6 +345,7 @@ nav .menu a:hover::after {
 /* --------------------------------------------------------------------------------------------------*/
 
 #roadmap{
+    padding-top: 20vh;
     display: flex;
     flex-direction: column;
 }
@@ -434,9 +435,16 @@ nav .menu a:hover::after {
     margin-bottom: 24vh;
 }
 
+/* Contact Us - Title */
+
+#contact-us h2,
+#contact-us h4 {
+    margin-left: -1.25vw;
+}
+
 /* Contact Us - Form */
 
-#contact-us .form {
+#contact-us form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -447,9 +455,9 @@ nav .menu a:hover::after {
     color: var(--light);
     border-radius: 10px; 
 }
-#contact-us .form .top input[type="text"],
-#contact-us .form input[type="email"],
-#contact-us .form textarea {
+#contact-us form .top input[type="text"],
+#contact-us form input[type="email"],
+#contact-us form textarea {
     height: 9vh;
     width: 84vw;
     color: var(--lightBrown);
@@ -460,20 +468,20 @@ nav .menu a:hover::after {
     border: 2px solid var(--grey);
     transition: all 0.3s ease;
     padding: 2vh 1vw;
-    margin: 1vh 0.25vw;
+    margin: 1vh 0.5vh;
 }
-#contact-us .form .top input[type="text"]:focus,
-#contact-us .form input[type="email"]:focus,
-#contact-us .form textarea:focus {
+#contact-us form .top input[type="text"]:focus,
+#contact-us form input[type="email"]:focus,
+#contact-us form textarea:focus {
     border-color: var(--light);
 }
-#contact-us .form .top input[type="text"]{
-    width: 27.75vw;
+#contact-us form .top input[type="text"]{
+    width: 27.65vw;
 }
-#contact-us .form input[type="email"]{
+#contact-us form input[type="email"]{
     width: 85vw;
 }
-#contact-us .form textarea {
+#contact-us form textarea {
     resize: none; 
     width: 85vw;
     height: 20vh;
@@ -482,24 +490,23 @@ nav .menu a:hover::after {
 
 /* Contact Us - Buttons */
 
-#contact-us .form .contact-buttons{
+#contact-us form .contact-buttons{
     display: flex;
+    justify-content: start;
+    width: 85vw;
     margin-left: 0.5vw;
 }
-#contact-us .form .contact-buttons .btn1{
+#contact-us form .contact-buttons .btn1{
     font-family: 'Montserrat', sans-serif;
 }
-#contact-us .form .contact-buttons .btn2{
+#contact-us form .contact-buttons .btn2{
     width: 6vw;
     margin-left: 1vw;
     background-color: rgb(53, 236, 151);
     border-color: rgb(53, 236, 151);
 }
-#contact-us .form .contact-buttons .btn2 img{
+#contact-us form .contact-buttons .btn2 img{
     width: 3vw;
-}
-#contact-us .form .contact-buttons .btn3{
-    margin: 0 1vw;
 }
 
 
@@ -660,5 +667,261 @@ footer .social-media img{
     nav .btn2{
         display: none;
     }
+
+}
+
+@media only screen and (max-width: 685px) {
+
+    /* GENERAL SETTINGS | RESPONSIVE */
+
+    /* Text Styles | Responsive */
+
+    h1 {
+        font-size: 35px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+    /* BUTTONS STYLINGS | RESPONSIVE */
+
+    .btn1{
+        width: 25vw;
+    }
+    .btn2{
+        width: 25vw;
+    }
+    .btn3{
+        width: 30vw;
+        height: 8vh;
+    }
+
+
+    /* HERO SECTION | RESPONSIVE */
+
+    #hero{
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding-top: 20vh;
+    }
+    #hero .text, .image{
+        width: 100%;
+        height: 50%;
+    }
+    #hero .text{
+        padding: 5vh 8vw;
+    }
+    #hero .text h1 {
+        font-size: 30px;
+    }
+    #hero .image img{
+        width: 100vw;
+        transform: translateY(-10vh);
+    }
+    
+    /* Hero Section | Responsive - buttons */
+    
+    #hero .hero-btns{
+        display: flex;
+    }
+    #hero .hero-btns .btn1 {
+        width: 100%;
+    }
+    #hero .hero-btns .btn3 {
+        display: none;
+    }
+
+
+    /* SOFTWARE | RESPONSIVE */
+
+    #software {
+        flex-direction: column;
+        height: auto;
+        padding: 0 8vw;
+        padding-left: 10vw;
+        margin-top: 100vh;
+    }
+    #software .text, #software .features{
+        width: 80vw;
+        padding: 0 auto;
+    }
+
+    /* Software | Responsive - text */
+
+    #software .text{
+        margin-top: -90vh;
+    }
+
+    /* Software | Responsive - features */
+
+    #software .features .feature{
+        height: 32vh;
+        width: 40vw;
+        margin: 1vh 1vw;
+        padding: 1vh 2vw;
+        text-align: center;
+    }
+    #software .features .feature:hover{
+        transform: translateY(0);
+    }
+
+    /* Software | Responsive - icon */
+
+    #software .features .feature i{
+        font-size: 10vw;
+    }
+
+    /* Software | Responsive - button */
+
+    #software .btn2{
+        width: 80vw;
+        margin: 2vh auto;
+        color: var(--dark);
+        background-color: var(--light);
+    }
+
+
+    /* ROADMAP | RESPONSIVE */
+
+    #roadmap{
+        display: flex;
+        flex-direction: column;
+        padding: 0 8vw;
+        padding-top: 15vh;
+    }   
+    #roadmap .steps{
+        display: flex;
+    }
+
+    /* Roadmap | Repsonsive - title */
+
+    #roadmap h4,
+    #roadmap h2 {
+        margin: 0 0 0 2vw;
+    }
+
+    /* Roadmap | Repsonsive - timeline */
+
+    #roadmap .timeline{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        margin: 2vh auto;
+    }
+    #roadmap .timeline .line{
+        height: 60vh;
+        width: 2px;
+    }
+    #roadmap .timeline .numbers{
+        flex-direction: column;
+        width: 30px;
+        height: 65vh;
+        transform: translateX(-15px);
+    }
+
+    /* Roadmap | Repsonsive - steps */
+
+    #roadmap .all-steps{
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    #roadmap .all-steps .step{
+        width: 60vw;
+        height: 20vh;
+        padding: 2vh 3vw;
+        border-style: none;
+        background-color: transparent;
+    }
+    #roadmap .all-steps .step i{
+        display: none;
+    }
+
+
+    /* CONTACT US */
+
+    #contact-us {
+        height: auto;
+        margin-top: 0vh;
+    }
+
+    /* Contact Us | Responsive - form */
+    
+    #contact-us form {
+        height: 80vh;
+        width: 80vw;
+        border-style: none;
+        margin: 0 auto;
+        padding: 2vh 2vw;
+    }
+    
+    /* Contact Us | Responsive - inputs */
+
+    #contact-us form .top input[type="text"],
+    #contact-us form input[type="email"],
+    #contact-us form textarea {
+        padding: 2vh 5vw;
+        margin: 1vh 0vw;
+    }
+    #contact-us form .top {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+    }
+    #contact-us form .top input[type="text"]{
+        width: 80vw;
+    }
+    #contact-us form input[type="email"]{
+        width: 80vw;
+    }
+    #contact-us form textarea {
+        width: 80vw;
+        height: 20vh;
+    }
+
+    /* Contact Us | Responsive - form */
+
+    #contact-us form .contact-buttons{
+        flex-direction: column;
+        margin-left: 5vw;
+    }
+    #contact-us form .contact-buttons .btn1,
+    #contact-us form .contact-buttons .btn2 
+    {
+        width: 80vw;
+        margin: 1vh 0;
+    }
+    #contact-us form .contact-buttons .btn2 img{
+        width: 8vw;
+    }
+
+
+
+    /* FOOTER | RESPONSIVE */
+
+    /* Footer - logo */
+
+    footer .logo{
+        display: flex;
+    }
+    footer .logo img{
+        width: 40px;
+    }
+    footer .logo h3{
+        font-size: 16px;
+        transform: translateY(10px);
+    }
+
 
 }
