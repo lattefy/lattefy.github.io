@@ -1,4 +1,27 @@
-// FusionLabs | Uy Software Company - landing page
+// Lattefy | Uy Software Company - landing page
+
+
+// Confetti Animation:
+
+function createConfetti() {
+  const confettiContainer = document.querySelector('.news')
+  const confettiColors = ['#1DB954', '#1ed760', '#1aa34a', '#1b9e46', '#189541', '#148c3d']
+  const confettiCount = 50
+
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div')
+    confetti.classList.add('confetti')
+    confetti.style.left = `${Math.random() * 100}vw`
+    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`
+    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)]
+    confettiContainer.appendChild(confetti)
+  }
+}
+
+// Trigger the confetti animation
+createConfetti()
+
+
 
 // NavBar - toggle Responsive Menu:
 
