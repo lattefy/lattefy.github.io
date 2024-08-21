@@ -3,6 +3,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
 
 
 /* Color Pallette */
@@ -15,7 +16,6 @@
     --grey: #666e77;
     --dark: #242424;
     --black: #000;
-
 
     --shadow: 0 .6021873017743928px 2.2883117467426928px -1.5px #00000036, 0 2.288533303243457px 8.696426552325137px -3px #0000002e, 0 10px 38px -4.5px
 }
@@ -295,7 +295,7 @@ nav .menu a:hover::after {
 /* Hero Section - text */
 
 #hero h3 {
-    margin-bottom: 4vh;
+    margin-bottom: 3vh;
     color: var(--primary);
     font-weight: 100;
 }
@@ -366,7 +366,7 @@ nav .menu a:hover::after {
     flex-direction: column;
     justify-content: center;
 
-    padding: 0 4vw;
+    padding: 0 2vw 0 6vw;
 }
 #software .boxes .box h3 {
     margin-bottom: 3vh;
@@ -514,32 +514,66 @@ nav .menu a:hover::after {
 
 
 
-
 /* --------------------------------------------------------------------------------------------------*/
-/* -------------------------------------------- PRICING -------------------------------------------- */
+/* -------------------------------------------- ROADMAP -------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-#pricing .plans {
+#roadmap {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-#pricing .plans .plan {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
 
-    background-color: var(--light);
-    border-radius: 30px;
-    margin: 0 10px;
-
-    height: 400px;
-    padding: 6vh 2vw;
+    padding: 6vh 4vw;
+    margin-top: 20vh;
+    height: 120vh;
+    background-color: var(--dark);
+    color: var(--white);
 }
-#pricing .plans .plan .btn {
-    width: 100%;
+
+/* Roadmap - grid */
+
+#roadmap .grid {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "b1 b2"
+        "b3 b4"
+    ;
+    gap: 100px;
+}
+#roadmap .grid .box:nth-of-type(1) {
+    grid-area: b1;
+}
+#roadmap .grid .box:nth-of-type(2) {
+    grid-area: b2;
+}
+#roadmap .grid .box:nth-of-type(3) {
+    grid-area: b3;
+}
+#roadmap .grid .box:nth-of-type(4) {
+    grid-area: b4;
+}
+
+/* Roadmap - Boxes */
+
+#roadmap .grid .box {
+    text-align: left;
+}
+#roadmap .grid .box h4,
+#roadmap .grid .box p {
+    color: var(--white);
     margin-bottom: 1vh;
+}    
+#roadmap .grid .box h4 {
+    color: var(--primary);
+}
+#roadmap .grid .box h6 {
+    font-size: 20px;
+    font-weight: 100;
+    margin-bottom: 2vh;
 }
 
 
@@ -637,7 +671,7 @@ footer .social-media img{
     /* RESPONSIVE | Navigation Bar */
 
     nav {
-        height: 64px;
+        height: 68px;
         padding: 15px 4vw;
     }
 
@@ -686,7 +720,7 @@ footer .social-media img{
 
       left: 0;
       right: 4.5vw;
-      top: 64px;
+      top: 68px;
 
       display: flex;
       flex-direction: column;
@@ -697,11 +731,13 @@ footer .social-media img{
       overflow: hidden;
       opacity: 0;
       transition: 0.4s;
-      background-color: var(--grey);
+      background-color: var(--light);
     }
     nav .menu.active {
       height: 95vh;
+      background-color: rgba(255, 255, 255, 0.90);
       opacity: 1;
+      backdrop-filter: blur(10px);
     }
     nav .menu a {
       margin-bottom: 10px;
@@ -709,7 +745,7 @@ footer .social-media img{
       padding: 10px 0;
       width: 100%;
       box-sizing: border-box;
-      color: var(--light);
+      color: var(--dark);
     }
     nav .menu a:hover::after {
         width: 0%; 
@@ -717,7 +753,7 @@ footer .social-media img{
 
     /* RESPONSIVE | Navigation Bar - button */ 
     
-    nav .btn2{
+    nav .btn{
         display: none;
     }
 
@@ -726,7 +762,7 @@ footer .social-media img{
     /* RESPONSIVE | NEWS */
 
     .news {
-        transform: translateY(64px);
+        transform: translateY(68px);
         justify-content: center;
         height: 45px;
     }
@@ -769,6 +805,10 @@ footer .social-media img{
 
     /* Software - boxes */
 
+    #software .boxes {
+        width: 80vw;
+    }
+
     #software .boxes .box{
         display: flex;
         flex-direction: column;
@@ -803,6 +843,7 @@ footer .social-media img{
     }
 
     #features .grid {
+        width: 80vw;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
@@ -835,7 +876,7 @@ footer .social-media img{
     }
 
     #stack .carousel .item {
-        min-width: 80vw; 
+        min-width: 200px; 
     }
 
     @keyframes scroll {
@@ -843,20 +884,8 @@ footer .social-media img{
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-80vw * 6)); 
+            transform: translateX(calc(200px * 6)); 
         }
-    }
-
-
-
-    /* RESPONSIVE | PRICING */
-
-    #pricing .plans {
-        flex-direction: column;
-    }
-    #pricing .plans .plan {
-        width: 80vw;
-        margin: 0 0 2vh 0;
     }
     
 
@@ -864,13 +893,36 @@ footer .social-media img{
 
 @media only screen and (max-width: 685px) {
 
-
     /* RESPONSIVE | SOFTWARE */
 
     /* Software - boxes */
 
     #software .boxes .box{
         text-align: left;
+    }
+
+    /* RESPONSIVE | ROADMAP */
+
+    #roadmap {
+        padding: 2vh;
+        margin-top: 20vh;
+        height: calc(100vh - 68px);
+    }
+    
+    /* Roadmap - grid */
+    
+    #roadmap .grid {
+        width: 80vw;
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+            "b1"
+            "b2"
+            "b3"
+            "b4"
+        ;
+        gap: 10px;
     }
 
     /* FOOTER | RESPONSIVE */
