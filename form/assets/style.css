@@ -54,6 +54,19 @@ div {
     --light: #f9dcbf;
 }
 
+/* LOADER */
+
+#loader {
+    background: var(--lightBrown) url(media/loader.gif) no-repeat center center;
+    display: block;
+    background-size: 10%;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
+}
+
 /* BUTTON */
 
 .btn {

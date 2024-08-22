@@ -1,8 +1,8 @@
 // FRONTEND | Form
 
-// const apiUrl = 'http://localhost:3089'
+const apiUrl = 'http://localhost:3089'
 // const apiUrl = 'https://lattefy-server.glitch.me'
-const apiUrl = 'https://backend-5v26.onrender.com'
+// const apiUrl = 'https://backend-5v26.onrender.com'
 
 // Fetch all clients
 async function getAll() {
@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Form 
   if (document.getElementById('form')) {
 
+    // Loader
+    var loader = document.getElementById("loader")
+    window.addEventListener("load", function(){
+        loader.style.display = "none"
+    })
+
     // Get 5-Star Rating
     function getStarRating() {
       let userRating = null
@@ -106,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById("btn")
     btn.addEventListener('click', async function (event) {
       event.preventDefault()
+
+      loader.style.display = "block"
 
       // Fixed Data
       const name = document.getElementById("name").value
@@ -160,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Client updated successfully')
             window.location.href = 'done.html'
           } else {
+            loader.style.display = "none"
             alert('Descuento no disponible, asegurate de haber completado la informacion correctamente.')
           }
         }
