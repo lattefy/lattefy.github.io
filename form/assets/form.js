@@ -1,8 +1,8 @@
 // FRONTEND | Form
 
-const apiUrl = 'http://localhost:3089'
+// const apiUrl = 'http://localhost:3089'
 // const apiUrl = 'https://lattefy-server.glitch.me'
-// const apiUrl = 'https://backend-5v26.onrender.com'
+const apiUrl = 'https://backend-5v26.onrender.com'
 
 // Fetch all clients
 async function getAll() {
@@ -168,9 +168,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Client updated successfully')
             window.location.href = 'done.html'
           } else {
-            loader.style.display = "none"
             alert('Descuento no disponible, asegurate de haber completado la informacion correctamente.')
           }
+          loader.style.display = "none"
         }
       } catch (error) {
         console.error('Error creating or updating client:', error)
