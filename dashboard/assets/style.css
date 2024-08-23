@@ -200,6 +200,37 @@ input:focus {
     margin: 0 10px 5px 0;
 }
 
+/* Sidebar - burger */
+
+.sidebar .top .burger {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.sidebar .top .burger span {
+    width: 30px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--light);
+    transition: 0.4s;
+}
+.sidebar .top .burger .line-1 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.sidebar .top .burger .line-2 {
+    width: 0;
+}
+.sidebar .top .burger .line-3 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
 /* Sidebar - Menu List */
 
 .sidebar .menu{
@@ -273,15 +304,26 @@ input:focus {
 .sidebar.active .menu {
     margin: 0 auto;
 }
-
-.sidebar.active .top #sidebar-btn {
-    font-size: 35px;
-    position: absolute;
-    transform: translate(10px, -10px);
-}
 .sidebar.active .top .logo {
     opacity: 0;
     pointer-events: none;
+}
+
+/* ACTIVE | Sidebar - burger */
+
+.sidebar.active .top .burger{
+    position: absolute;
+    transform: translate(12px, -10px);
+}
+
+.sidebar.active .top .burger .line-1 {
+    transform: translate(-50%, -10px);
+}
+.sidebar.active .top .burger .line-2 {
+    width: 30px;
+}
+.sidebar.active .top .burger .line-3 {
+    transform: translate(-50%, 7px);
 }
 
 /* ACTIVE | Sidebar - Menu List */
@@ -551,15 +593,16 @@ body#campaigns .sidebar .menu li:nth-child(4) a {
     .sidebar.active .menu {
         margin: 0 auto;
     }
-
-    .sidebar.active .top #sidebar-btn {
-        font-size: 35px;
-        position: absolute;
-        transform: translate(10px, -10px);
-    }
     .sidebar.active .top .logo {
         opacity: 0;
         pointer-events: none;
+    }
+
+    /* RESPONSIVE | Sidebar - Burger */
+
+    .sidebar.active .top .burger{
+        position: absolute;
+        transform: translate(12px, -10px);
     }
 
     /* RESPONSIVE | Sidebar - Menu List */
