@@ -310,6 +310,21 @@ function downloadCSV(clients) {
   document.body.removeChild(link)
 }
 
+// Function to trigger download of PDF file
+function downloadPDF(clients) {
+  const doc = convertToPDF(clients)
+  const blob = doc.output('blob') // Convert the PDF to a Blob
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.setAttribute('download', 'clients_insights.pdf')
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url) // Clean up the URL object after the download
+}
+
+
 
 
 /* --------------------------------------------------------------------------------------------------*/
