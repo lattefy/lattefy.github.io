@@ -1,8 +1,8 @@
 // FRONTEND | Form
 
-// const apiUrl = 'http://localhost:3089'
+const apiUrl = 'http://localhost:3089'
 // const apiUrl = 'https://lattefy-server.glitch.me'
-const apiUrl = 'https://backend-5v26.onrender.com'
+// const apiUrl = 'https://backend-5v26.onrender.com'
 
 // Fetch all clients
 async function getAll() {
@@ -72,6 +72,26 @@ function calculateDate(days) {
   date.setDate(today.getDate() + days)
   return date
 }
+
+// Send Email with EmailJS
+async function sendEmail(clientData) {
+  const templateParams = {
+    to_email: clientData.email,
+    name: clientData.name,
+    discount: '30%',
+    expirationDate: clientData.expirationDate.toLocaleDateString(),
+  }
+
+  try {
+    const response = await emailjs.send("service_w0y5b66", "template_ht7tsd9", templateParams)
+    console.log('Email sent successfully:', response.status, response.text)
+    return response
+  } catch (error) {
+    console.error('Error sending email:', error)
+    throw error 
+  }
+}
+
 
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', function () {
@@ -151,22 +171,40 @@ document.addEventListener('DOMContentLoaded', function () {
           }
           await createClient(clientData)
           console.log('Client created successfully')
-          window.location.href = 'done.html'
+
+          await sendEmail(clientData)
+          .then(() => {
+            window.location.href = 'done.html'
+          })
+
         } else {
+
           const existingClient = await getClientByEmail(email)
           if (existingClient && !existingClient.discountAvailable && lastRating !== null) {
             averageRating = ((existingClient.averageRating + lastRating) / 2).toFixed(2)
+
             const updates = {
+
+              // updates
               lastRating,
               averageRating,
               discountAvailable,
               emissionDate,
               expirationDate,
-              discountsGotten: existingClient.discountsGotten + 1
+              discountsGotten: existingClient.discountsGotten + 1,
+
+              // send email
+              name: existingClient.name, 
+              email: existingClient.email 
             }
+
             await updateClient(email, updates)
             console.log('Client updated successfully')
-            window.location.href = 'done.html'
+            await sendEmail(updates)
+            .then(() => {
+              window.location.href = 'done.html'
+            })
+            
           } else {
             alert('Descuento no disponible, asegurate de haber completado la informacion correctamente.')
           }
