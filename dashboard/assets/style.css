@@ -612,6 +612,9 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
         grid-column: span 2;
         margin-left: 75px; 
     }
+    .navbar .nav-btns .reload {
+        transform: translateY(0);
+    }
     .navbar .nav-btns .reload i {
         font-size: 20px;
         margin: 5px;
