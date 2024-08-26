@@ -99,13 +99,14 @@ function sentimentAnalysis(clients) {
 // Calculate Overall Average Expenditure
 function displayAverageExpenditure(clients) {
   const allExpenditures = clients.map(client => client.averageExpenditure)
+  const allDiscountsClaimed = clients.map(client => client.discountsClaimed)
 
   let expenditureSum = 0
   for (let i = 0; i < allExpenditures.length; i++) {
     expenditureSum += allExpenditures[i]
   }
 
-  const overallExpenditure = expenditureSum / clients.length
+  const overallExpenditure = expenditureSum / allDiscountsClaimed.length
   
   const expenditureOutput = document.getElementById('average-expenditure')
   expenditureOutput.textContent = "$" + overallExpenditure.toFixed(2)
