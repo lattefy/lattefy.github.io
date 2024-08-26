@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Lattefy</title>
     <link rel="stylesheet" href="assets/style.css">
     <!-- PHOSPHORICONS -->
@@ -13,7 +13,12 @@
     <!-- Navigation Bar -->
     <header class="navbar full-width">
         <h2>Campaigns</h2>
-        <a href="../form/index.html" class="btn">Cargar Cliente</a>
+        <div class="nav-btns">
+            <a class="reload" href="campaigns.html">
+                <i class="ph ph-arrow-clockwise"></i>
+            </a>
+            <a href="../form/index.html" class="btn">Cargar Cliente</a>
+        </div>
     </header>
 
     <!-- Side Bar -->
@@ -51,23 +56,23 @@
                 </a>
             </li>
             <li>
+                <a href="stats.html">
+                    <i class="ph ph-presentation-chart"></i>
+                    <span class="link">Estadisticas</span>
+                </a>
+            </li>
+            <li>
                 <a href="campaigns.html">
                     <i class="ph ph-bell"></i>
                     <span class="link">Campaigns</span>
                 </a>
             </li>
-            <li>
-                <a id="export-btn">
-                    <i class="ph ph-export"></i>
-                    <span class="link">Exportar Info.</span>
-                </a>
-            </li>
         </ul>
 
-        <div class="log-out">
-            <i class="ph ph-sign-out"></i>
-            <span class="link">Log out</span>
-        </div>
+        <a id="export-btn" class="export">
+            <i class="ph ph-export"></i>
+            <span class="link">Exportar Info.</span>
+        </a>
 
     </section>
 

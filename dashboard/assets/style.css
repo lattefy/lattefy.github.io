@@ -148,7 +148,28 @@ input:focus {
 .navbar h2 {
     font-weight: 200;
 }
-.navbar .btn {
+.navbar .nav-btns {
+    display: flex;
+    gap: 20px;
+}
+.navbar .nav-btns .reload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    transform: translateY(8px);
+
+    border-radius: 100%;
+    background-color: var(--light);
+}
+.navbar .nav-btns .reload i {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 20px;
+}
+.navbar .nav-btns .btn {
     width: auto;
     height: auto;
     padding: 10px 15px;
@@ -195,6 +216,7 @@ input:focus {
     align-items: center;
     justify-content: center;
     opacity: 1;
+    cursor: pointer;
 }
 .sidebar .top .logo i {
     margin: 0 10px 5px 0;
@@ -268,9 +290,9 @@ input:focus {
     font-size: 25px;
 }
 
-/* Sidebar - log out */
+/* Sidebar - export */
 
-.log-out {
+.export {
     margin: auto 0 20px 0;
     display: block;
     padding: 10px 10px;
@@ -281,11 +303,11 @@ input:focus {
     justify-content: flex-start;
     border-radius: 10px;
 }
-.log-out:hover {
+.export:hover {
     background-color: var(--light);
     color: var(--dark);
 }
-.log-out i {
+.export i {
     margin-right: 10px;
     font-size: 25px;
 }
@@ -338,18 +360,18 @@ input:focus {
     display: none;
 }
 
-/* ACTIVE | Sidebar - Log out */
+/* ACTIVE | Sidebar - export */
 
-.sidebar.active .log-out {
+.sidebar.active .export {
     justify-content: center;
     width: 50%;
     margin-left: 3.5px;
 }
-.sidebar.active .log-out i {
+.sidebar.active .export i {
     margin-right: 0;
     width: 90%;
 }
-.sidebar.active .log-out .link {
+.sidebar.active .export .link {
     display: none;
 }
 
@@ -509,6 +531,19 @@ body#purchase .sidebar .menu li:nth-child(3) a {
 
 
 
+/* --------------------------------------------------------------------------------------------------*/
+/* --------------------------------------------- STATS --------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Stats - Link */
+
+body#stats .sidebar .menu li:nth-child(4) {
+    background-color: var(--light);
+}
+body#stats .sidebar .menu li:nth-child(4) a {
+    color: var(--dark);
+}
+
 
 /* --------------------------------------------------------------------------------------------------*/
 /* ------------------------------------------ CAMPAIGNS -------------------------------------------- */
@@ -524,10 +559,10 @@ body#purchase .sidebar .menu li:nth-child(3) a {
 
 /* Campaigns Link */
 
-body#campaigns .sidebar .menu li:nth-child(4) {
+body#campaigns .sidebar .menu li:nth-child(5) {
     background-color: var(--light);
 }
-body#campaigns .sidebar .menu li:nth-child(4) a {
+body#campaigns .sidebar .menu li:nth-child(5) a {
     color: var(--dark);
 }
 
@@ -577,7 +612,11 @@ body#campaigns .sidebar .menu li:nth-child(4) a {
         grid-column: span 2;
         margin-left: 75px; 
     }
-    .navbar .btn {
+    .navbar .nav-btns .reload i {
+        font-size: 20px;
+        margin: 5px;
+    }
+    .navbar .nav-btns .btn {
         display: none;
     }
 
@@ -617,18 +656,18 @@ body#campaigns .sidebar .menu li:nth-child(4) a {
         display: none;
     }
 
-    /* RESPONSIVE | Sidebar - Log out */
+    /* RESPONSIVE | Sidebar - export */
 
-    .sidebar.active .log-out {
+    .sidebar.active .export {
         justify-content: center;
         width: 50%;
         margin-left: 3.5px;
     }
-    .sidebar.active .log-out i {
+    .sidebar.active .export i {
         margin-right: 0;
         width: 90%;
     }
-    .sidebar.active .log-out .link {
+    .sidebar.active .export .link {
         display: none;
     }
 
