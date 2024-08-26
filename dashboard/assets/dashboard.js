@@ -106,7 +106,12 @@ function displayAverageExpenditure(clients) {
     expenditureSum += allExpenditures[i]
   }
 
-  const overallExpenditure = expenditureSum / allDiscountsClaimed.length
+  let discountsClaimedSum = 0
+  for (let i = 0; i < allDiscountsClaimed.length; i++) {
+    discountsClaimedSum += allDiscountsClaimed[i]
+  }
+
+  const overallExpenditure = expenditureSum / discountsClaimedSum
   
   const expenditureOutput = document.getElementById('average-expenditure')
   expenditureOutput.textContent = "$" + overallExpenditure.toFixed(2)
