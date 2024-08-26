@@ -138,23 +138,23 @@ form .birthdate-label {
 }
 .star {
     font-size: 2rem;
-    color: #cbcbcb;
+    color: #fdf187;
     cursor: pointer;
     transition: color 0.2s;
 }
 .star:hover,
 .star:hover ~ .star {
-    color: var(--dark);
+    color: #f5c51a;
 }
 .star-rating input:checked ~ label,
 .star-rating input:checked ~ label ~ label {
-    color: var(--dark);
+    color: #f5c51a;
 }
 input:checked ~ label {
-    color: var(--dark);
+    color: #f5c51a;
 }
 input:checked ~ label ~ label {
-    color: var(--dark);
+    color: #f5c51a;
 }
 
 /* Container */
