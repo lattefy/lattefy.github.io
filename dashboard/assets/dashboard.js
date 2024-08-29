@@ -4,9 +4,9 @@
 /* -------------------------------------- DATABASE CONNECTION -------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-// const apiUrl = 'http://localhost:3089'
+const apiUrl = 'http://localhost:3089'
 // const apiUrl = 'https://lattefy-server.glitch.me'
-const apiUrl = 'https://backend-5v26.onrender.com'
+// const apiUrl = 'https://backend-5v26.onrender.com'
 
 // Fetch all clients
 async function getAll() {
@@ -339,16 +339,24 @@ function downloadPDF(clients) {
 
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', async function () {
+  
   const clients = await getAll()
+
+  // Loader
+  var loader = document.getElementById("loader")
+  loader.style.display = "none"
+
 
   // Dashboard
   if (document.getElementById('dashboard')) {
+
     displayClientCount(clients)
     displayDiscountsGotten(clients)
     displayDiscountsClaimed(clients)
     sentimentAnalysis(clients)
     displayAverageExpenditure(clients)
     displayTotalProfit(clients)
+
   }
 
   // Clients

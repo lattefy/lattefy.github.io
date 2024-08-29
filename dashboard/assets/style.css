@@ -63,14 +63,14 @@ body.collapsed-sidebar {
 /* -------------------------------------------- Loader --------------------------------------------- */
 
 #loader {
-    background: var(--green) url(images/loader.gif) no-repeat center center;
+    background: var(--light) url(images/loader-black.svg) no-repeat center center;
     display: block;
     background-size: 10%;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
     z-index: 100;
+    position: absolute;
 }
 
 /* -------------------------------------------- Button --------------------------------------------- */
@@ -384,6 +384,7 @@ input:focus {
     grid-area: main;
 
     z-index: 0;
+    position: relative;
 }
 .main .card {
     background-color: white;
