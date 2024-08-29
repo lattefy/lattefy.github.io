@@ -607,6 +607,13 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
         ;
     }
 
+    /* RESPONSIVE | Loader */
+
+    #loader {
+        background-size: 15%;
+        height: calc(100vh - 75px);
+    }
+
     /* RESPONSIVE | NAVBAR */
 
     .navbar {
