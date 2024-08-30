@@ -343,9 +343,10 @@ document.addEventListener('DOMContentLoaded', async function () {
   const clients = await getAll()
 
   // Loader
-  var loader = document.getElementById("loader")
-  loader.style.display = "none"
-
+  if (document.getElementById('dashboard') || document.getElementById('clients')) {
+    var loader = document.getElementById("loader")
+    loader.style.display = "none"
+  }
 
   // Dashboard
   if (document.getElementById('dashboard')) {
