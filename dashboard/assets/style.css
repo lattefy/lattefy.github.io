@@ -63,7 +63,7 @@ body.collapsed-sidebar {
 /* -------------------------------------------- Loader --------------------------------------------- */
 
 #loader {
-    background: white url(images/loader-black.svg) no-repeat center center;
+    background: var(--light) url(images/loader-black.svg) no-repeat center center;
     display: block;
     background-size: 10%;
     height: 100%;
