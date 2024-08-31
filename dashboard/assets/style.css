@@ -63,11 +63,14 @@ body.collapsed-sidebar {
 /* -------------------------------------------- Loader --------------------------------------------- */
 
 #loader {
-    background: var(--light) url(images/loader-black.svg) no-repeat center center;
+    background: white url(images/loader-black.svg) no-repeat center center;
     display: block;
     background-size: 10%;
     height: 100%;
     width: 100%;
+    /* height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px; */
     border-radius: 10px;
     z-index: 100;
     position: absolute;
