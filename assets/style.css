@@ -440,7 +440,10 @@ nav .menu a:hover::after {
 #features .grid .box p {
     margin-bottom: 2vh;
 }
-
+#features .grid .box:nth-of-type(1) img{
+    width: 80%;
+    transform: translateX(15%);
+}
 #features .grid .box:nth-of-type(2) {
     padding: 8vh 0 0 0;
 }
@@ -856,7 +859,6 @@ footer .social-media img{
     #features {
         padding-top: 10vh;
     }
-
     #features .grid {
         width: 80vw;
         grid-template-columns: 1fr;
@@ -871,6 +873,10 @@ footer .social-media img{
         padding: 6vh 8vw;
     }
 
+    #features .grid .box:nth-of-type(1) img{
+        width: 100%;
+        transform: translateX(0);
+    }
     #features .grid .box:nth-of-type(2) {
         height: 280px;
         padding: 6vh 4vw 0 4vw;
