@@ -375,7 +375,7 @@ nav .menu a:hover::after {
     margin-bottom: 4vh;
 }
 
-#software .box .right {
+#software .boxes .box .right {
     height: 500px;
     grid-area: right;
 
@@ -383,9 +383,13 @@ nav .menu a:hover::after {
     align-items: center;
     justify-content: center;
 }
-#software .box .right img{
+#software .boxes .box .right img{
     width: 90%;
     height: auto;
+}
+#software .boxes .box:nth-of-type(2) .right img {
+    height: 100%;
+    width: auto;
 }
 
 
@@ -825,21 +829,26 @@ footer .social-media img{
         text-align: center;
     }
 
-    #software .box .left {
+    #software .boxes .box .left {
         height: auto;
         padding: 0;
     }
-    #software .box .left .link {
+    #software .boxes .box .left .link {
         margin-bottom: 2vh;
     }
-    #software .box .right {
+    #software .boxes .box .right {
         padding-top: 0;
         height: auto;
     }
-    #software .box .right img{
+    #software .boxes .box .right img{
         height: auto;
         width: 100%;
     }
+    #software .boxes .box:nth-of-type(2) .right img{
+        height: auto;
+        width: 80vw;
+    }
+
 
 
     /* RESPONSIVE | FEATURES */
