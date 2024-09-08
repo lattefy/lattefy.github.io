@@ -459,12 +459,14 @@ body#dashboard .sidebar .menu li:nth-child(1) a {
 #clients .main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 15% 1fr;
     grid-template-areas: 
         "c1"
+        "c2"    
     ;
     gap: 10px;
 }
+
 
 /* Clients Link */
 
@@ -475,8 +477,11 @@ body#clients .sidebar .menu li:nth-child(2) a {
     color: var(--dark);
 }
 
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
 #clients .main .card {
-    grid-area: c1;
+    grid-area: c2;
 }
 
 #clients .main .card .table-container {
@@ -506,11 +511,90 @@ body#clients .sidebar .menu li:nth-child(2) a {
 }
 
 
+/* --------------------------------- Clients Sort & Filter ----------------------------------------- */
+
+#clients .main .sort-filter {
+    grid-area: c1;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#clients .main .sort-box, 
+#clients .main .filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+#clients .main .sort-box {
+    width: 30%;
+}
+#clients .main .sort-box select {
+    width: 40%;
+}
+#clients .main .filter-box {
+    width: 60%;
+}
+#clients .main .filter-box select {
+    width: 30%;
+}
+#clients .main .sort-filter select {
+    padding: 5px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+}
+#clients .main .sort-filter input {
+    height: 35px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--light);
+    background-color: var(--light);
+}
 
 
-/* --------------------------------------------------------------------------------------------------*/
+/* Sort Filter - Buttons */
+
+#clients .main .sort-filter .sort-filter-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#clients .main .sort-filter .sort-filter-btns a {
+    width: 30px;
+    padding: 3px 10px;
+    border-radius: 100%;
+    border: none;
+    transition: ease-in-out 0.2s;
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child {
+    background-color: white;
+    color: rgb(3, 234, 138);
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child:hover {
+    background-color: rgb(3, 234, 138);
+    color: white;
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child {
+    background-color: white;
+    color: rgb(234, 3, 126);
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child:hover {
+    color: white;
+    background-color: rgb(234, 3, 126);
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------- PURCHASE -------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------- */
 
 /* Purchase - layout */
 
@@ -701,6 +785,19 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     }
     #dashboard .main .card {
         grid-area: initial !important;
+    }
+
+    /* RESPONSIVE | CLIENTS */
+
+    #clients .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas: 
+            "c2"
+        ;
+    }
+    #clients .main .sort-filter {
+        display: none;
     }
 
 

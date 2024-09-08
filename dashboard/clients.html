@@ -88,7 +88,51 @@
     <main class="main full-width">
 
         <div id="loader" style="display: block;"></div>
+
+        <div class="sort-filter">
+
+            <!-- Sort Box -->
+            <div class="sort-box">
+                <h4>Sort</h4>
+                <select id="sort-variable">
+                    <option value="name">Nombre</option>
+                    <option value="birthDate">Edad</option>
+                    <option value="averageRating">Rating</option>
+                    <option value="discountsClaimed">Desuentos</option>
+                </select>
+                <select id="sort-order">
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+            </div>
         
+            <!-- Filter Box -->
+            <div class="filter-box">
+                <h4>Filter</h4>
+                <select id="filter-variable">
+                    <option value="name">Nombre</option>
+                    <option value="email">Email</option>
+                    <option value="phoneNumber">Celular</option>
+                    <option value="birthDate">Edad</option>
+                </select>
+                <select id="filter-condition">
+                    <option value="contains">contiene</option>
+                    <option value="not-contains">no contiene</option>
+                </select>
+                <input type="text" id="filter-value" placeholder="Enter value">
+            </div>
+
+            <div class="sort-filter-btns">
+                <a href="#" id="apply-btn" class="btn">
+                    <i class="ph ph-check"></i>
+                </a>
+                <a href="#" id="reset-btn" class="btn">
+                    <i class="ph ph-trash"></i>
+                </a>
+            </div>
+
+        </div> 
+       
         <div class="card">
             <div class="table-container">
                 <table>
