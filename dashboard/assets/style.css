@@ -111,27 +111,56 @@ body.collapsed-sidebar {
     border-radius: 20px;
 }
 
-/* --------------------------------------------- Input --------------------------------------------- */
+/* ---------------------------------------------- Inputs ------------------------------------------- */
 
-input {
-    height: 8vh;
-    width: 92%;
-    padding: 0 15px;
+/* ---------------------------------------------- Inputs ------------------------------------------- */
+
+input,
+textarea,
+select,
+.btn {
+    width: 100%;
     margin-bottom: 10px;
-
+    box-sizing: border-box;
     outline: none;
+    border: none;
     border-radius: 10px;
-    border: 2px solid white;
-
     color: var(--dark);
     background-color: #eee;
-
     font-size: 15px;
     font-family: "Poppins", sans-serif;
     transition: all 0.3s ease;
 }
-input:focus {
+input {
+    padding: 0 15px;
+    height: 8vh;
+}
+textarea {
+    padding: 10px;
+    height: 8vh;
+}
+select {
+    padding: 5px 10px;
+    height: 8vh;
+    border: 2px solid white;
+}
+
+/* ----------------------------------------- Button Style ------------------------------------------ */
+
+.btn {
+    height: 8vh;
+    border: solid var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--dark);
+    color: white;
+}
+.btn:hover {
+    background-color: transparent;
     border-color: var(--dark);
+    color: var(--dark);
 }
 
 
@@ -396,7 +425,7 @@ input:focus {
     overflow: hidden; 
 }
 .main .card p {
-    font-size: 30px;
+    font-size: 15px;
 }
 
 
@@ -416,6 +445,9 @@ input:focus {
         "c4 c5 c6"
     ;
     gap: 10px;
+}
+#dashboard .main .card p {
+    font-size: 30px;
 }
 
 /* Dashboard Link */
@@ -529,6 +561,12 @@ body#clients .sidebar .menu li:nth-child(2) a {
     padding: 15px;
     border-radius: 8px;
 }
+#clients .main select,
+#clients .main input {
+    margin-bottom: 0;
+    height: 35px;
+    border-radius: 5px;
+}
 #clients .main .sort-box {
     width: 30%;
 }
@@ -541,21 +579,6 @@ body#clients .sidebar .menu li:nth-child(2) a {
 #clients .main .filter-box select {
     width: 30%;
 }
-#clients .main .sort-filter select {
-    padding: 5px;
-    height: 35px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
-    color: var(--dark);
-}
-#clients .main .sort-filter input {
-    height: 35px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: 1px solid var(--light);
-    background-color: var(--light);
-}
 
 
 /* Sort Filter - Buttons */
@@ -567,8 +590,8 @@ body#clients .sidebar .menu li:nth-child(2) a {
     gap: 10px;
 }
 #clients .main .sort-filter .sort-filter-btns a {
-    width: 30px;
-    padding: 3px 10px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
     border: none;
     transition: ease-in-out 0.2s;
@@ -603,6 +626,9 @@ body#clients .sidebar .menu li:nth-child(2) a {
     align-items: center;
     justify-content: center;
 }
+#purchase .main .container {
+    padding: 20px;
+}
 
 /* Purchase Link */
 
@@ -612,7 +638,6 @@ body#purchase .sidebar .menu li:nth-child(3) {
 body#purchase .sidebar .menu li:nth-child(3) a {
     color: var(--dark);
 }
-
 #purchase .main .container h2 {
     margin: 0;
 }
@@ -640,9 +665,19 @@ body#stats .sidebar .menu li:nth-child(4) a {
 /* Campaigns - layout */
 
 #campaigns .main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "c1 c2"
+    ;
+    gap: 10px;
+}
+#campaigns .main .card:nth-child(1) {
+    grid-area: c1;
+}
+#campaigns .main .card:nth-child(2) {
+    grid-area: c2;
 }
 
 /* Campaigns Link */
@@ -654,21 +689,45 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     color: var(--dark);
 }
 
-/* Campaigns - texts */
+/* Campaigns - cards */
 
-#campaigns .main .container h2,
-#campaigns .main .container h4,
-#campaigns .main .container p 
-{
-    margin: 5px 0;
-    text-align: center;
+#campaigns .main .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 50px;
 }
-
-/* Campaigns - Icon */
-
-#campaigns .main .container i {
+#campaigns .main .card i{
     font-size: 40px;
 }
+#campaigns .main .card h3{
+    font-size: 30px;
+    margin: 10px 0;
+}
+#campaigns .main .card p{
+    font-size: 10px;
+    transform: translateY(-20px);
+}
+#campaigns .main .card .header {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#campaigns .main .card .header select {
+    transform: translateY(2px);
+    width: 100%;
+    height: 8vh;
+}
+#campaigns .main .card textarea {
+    resize: none; 
+    height: 20%;
+}
+
+
+
+
 
 
 
@@ -799,6 +858,33 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     #clients .main .sort-filter {
         display: none;
     }
+
+    /* RESPONSIVE | CAMPAIGNS */
+
+    #campaigns .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+            "c1"
+            "c2"
+        ;
+        gap: 20px;
+    }
+    #campaigns .main .card {
+        padding: 20px;
+        text-align: center;
+    }
+    #campaigns .main .card .header {
+        flex-direction: column;
+        gap: 0px;
+    }
+    #campaigns .main .card h3 {
+        font-size: 25px;
+    }
+    #campaigns .main .card p {
+        display: none;
+    }
+
 
 
 }
