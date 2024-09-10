@@ -142,7 +142,9 @@ textarea {
 select {
     padding: 5px 10px;
     height: 8vh;
-    border: 2px solid white;
+    border: 1px solid #ddd;
+    color: var(--dark);
+    background-color: var(--light);
 }
 
 /* ----------------------------------------- Button Style ------------------------------------------ */
@@ -191,7 +193,7 @@ select {
 
     width: 30px;
     height: 30px;
-    transform: translateY(8px);
+    transform: translateY(10px);
 
     border-radius: 100%;
     background-color: var(--light);
@@ -205,6 +207,7 @@ select {
     width: auto;
     height: auto;
     padding: 10px 15px;
+    margin-bottom: 0;
 }
 
 
@@ -434,21 +437,6 @@ select {
 /* ------------------------------------------- DASHBOARD ------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-/* Dashboard grid Layout */
-
-#dashboard .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: 
-        "c1 c2 c3"
-        "c4 c5 c6"
-    ;
-    gap: 10px;
-}
-#dashboard .main .card p {
-    font-size: 30px;
-}
 
 /* Dashboard Link */
 
@@ -457,27 +445,6 @@ body#dashboard .sidebar .menu li:nth-child(1) {
 }
 body#dashboard .sidebar .menu li:nth-child(1) a {
     color: var(--dark);
-}
-
-/* Dashboard Cards */
-
-#dashboard .main .card:nth-child(1) {
-    grid-area: c1;
-}
-#dashboard .main .card:nth-child(2) {
-    grid-area: c2;
-}
-#dashboard .main .card:nth-child(3) {
-    grid-area: c3;
-}
-#dashboard .main .card:nth-child(4) {
-    grid-area: c4;
-}
-#dashboard .main .card:nth-child(5) {
-    grid-area: c5;
-}
-#dashboard .main .card:nth-child(6) {
-    grid-area: c6;
 }
 
 
@@ -568,16 +535,16 @@ body#clients .sidebar .menu li:nth-child(2) a {
     border-radius: 5px;
 }
 #clients .main .sort-box {
-    width: 30%;
+    width: 35%;
 }
 #clients .main .sort-box select {
-    width: 40%;
+    width: 55%;
 }
 #clients .main .filter-box {
     width: 60%;
 }
 #clients .main .filter-box select {
-    width: 30%;
+    width: 60%;
 }
 
 
@@ -594,6 +561,7 @@ body#clients .sidebar .menu li:nth-child(2) a {
     height: 45px;
     border-radius: 100%;
     border: none;
+    transform: translateY(5px);
     transition: ease-in-out 0.2s;
 }
 #clients .main .sort-filter .sort-filter-btns a:first-child {
@@ -627,7 +595,7 @@ body#clients .sidebar .menu li:nth-child(2) a {
     justify-content: center;
 }
 #purchase .main .container {
-    padding: 20px;
+    padding: 30px;
 }
 
 /* Purchase Link */
@@ -648,6 +616,22 @@ body#purchase .sidebar .menu li:nth-child(3) a {
 /* --------------------------------------------- STATS --------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
+/* Stats grid Layout */
+
+#stats .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c5 c6"
+    ;
+    gap: 10px;
+}
+#stats .main .card p {
+    font-size: 30px;
+}
+
 /* Stats - Link */
 
 body#stats .sidebar .menu li:nth-child(4) {
@@ -656,6 +640,29 @@ body#stats .sidebar .menu li:nth-child(4) {
 body#stats .sidebar .menu li:nth-child(4) a {
     color: var(--dark);
 }
+
+/* Stats Cards */
+
+#stats .main .card:nth-child(1) {
+    grid-area: c1;
+}
+#stats .main .card:nth-child(2) {
+    grid-area: c2;
+}
+#stats .main .card:nth-child(3) {
+    grid-area: c3;
+}
+#stats .main .card:nth-child(4) {
+    grid-area: c4;
+}
+#stats .main .card:nth-child(5) {
+    grid-area: c5;
+}
+#stats .main .card:nth-child(6) {
+    grid-area: c6;
+}
+
+
 
 
 /* --------------------------------------------------------------------------------------------------*/
@@ -835,16 +842,6 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
         margin-left: 75px;
     }
 
-    /* RESPONSIVE | DASHBOARD */
-
-    #dashboard .main {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 180px);
-        grid-template-areas: initial;
-    }
-    #dashboard .main .card {
-        grid-area: initial !important;
-    }
 
     /* RESPONSIVE | CLIENTS */
 
@@ -857,6 +854,17 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     }
     #clients .main .sort-filter {
         display: none;
+    }
+
+    /* RESPONSIVE | STATS */
+
+    #stats .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 180px);
+        grid-template-areas: initial;
+    }
+    #stats .main .card {
+        grid-area: initial !important;
     }
 
     /* RESPONSIVE | CAMPAIGNS */

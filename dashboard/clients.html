@@ -93,12 +93,12 @@
 
             <!-- Sort Box -->
             <div class="sort-box">
-                <h4>Sort</h4>
+                <i class="ph ph-arrows-down-up"></i>
                 <select id="sort-variable">
-                    <option value="name">Nombre</option>
-                    <option value="birthDate">Edad</option>
                     <option value="averageRating">Rating</option>
                     <option value="discountsClaimed">Desuentos</option>
+                    <option value="averageExpenditure">Gasto Promedio</option>
+                    <option value="birthDate">Edad</option>
                 </select>
                 <select id="sort-order">
                     <option value="asc">Ascendente</option>
@@ -108,18 +108,19 @@
         
             <!-- Filter Box -->
             <div class="filter-box">
-                <h4>Filter</h4>
+                <i class="ph ph-funnel-simple"></i>
                 <select id="filter-variable">
                     <option value="name">Nombre</option>
                     <option value="email">Email</option>
                     <option value="phoneNumber">Celular</option>
-                    <option value="birthDate">Edad</option>
+                    <option value="averageRating">Rating</option>
+                    <option value="discountsClaimed">Descuentos</option>
                 </select>
                 <select id="filter-condition">
                     <option value="contains">contiene</option>
                     <option value="not-contains">no contiene</option>
                 </select>
-                <input type="text" id="filter-value" placeholder="Enter value">
+                <input type="text" id="filter-value" placeholder="Ingresar valor">
             </div>
 
             <div class="sort-filter-btns">

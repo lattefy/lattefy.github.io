@@ -405,21 +405,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   const clients = await getAll()
 
   // Loader
-  if (document.getElementById('dashboard') || document.getElementById('clients')) {
+  if (document.getElementById('stats') || document.getElementById('clients')) {
     var loader = document.getElementById("loader")
     loader.style.display = "none"
-  }
-
-  // Dashboard
-  if (document.getElementById('dashboard')) {
-
-    displayClientCount(clients)
-    displayDiscountsGotten(clients)
-    displayDiscountsClaimed(clients)
-    sentimentAnalysis(clients)
-    displayAverageExpenditure(clients)
-    displayTotalProfit(clients)
-
   }
 
   // Clients
@@ -438,6 +426,18 @@ document.addEventListener('DOMContentLoaded', async function () {
       const amountSpentNow = parseFloat(document.getElementById('amount-spent').value)
       uploadPurchase(email, amountSpentNow)
     })
+  }
+
+  // Stats
+  if (document.getElementById('stats')) {
+
+    displayClientCount(clients)
+    displayDiscountsGotten(clients)
+    displayDiscountsClaimed(clients)
+    sentimentAnalysis(clients)
+    displayAverageExpenditure(clients)
+    displayTotalProfit(clients)
+
   }
 
   // Export PDF and CSV
