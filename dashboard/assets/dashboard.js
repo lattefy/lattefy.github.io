@@ -223,9 +223,38 @@ function initializeSortAndFilter(clients) {
 }
 
 
-/* --------------------------------------------------------------------------------------------------*/
+/* ----------------------------------------- Dashboard Table -------------------------------------- */
+
+function displayClients(clients) {
+  const clientOutput = document.getElementById('allClients')
+  clientOutput.innerHTML = ''
+  const fieldsToAvoid = [
+    '_id', 'lastrating', 'emissiondate', 'expirationdate', 'discountsclaimed', 'discountsgotten', 'discountavailable', 'totalspent', 'averageexpenditure', '__v'
+  ]
+
+  clients.forEach(client => {
+    const row = document.createElement('tr')
+
+    Object.entries(client).forEach(([key, value]) => {
+      if (!fieldsToAvoid.includes(key.toLowerCase())) {
+        const cell = document.createElement('td')
+        cell.textContent = value
+        cell.setAttribute('data-label', capitalizeFirstLetter(key))
+        row.appendChild(cell)
+      }
+    })
+
+    clientOutput.appendChild(row)
+  })
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+/* ------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------- UPLOAD PURCHASE ---------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------- */
 
 // Calculate dates
 function calculateDate(days) {
@@ -244,8 +273,10 @@ function isDateExpired(date) {
 
 // Upload Purchase
 async function uploadPurchase(email, amountSpentNow) {
+
   const clients =  await getAll()
   const client = getClientByEmail(clients, email)
+
   if (client) {
     const amountSpentNowNum = parseFloat(amountSpentNow)
     if (isNaN(amountSpentNowNum)) {
@@ -405,15 +436,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   const clients = await getAll()
 
   // Loader
-  if (document.getElementById('stats') || document.getElementById('clients')) {
+  if (
+    document.getElementById('dashboard') || 
+    document.getElementById('clients') ||
+    document.getElementById('stats')
+  ) {
     var loader = document.getElementById("loader")
     loader.style.display = "none"
   }
 
+  // Dashboard
+  if (document.getElementById('dashboard')) {
+    displayClients(clients)
+    displayClientCount(clients)
+    sentimentAnalysis(clients)
+    displayTotalProfit(clients)
+  }
+
   // Clients
   if (document.getElementById('clients')) {
-    // Fetch clients and initialize functionality
-    const clients = await getAll()
     initializeSortAndFilter(clients)
   }
 

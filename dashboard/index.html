@@ -87,6 +87,58 @@
     <!-- Main Content -->
     <main class="main full-width">
 
+        <div id="loader" style="display: block;"></div>
+
+        <div class="cards">
+            
+            <a href="stats.html" class="card">
+                <h2>Total Clients</h2>
+                <p id="client-amount"></p>
+            </a>
+            <a href="stats.html" class="card">
+                <h2>Rating Promedio</h2>
+                <p id="sentiment-analysis"></p>
+            </a>
+            <a href="stats.html" class="card">
+                <h2>Total Facturado</h2>
+                <p id="total-profit"></p>
+            </a>
+            <a href="clients.html" class="card">
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Celular</th>
+                                <th>Email</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allClients"></tbody>
+                    </table>
+                </div>
+
+            </a>
+            <a href="campaigns.html" class="card">
+                <i class="ph ph-bell"></i>
+                <h2>Campaigns</h2>
+                <p>Administra todas tus campanas desde un solo lugar</p>
+                <div class="paths">
+                    <div class="path">
+                        Email Marketing
+                        <i class="ph ph-envelope"></i>
+                    </div>
+                    <div class="path">
+                        WhatsApp Api
+                        <i class="ph ph-whatsapp-logo"></i>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
     </main>
 
     <!-- Js File to connect with the server -->

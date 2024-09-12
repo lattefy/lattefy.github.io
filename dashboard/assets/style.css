@@ -33,6 +33,7 @@ body {
 }
 a {
     text-decoration: none;
+    color: var(--dark);
 }
 i {
     font-size: 30px;
@@ -437,15 +438,137 @@ select {
 /* ------------------------------------------- DASHBOARD ------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
+/* Dashboard grid layout */
+#dashboard .main .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c4 c5"
+        "c4 c4 c5";
+    gap: 10px;
+}
+
+#dashboard .main .cards .card:nth-child(1) {
+    grid-area: c1;
+}
+#dashboard .main .cards .card:nth-child(2) {
+    grid-area: c2;
+}
+#dashboard .main .cards .card:nth-child(3) {
+    grid-area: c3;
+}
+#dashboard .main .cards .card:nth-child(4) {
+    grid-area: c4;
+}
+#dashboard .main .cards .card:nth-child(5) {
+    grid-area: c5;
+}
+
+#dashboard .main .cards {
+    height: 100%;
+}
+
 
 /* Dashboard Link */
-
 body#dashboard .sidebar .menu li:nth-child(1) {
     background-color: var(--light);
 }
 body#dashboard .sidebar .menu li:nth-child(1) a {
     color: var(--dark);
 }
+
+
+/* Dashboard Stats cards */
+
+#dashboard .main .cards .card:nth-child(1) p,
+#dashboard .main .cards .card:nth-child(2) p,
+#dashboard .main .cards .card:nth-child(3) p {
+    font-size: 30px;
+    margin: 0;
+}
+#dashboard .main .cards .card:nth-child(1) h2,
+#dashboard .main .cards .card:nth-child(2) h2,
+#dashboard .main .cards .card:nth-child(3) h2 {
+    margin-bottom: 10px;
+}
+
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
+#dashboard .main .cards .card .table-container {
+    flex-grow: 1;
+    overflow: auto;
+    margin: 10px;
+}
+#dashboard .main .cards .card table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: white;
+}
+#dashboard .main .cards .card table th,
+#dashboard .main .cards .card table td {
+    padding: 5px;
+    text-align: left;
+}
+#dashboard .main .cards .card table thead {
+    color: var(--dark);
+}
+
+
+/* Dashboard Campaigns card */
+
+#dashboard .main .cards .card:nth-child(5) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px;
+}
+#dashboard .main .cards .card:nth-child(5) i {
+    font-size: 40px;
+}
+#dashboard .main .cards .card:nth-child(5) h2 {
+    margin: 0;
+}
+#dashboard .main .cards .card:nth-child(5) p {
+    font-size: 12px;
+}
+
+
+/* Dashboard paths */
+
+#dashboard .main .cards .card:nth-child(5) .paths {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+#dashboard .main .cards .card:nth-child(5) .paths .path {
+    width: 100%;
+    height: 6vh;
+    padding: 5px 10px;
+    text-align: left;
+    border-radius: 10px;
+    color: var(--dark);
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#dashboard .main .cards .card:nth-child(5) .paths .path i {
+    font-size: 30px;
+}
+#dashboard .main .cards .card:nth-child(5) .paths .path:nth-child(1) {
+    margin-bottom: 5px;
+}
+
 
 
 
@@ -482,13 +605,11 @@ body#clients .sidebar .menu li:nth-child(2) a {
 #clients .main .card {
     grid-area: c2;
 }
-
 #clients .main .card .table-container {
     flex-grow: 1;
     overflow: auto; 
     margin: 10px;
 }
-
 #clients .main .card table {
     width: 100%;
     height: 100%;
@@ -498,13 +619,11 @@ body#clients .sidebar .menu li:nth-child(2) a {
     margin-top: 10px;
     background-color: white;
 }
-
 #clients .main .card table th,
 #clients .main .card table td {
     padding: 5px; 
     text-align: left; 
 }
-
 #clients .main .card table thead {
     color: var(--dark); 
 }
@@ -598,6 +717,7 @@ body#clients .sidebar .menu li:nth-child(2) a {
     padding: 30px;
 }
 
+
 /* Purchase Link */
 
 body#purchase .sidebar .menu li:nth-child(3) {
@@ -632,6 +752,7 @@ body#purchase .sidebar .menu li:nth-child(3) a {
     font-size: 30px;
 }
 
+
 /* Stats - Link */
 
 body#stats .sidebar .menu li:nth-child(4) {
@@ -640,6 +761,7 @@ body#stats .sidebar .menu li:nth-child(4) {
 body#stats .sidebar .menu li:nth-child(4) a {
     color: var(--dark);
 }
+
 
 /* Stats Cards */
 
@@ -661,7 +783,6 @@ body#stats .sidebar .menu li:nth-child(4) a {
 #stats .main .card:nth-child(6) {
     grid-area: c6;
 }
-
 
 
 
@@ -687,6 +808,7 @@ body#stats .sidebar .menu li:nth-child(4) a {
     grid-area: c2;
 }
 
+
 /* Campaigns Link */
 
 body#campaigns .sidebar .menu li:nth-child(5) {
@@ -695,6 +817,7 @@ body#campaigns .sidebar .menu li:nth-child(5) {
 body#campaigns .sidebar .menu li:nth-child(5) a {
     color: var(--dark);
 }
+
 
 /* Campaigns - cards */
 
@@ -714,7 +837,7 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     margin: 10px 0;
 }
 #campaigns .main .card p{
-    font-size: 10px;
+    font-size: 15px;
     transform: translateY(-20px);
 }
 #campaigns .main .card .header {
@@ -843,6 +966,38 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     }
 
 
+    /* RESPONSIVE | DASHBOARD */
+
+    #dashboard .main .cards {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas: 
+            "c1"
+            "c2"
+            "c3"
+            "c4"
+            "c5"
+        ;
+        gap: 20px;
+    }
+    #dashboard .main .cards .card {
+        padding: 10px 20px;
+    }
+    #dashboard .main .cards .card h2 {
+        margin: 0;
+    }
+    #dashboard .main .cards .card:nth-child(4) {
+        height: 400px;
+    }
+    #dashboard .main .cards .card:nth-child(5) {
+        padding: 20px;
+    }
+    #dashboard .main .cards .card:nth-child(5) p {
+        display: none;
+    }
+    
+
+
     /* RESPONSIVE | CLIENTS */
 
     #clients .main {
@@ -892,7 +1047,5 @@ body#campaigns .sidebar .menu li:nth-child(5) a {
     #campaigns .main .card p {
         display: none;
     }
-
-
 
 }
