@@ -934,7 +934,7 @@ body#download .sidebar .menu .export {
         background-size: 15%;
         height: calc(100vh - 75px);
     }
-    
+
 
     /* RESPONSIVE | NAVBAR */
 
@@ -1035,13 +1035,13 @@ body#download .sidebar .menu .export {
     #dashboard .main .card h2 {
         margin: 0;
     }
-    #dashboard .main .card:nth-child(4) {
+    #dashboard .main .card:nth-child(5) {
         height: 400px;
     }
-    #dashboard .main .card:nth-child(5) {
+    #dashboard .main .card:nth-child(6) {
         padding: 20px;
     }
-    #dashboard .main .card:nth-child(5) p {
+    #dashboard .main .card:nth-child(6) p {
         display: none;
     }
     
