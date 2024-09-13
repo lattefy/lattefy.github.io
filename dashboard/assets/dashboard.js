@@ -439,7 +439,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   if (
     document.getElementById('dashboard') || 
     document.getElementById('clients') ||
-    document.getElementById('stats')
+    document.getElementById('stats') ||
+    document.getElementById('download')
   ) {
     var loader = document.getElementById("loader")
     loader.style.display = "none"
@@ -481,11 +482,20 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   }
 
-  // Export PDF and CSV
-  const exportBtn = document.getElementById('export-btn')
-  exportBtn.addEventListener('click', function () {
-    downloadPDF(clients)
-    downloadCSV(clients)
-  })
+  // Download
+  if (document.getElementById('download')) {
+
+    const pdfBtn = document.getElementById('pdf-btn') 
+    pdfBtn.addEventListener('click', function () {
+      downloadPDF(clients)
+    })
+
+    const csvBtn = document.getElementById('csv-btn') 
+    csvBtn.addEventListener('click', function () {
+      downloadCSV(clients)
+    })
+
+  }
+
 
 })

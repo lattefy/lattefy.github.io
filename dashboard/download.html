@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Campaigns</title>
-    <meta property="og:title" content="Lattefy | Campaigns">
+    <title>Lattefy | Clients</title>
+    <meta property="og:title" content="Lattefy | Clients">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -16,13 +16,13 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="campaigns" class="collapsed-sidebar">
+<body id="download" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Campaigns</h2>
+        <h2>Descargar</h2>
         <div class="nav-btns">
-            <a class="reload" href="campaigns.html">
+            <a class="reload" href="download.html">
                 <i class="ph ph-arrow-clockwise"></i>
             </a>
             <a href="../form/index.html" class="btn">Cargar Cliente</a>
@@ -84,30 +84,20 @@
 
     </section>
 
-
     <!-- Main Content -->
     <main class="main full-width">
 
-        <div class="card">
-            <i class="ph ph-bell"></i>
-            <h3>Crear nueva campana</h3>
-            <p>Crea una campana y hacela llegar a todos tus clientes.</p>
-            <div class="header">
-                <input type="text" id="title" placeholder="Titulo">
-                <select id="path">
-                    <option value="email">
-                        Email Marketing
-                    </option>
-                </select>
-            </div>
-            <textarea id="content" placeholder="Contenido"></textarea>
-            <a href="#" class="btn">Enviar Mensaje</a>
-        </div>
+        <div id="loader" style="display: block;"></div>
 
-        <div class="card">
-            <i class="ph ph-gift"></i>
-            <h3>Birthday Gifts</h3>
-            <p>Enviale un regalo a tus clientes por su cumpleanos. </p>
+        <div class="cards">
+            <a id="pdf-btn" class="card">
+                <i class="ph ph-file-arrow-down"></i>
+                Descargar .pdf 
+            </a>
+            <a id="csv-btn" class="card">
+                <i class="ph ph-microsoft-excel-logo"></i>
+                Descargar .csv
+            </a>
         </div>
 
     </main>
