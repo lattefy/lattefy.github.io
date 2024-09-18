@@ -88,6 +88,8 @@
     <!-- Main Content -->
     <main class="main full-width">
 
+        <div id="loader" style="display: block;"></div>
+
         <div class="card">
             <i class="ph ph-bell"></i>
             <h3>Crear nueva campana</h3>
@@ -101,7 +103,7 @@
                 </select>
             </div>
             <textarea id="content" placeholder="Contenido"></textarea>
-            <a href="#" class="btn">Enviar Mensaje</a>
+            <a id="campaign-btn" class="btn">Enviar Mensaje</a>
         </div>
 
         <div class="card">
@@ -114,6 +116,14 @@
 
     <!-- Js File to connect with the server -->
     <script src="assets/dashboard.js"></script>
+
+    <!-- Js File to send email -->
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        emailjs.init('Cv6Kl2E7kwi4IO4GQ')
+    </script>
 
     <!-- Js File to download .pdf data -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

@@ -1,5 +1,7 @@
 // FRONTEND | Dashboard
 
+
+
 /* --------------------------------------------------------------------------------------------------*/
 /* -------------------------------------- DATABASE CONNECTION -------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
@@ -44,6 +46,9 @@ async function updateClient(email, updates) {
     console.error('Error updating client:', error)
   }
 }
+
+
+
 
 /* --------------------------------------------------------------------------------------------------*/
 /* -------------------------------------- DASHBOARD INSIGHTS --------------------------------------- */
@@ -135,7 +140,6 @@ function displayTotalProfit(clients) {
 /* --------------------------------------------------------------------------------------------------*/
 /* ---------------------------------------- DISPLAY CLIENTS ---------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
-
 
 function initializeSortAndFilter(clients) {
 
@@ -252,6 +256,8 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+
+
 /* ------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------- UPLOAD PURCHASE ---------------------------------------- */
 /* ------------------------------------------------------------------------------------------------- */
@@ -325,6 +331,41 @@ async function uploadPurchase(email, amountSpentNow) {
   } else {
     alert('No se ha encontrado el cliente')
   }
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- CAMPAIGNS ------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+async function sendCampaignEmail(clients, title, content) {
+
+  try {
+    for (const client of clients) {
+
+      if (!client.email) {
+        console.error(`Missing email for client: ${client.name}`)
+        continue
+      }
+
+      const templateParams = {
+        to_email: client.email,
+        name: client.name,
+        title: title,
+        content: content,
+      }
+
+      const response = await emailjs.send("service_w0y5b66", "template_d029ld1", templateParams)
+      console.log(`Email sent successfully to ${client.name}:`, response.status, response.text)
+    }
+  } 
+  catch (error) {
+    console.error('Error sending campaign emails:', error)
+    throw error
+  }
+  alert('Campaña enviada con exito!')
+
 }
 
 
@@ -440,6 +481,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('dashboard') || 
     document.getElementById('clients') ||
     document.getElementById('stats') ||
+    document.getElementById('campaigns') ||
     document.getElementById('download')
   ) {
     var loader = document.getElementById("loader")
@@ -467,6 +509,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       const email = document.getElementById('email').value
       const amountSpentNow = parseFloat(document.getElementById('amount-spent').value)
       uploadPurchase(email, amountSpentNow)
+      email.value = ''
+      document.getElementById('amount-spent').value = ''
     })
   }
 
@@ -479,6 +523,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     sentimentAnalysis(clients)
     displayAverageExpenditure(clients)
     displayTotalProfit(clients)
+
+  }
+
+  // Campaigns
+  if(document.getElementById('campaigns')) {
+
+    document.getElementById('campaign-btn').addEventListener('click', async (e) => {
+      e.preventDefault()
+
+      loader.style.display = "block"
+  
+      const title = document.getElementById('title').value
+      const content = document.getElementById('content').value
+  
+      if (title && content) {
+        await sendCampaignEmail(clients, title, content)
+        title.value = ''
+        content.value = ''
+      } else {
+        alert('Por favor, completa el título y el contenido.')
+      }
+
+      loader.style.display = "none"
+
+    })
 
   }
 

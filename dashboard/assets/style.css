@@ -800,10 +800,10 @@ body#stats .sidebar .menu li:nth-child(4) a {
     ;
     gap: 10px;
 }
-#campaigns .main .card:nth-child(1) {
+#campaigns .main .card:nth-child(2) {
     grid-area: c1;
 }
-#campaigns .main .card:nth-child(2) {
+#campaigns .main .card:nth-child(3) {
     grid-area: c2;
 }
 
