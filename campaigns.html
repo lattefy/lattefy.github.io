@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Dashboard</title>
-    <meta property="og:title" content="Lattefy | Dashboard">
+    <title>Lattefy | Campaigns</title>
+    <meta property="og:title" content="Lattefy | Campaigns">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -16,13 +16,13 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="dashboard" class="collapsed-sidebar">
+<body id="campaigns" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Dashboard</h2>
+        <h2>Campaigns</h2>
         <div class="nav-btns">
-            <a class="reload" href="index.html">
+            <a class="reload" href="campaigns.html">
                 <i class="ph ph-arrow-clockwise"></i>
             </a>
             <a href="../form/index.html" class="btn">Cargar Cliente</a>
@@ -84,61 +84,46 @@
 
     </section>
 
+
     <!-- Main Content -->
     <main class="main full-width">
 
         <div id="loader" style="display: block;"></div>
 
-        <a href="stats.html" class="card">
-            <h2>Total Clients</h2>
-            <p id="client-amount"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Rating Promedio</h2>
-            <p id="sentiment-analysis"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Total Facturado</h2>
-            <p id="total-profit"></p>
-        </a>
-        <a href="clients.html" class="card">
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Celular</th>
-                            <th>Email</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody id="allClients"></tbody>
-                </table>
-            </div>
-
-        </a>
-        <a href="campaigns.html" class="card">
+        <div class="card">
             <i class="ph ph-bell"></i>
-            <h2>Campaigns</h2>
-            <p>Administra todas tus campanas desde un solo lugar</p>
-            <div class="paths">
-                <div class="path">
-                    Email Marketing
-                    <i class="ph ph-envelope"></i>
-                </div>
-                <div class="path">
-                    WhatsApp Api
-                    <i class="ph ph-whatsapp-logo"></i>
+            <h3>Crear nueva campana</h3>
+            <p>Crea una campana y hacela llegar a todos tus clientes.</p>
+            <div class="header">
+                <input type="text" id="title" placeholder="Titulo">
+                <div class="btn-file">
+                    <i class="ph ph-arrow-circle-up"></i>
+                    Subir archivo
+                    <input type="file" id="image-upload" accept="image/*">
                 </div>
             </div>
-        </a>
+            <textarea id="content" placeholder="Contenido"></textarea>
+            <a id="campaign-btn" class="btn">Enviar Mensaje</a>
+        </div>
+
+        <div class="card">
+            <i class="ph ph-gift"></i>
+            <h3>Birthday Gifts</h3>
+            <p>Enviale un regalo a tus clientes por su cumpleanos. </p>
+        </div>
 
     </main>
 
     <!-- Js File to connect with the server -->
     <script src="assets/dashboard.js"></script>
+
+    <!-- Js File to send email -->
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        emailjs.init('Cv6Kl2E7kwi4IO4GQ')
+    </script>
 
     <!-- Js File to download .pdf data -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

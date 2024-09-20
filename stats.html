@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Dashboard</title>
-    <meta property="og:title" content="Lattefy | Dashboard">
+    <title>Lattefy | Stats</title>
+    <meta property="og:title" content="Lattefy | Stats">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -16,13 +16,13 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="dashboard" class="collapsed-sidebar">
+<body id="stats" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Dashboard</h2>
+        <h2>Estadisticas</h2>
         <div class="nav-btns">
-            <a class="reload" href="index.html">
+            <a class="reload" href="stats.html">
                 <i class="ph ph-arrow-clockwise"></i>
             </a>
             <a href="../form/index.html" class="btn">Cargar Cliente</a>
@@ -89,51 +89,31 @@
 
         <div id="loader" style="display: block;"></div>
 
-        <a href="stats.html" class="card">
+        <div class="card">
             <h2>Total Clients</h2>
             <p id="client-amount"></p>
-        </a>
-        <a href="stats.html" class="card">
+        </div>
+        <div class="card">
+            <h2>Descuentos Conseguidos</h2>
+            <p id="discounts-gotten"></p>
+        </div>
+        <div class="card">
+            <h2>Descuentos Reclamados</h2>
+            <p id="discounts-claimed"></p>
+        </div>
+        <div class="card">
             <h2>Rating Promedio</h2>
             <p id="sentiment-analysis"></p>
-        </a>
-        <a href="stats.html" class="card">
+        </div>
+        <div class="card">
+            <h2>Gasto Promedio</h2>
+            <p id="average-expenditure"></p>
+        </div>
+        <div class="card">
             <h2>Total Facturado</h2>
             <p id="total-profit"></p>
-        </a>
-        <a href="clients.html" class="card">
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Celular</th>
-                            <th>Email</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody id="allClients"></tbody>
-                </table>
-            </div>
-
-        </a>
-        <a href="campaigns.html" class="card">
-            <i class="ph ph-bell"></i>
-            <h2>Campaigns</h2>
-            <p>Administra todas tus campanas desde un solo lugar</p>
-            <div class="paths">
-                <div class="path">
-                    Email Marketing
-                    <i class="ph ph-envelope"></i>
-                </div>
-                <div class="path">
-                    WhatsApp Api
-                    <i class="ph ph-whatsapp-logo"></i>
-                </div>
-            </div>
-        </a>
+        </div>
+        
 
     </main>
 

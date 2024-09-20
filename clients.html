@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Dashboard</title>
-    <meta property="og:title" content="Lattefy | Dashboard">
+    <title>Lattefy | Clients</title>
+    <meta property="og:title" content="Lattefy | Clients">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -16,13 +16,13 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="dashboard" class="collapsed-sidebar">
+<body id="clients" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Dashboard</h2>
+        <h2>Clientes</h2>
         <div class="nav-btns">
-            <a class="reload" href="index.html">
+            <a class="reload" href="clients.html">
                 <i class="ph ph-arrow-clockwise"></i>
             </a>
             <a href="../form/index.html" class="btn">Cargar Cliente</a>
@@ -89,20 +89,52 @@
 
         <div id="loader" style="display: block;"></div>
 
-        <a href="stats.html" class="card">
-            <h2>Total Clients</h2>
-            <p id="client-amount"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Rating Promedio</h2>
-            <p id="sentiment-analysis"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Total Facturado</h2>
-            <p id="total-profit"></p>
-        </a>
-        <a href="clients.html" class="card">
+        <div class="sort-filter">
 
+            <!-- Sort Box -->
+            <div class="sort-box">
+                <i class="ph ph-arrows-down-up"></i>
+                <select id="sort-variable">
+                    <option value="averageRating">Rating</option>
+                    <option value="discountsClaimed">Desuentos</option>
+                    <option value="averageExpenditure">Gasto Promedio</option>
+                    <option value="birthDate">Edad</option>
+                </select>
+                <select id="sort-order">
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+            </div>
+        
+            <!-- Filter Box -->
+            <div class="filter-box">
+                <i class="ph ph-funnel-simple"></i>
+                <select id="filter-variable">
+                    <option value="name">Nombre</option>
+                    <option value="email">Email</option>
+                    <option value="phoneNumber">Celular</option>
+                    <option value="averageRating">Rating</option>
+                    <option value="discountsClaimed">Descuentos</option>
+                </select>
+                <select id="filter-condition">
+                    <option value="contains">contiene</option>
+                    <option value="not-contains">no contiene</option>
+                </select>
+                <input type="text" id="filter-value" placeholder="Ingresar valor">
+            </div>
+
+            <div class="sort-filter-btns">
+                <a href="#" id="apply-btn" class="btn">
+                    <i class="ph ph-check"></i>
+                </a>
+                <a href="#" id="reset-btn" class="btn">
+                    <i class="ph ph-trash"></i>
+                </a>
+            </div>
+
+        </div> 
+       
+        <div class="card">
             <div class="table-container">
                 <table>
                     <thead>
@@ -112,28 +144,14 @@
                             <th>Email</th>
                             <th>Fecha Nacimiento</th>
                             <th>Rating</th>
+                            <th>Descuentos Reclamados</th>
+                            <th>Gasto Promedio</th>
                         </tr>
                     </thead>
                     <tbody id="allClients"></tbody>
                 </table>
             </div>
-
-        </a>
-        <a href="campaigns.html" class="card">
-            <i class="ph ph-bell"></i>
-            <h2>Campaigns</h2>
-            <p>Administra todas tus campanas desde un solo lugar</p>
-            <div class="paths">
-                <div class="path">
-                    Email Marketing
-                    <i class="ph ph-envelope"></i>
-                </div>
-                <div class="path">
-                    WhatsApp Api
-                    <i class="ph ph-whatsapp-logo"></i>
-                </div>
-            </div>
-        </a>
+        </div>
 
     </main>
 

@@ -1,648 +1,934 @@
-/* Lattefy | Uy Software Company - landing page */
+/* Lattefy Uy | Dashboard - Style */
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* Color Pallette */
 
 :root {
-    --primary: #1db97b;
-
-    --white: #fff;
-    --light: #f2f3f5;
-    --grey: #666e77;
     --dark: #242424;
-    --black: #000;
-
-    --shadow: 0 .6021873017743928px 2.2883117467426928px -1.5px #00000036, 0 2.288533303243457px 8.696426552325137px -3px #0000002e, 0 10px 38px -4.5px
+    --light: #f3f4f6;
 }
-
-
 
 /* --------------------------------------------------------------------------------------------------*/
 /* ---------------------------------------- GENERAL STYLING ---------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-*, 
-*::before,
-*::after {
-  margin: 0;
-  box-sizing: border-box;
-}
+
 body {
-    overflow-x: hidden;
-    font-family: "Montserrat", sans-serif;
-    color: var(--black);
-    background-color: var(--white);
-}
-html {
-    scroll-behavior: smooth;
-}
-img {
-    width: 100%;
+    color: var(--dark);
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+
+    /* Grid Layout */
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 75px 1fr;
+    grid-template-areas: 
+        "side header"
+        "side main"
+    ;
 }
 a {
     text-decoration: none;
+    color: var(--dark);
 }
-main {
-    width: 100vw;
+i {
+    font-size: 30px;
 }
-div {
-    padding: 0;
+ul {
+    list-style: none;
 }
-section{
+p {
+    font-size: 12px;
+}
+
+
+
+
+
+/* --------------------------------------- Collapsed Sidebar --------------------------------------- */
+
+body.collapsed-sidebar {
+    grid-template-columns: 55px 1fr;
+}
+
+.main.full-width,
+.navbar.full-width {
+    grid-column: span 2;
+    margin-left: 75px; 
+}
+
+/* -------------------------------------------- Loader --------------------------------------------- */
+
+#loader {
+    background: var(--light) url(images/loader-black.svg) no-repeat center center;
+    display: block;
+    background-size: 10%;
+    height: 100%;
+    width: 100%;
+    /* height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px; */
+    border-radius: 10px;
+    z-index: 100;
+    position: absolute;
+}
+
+/* -------------------------------------------- Button --------------------------------------------- */
+
+.btn {
+    width: 100%;
+    height: 8vh;
+    border: solid var(--dark);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--dark);
+    color: white;
+}
+.btn:hover {
+    background-color: transparent;
+    border-color: var(--dark);
+    color: var(--dark);
+}
+
+/* ------------------------------------------- Container ------------------------------------------- */
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    background-color: white;
+    width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+}
 
-    padding: 0 10vw;
-    padding-top: 30vh;
-    width: 100vw;
-    position: relative;
-}
-h1 {
-    font-size: 72px;
-}
-h2 {
-    font-size: 40px;
-    margin-bottom: 10vh;
-}
-h3 {
-    font-size: 32px;
+/* ---------------------------------------------- Inputs ------------------------------------------- */
+
+/* ---------------------------------------------- Inputs ------------------------------------------- */
+
+input,
+textarea,
+select,
+.btn {
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-radius: 10px;
     color: var(--dark);
+    background-color: #eee;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
 }
-h4 {
-    font-size: 26px;
+input {
+    padding: 0 15px;
+    height: 8vh;
 }
-p {
-    font-size: 18px;
-    color: var(--grey);
+textarea {
+    padding: 10px;
+    height: 8vh;
+}
+select {
+    padding: 5px 10px;
+    height: 8vh;
+    border: 1px solid #ddd;
+    color: var(--dark);
+    background-color: var(--light);
 }
 
-/* On Scroll effect */
-
-.reveal{
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.reveal.active{
-    transform: translateY(0px);
-    opacity: 1;
-}
-
-
-/* ------------------------------------------- BUTTON ---------------------------------------------- */
+/* ----------------------------------------- Button Style ------------------------------------------ */
 
 .btn {
+    height: 8vh;
+    border: solid var(--dark);
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
-    transition: 0.3s ease-in-out;
-
-    padding: 8px 12px;
-    border-radius: 8px;
-
-    font-weight: 600;
-    font-size: 15px;
-    box-shadow: rgba(0, 0, 0, 0.06)
+    background-color: var(--dark);
+    color: white;
 }
-
-/* Button */
-
-.btn{
-    border-style: solid;
-    border-color: var(--black);
-    color: var(--white);
-    background-color: var(--black);
-}
-.btn:hover{
+.btn:hover {
     background-color: transparent;
-    color: var(--black);
-}
-
-/* Text Anchor */
-
-.link {
+    border-color: var(--dark);
     color: var(--dark);
 }
-.link i {
-    font-size: 20px;
-    transform: translateY(5px);
-    font-style: bold;
-    color: var(--grey);
+
+
+/* ----------------------------------------- Navigation Bar ---------------------------------------- */
+
+.navbar {
+    background-color: white;
+    grid-area: header; 
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 0;
 }
-
-
-
-
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* ---------------------------------------- NAVIGATION BAR ----------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
-
-nav {
+.navbar h2 {
+    font-weight: 200;
+}
+.navbar .nav-btns {
+    display: flex;
+    gap: 20px;
+}
+.navbar .nav-btns .reload {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    position: fixed;
+    justify-content: center;
 
-    width: 100vw;
-    height: 70px;
-    padding: 4vh 4vw;
-    margin-bottom: 20vh;
-    z-index: 2;
+    width: 30px;
+    height: 30px;
+    transform: translateY(10px);
 
-    background-color: rgba(255, 255, 255, 0.8);
-    opacity: 1;
-    backdrop-filter: blur(10px);
+    border-radius: 100%;
+    background-color: var(--light);
+}
+.navbar .nav-btns .reload i {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 20px;
+}
+.navbar .nav-btns .btn {
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+    margin-bottom: 0;
 }
 
-/* Navigation Bar - logo */
 
-nav a .logo {
+/* ------------------------------------------- Side Bar -------------------------------------------- */
+
+.sidebar {
+    color: white;
+    background-color: var(--dark);
+    transition: all 0.1s ease-in;
+
+    grid-area: side;
+    padding: 0px 20px;
+    height: 100vh;
+    width: 260px;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+
+    z-index: 1;
+}
+
+/* Sidebar Top */
+
+.sidebar .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .top #sidebar-btn {
+    cursor: pointer;
+}
+
+/* Sidebar - logo */
+
+.sidebar .top .logo {
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 1;
+    cursor: pointer;
 }
-nav a .logo i {
-    font-size: 40px;
-    color: var(--black);
-    margin: 0 10px 10px 0;
-}
-nav a .logo h2{
-    font-family: 'Poppins';
-    font-weight: 700;
-    font-size: 30px;
-    margin-bottom: 0;
-    color: var(--black);
+.sidebar .top .logo i {
+    margin: 0 10px 5px 0;
 }
 
-/* Navigation Bar - burger */
+/* Sidebar - burger */
 
-.burger{
+.sidebar .top .burger {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.sidebar .top .burger span {
+    width: 30px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--light);
+    transition: 0.4s;
+}
+.sidebar .top .burger .line-1 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.sidebar .top .burger .line-2 {
+    width: 0;
+}
+.sidebar .top .burger .line-3 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+/* Sidebar - Menu List */
+
+.sidebar .menu{
+    margin: 10px 0;
+    padding: 0;
+    flex: 1;
+}
+.sidebar .menu li {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 5px;
+
+    border-radius: 10px;
+    color: white;
+}
+.sidebar .menu li:hover {
+    background-color: var(--light);
+}
+.sidebar .menu li a {
+    display: block;
+    color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.sidebar .menu li a:hover {
+    color: var(--dark);
+}
+.sidebar .menu li a i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* Sidebar - export */
+
+.export {
+    margin: auto 0 20px 0;
+    display: block;
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    color: var(--light);
+}
+.export:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+.export i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* ---------------------------------------- ACTIVE | Sidebar --------------------------------------- */
+
+/* ACTIVE | SIDEBAR */
+
+.sidebar.active {
+    padding: 10px;
+    width: 55px;
+}
+
+/* ACTIVE | Sidebar - Top */
+
+.sidebar.active .menu {
+    margin: 0 auto;
+}
+.sidebar.active .top .logo {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ACTIVE | Sidebar - burger */
+
+.sidebar.active .top .burger{
+    position: absolute;
+    transform: translate(12px, -10px);
+}
+
+.sidebar.active .top .burger .line-1 {
+    transform: translate(-50%, -10px);
+}
+.sidebar.active .top .burger .line-2 {
+    width: 30px;
+}
+.sidebar.active .top .burger .line-3 {
+    transform: translate(-50%, 7px);
+}
+
+/* ACTIVE | Sidebar - Menu List */
+
+.sidebar.active .menu li a {
+    justify-content: center !important;
+}
+.sidebar.active .menu li a i {
+    margin-right: 0;
+}
+.sidebar.active .menu li a .link {
     display: none;
 }
 
-/* Navigation Bar - menu */
+/* ACTIVE | Sidebar - export */
 
-nav .menu{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.sidebar.active .export {
+    justify-content: center;
+    width: 50%;
+    margin-left: 3.5px;
 }
-nav .menu a {
-    margin: 0 1vw;
-    text-decoration: none;
+.sidebar.active .export i {
+    margin-right: 0;
+    width: 90%;
+}
+.sidebar.active .export .link {
+    display: none;
+}
+
+
+/* ------------------------------------------ Main Content ----------------------------------------- */
+
+.main {
+    background-color: var(--light);
+    padding: 20px;
+    grid-area: main;
+
+    z-index: 0;
     position: relative;
+}
+.main .card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px 20px;
+    overflow: hidden; 
+}
+.main .card p {
+    font-size: 15px;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- DASHBOARD ------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Dashboard grid layout */
+
+#dashboard .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c4 c5"
+        "c4 c4 c5"
+    ;
+    gap: 10px;
+}
+
+#dashboard .main .card:nth-child(2) {
+    grid-area: c1;
+}
+#dashboard .main .card:nth-child(3) {
+    grid-area: c2;
+}
+#dashboard .main .card:nth-child(4) {
+    grid-area: c3;
+}
+#dashboard .main .card:nth-child(5) {
+    grid-area: c4;
+}
+#dashboard .main .card:nth-child(6) {
+    grid-area: c5;
+}
+
+
+/* Dashboard Link */
+
+body#dashboard .sidebar .menu li:nth-child(1) {
+    background-color: var(--light);
+}
+body#dashboard .sidebar .menu li:nth-child(1) a {
     color: var(--dark);
 }
-nav .menu a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    background-color: var(--dark);
-    left: 0;
-    bottom: -3px;
-    transition: width 0.3s ease;
+
+
+/* Dashboard Stats cards */
+
+#dashboard .main .card:nth-child(2) p,
+#dashboard .main .card:nth-child(3) p,
+#dashboard .main .card:nth-child(4) p {
+    font-size: 30px;
+    margin: 0;
 }
-nav .menu a:hover::after {
+#dashboard .main .card:nth-child(2) h2,
+#dashboard .main .card:nth-child(3) h2,
+#dashboard .main .card:nth-child(4) h2 {
+    margin-bottom: 10px;
+}
+
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
+#dashboard .main .card:nth-child(5) .table-container {
+    flex-grow: 1;
+    overflow: auto;
+    margin: 10px;
+}
+#dashboard .main .card:nth-child(5) table {
     width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: white;
+}
+#dashboard .main .card:nth-child(5) table th,
+#dashboard .main .card:nth-child(5) table td {
+    padding: 5px;
+    text-align: left;
+}
+#dashboard .main .card:nth-child(5) table thead {
+    color: var(--dark);
 }
 
 
+/* Dashboard Campaigns card */
 
-
-/* --------------------------------------------------------------------------------------------------*/
-/* --------------------------------------------- NEWS BAR ------------------------------------------ */
-/* --------------------------------------------------------------------------------------------------*/
-
-
-.news {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--dark);
-    color: var(--white);
-    width: 100vw;
-    height: 40px;
-    position: relative;
-    overflow: hidden; 
-    transform: translateY(70px);
-    z-index: 1;
-}
-.news h4 {
-    font-size: 16px;
-    color: var(--white);
-}
-.news p {
-    font-size: 14px;
-    color: var(--white);
-}
-.news span {
-    height: 20px;
-    width: 2px;
-    background-color: var(--white);
-    margin: 0 20px;
-}
-
-.confetti {
-    position: absolute;
-    width: 4px;
-    height: 10px;
-    background-color: var(--confetti-color, var(--primary));
-    animation: fall 0.2s linear infinite;
-    transform-origin: left top;
-    z-index: 1;
-  }
-
-@keyframes fall {
-    0% {
-        transform: rotateZ(15deg) rotateY(0deg) translateY(-50px); 
-        opacity: 1;
-    }
-    100% {
-        transform: rotateZ(15deg) rotateY(360deg) translateY(40px); 
-        opacity: 0;
-    }
-}
-
-  
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* ----------------------------------------- HERO SECTION ------------------------------------------ */
-/* --------------------------------------------------------------------------------------------------*/
-
-#hero {
-    height: 100vh;
-    padding: 10vh 6vw;
-    background: linear-gradient(to top, #e0f5e9, var(--white));
-    z-index: 0;
-}
-
-/* Hero Section - text */
-
-#hero h3 {
-    margin-bottom: 3vh;
-    color: var(--primary);
-    font-weight: 100;
-}
-#hero h1{
-    margin-bottom: 2vh;
-}
-#hero p {
-    font-size: 19px;
-    font-weight: 300;
-    width: 40vw;
-    color: var(--grey);
-    margin-bottom: 8vh;
-}
-
-/* Hero Section - buttons */
-
-#hero .hero-btns{
-    display: flex;
-}
-#hero .hero-btns .btn {
-    font-size: 16.5px;
-    font-weight: 700;
-    margin-right: 10px;
-    padding: 14px 24px;
-}
-#hero .hero-btns .link {
-    margin: 8px 20px;
-}
-
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* ------------------------------------------- SOFTWARE -------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
-
-#software .boxes {
+#dashboard .main .card:nth-child(6) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px 30px;
+}
+#dashboard .main .card:nth-child(6) i {
+    font-size: 40px;
+}
+#dashboard .main .card:nth-child(6) h2 {
+    margin: 0;
+}
+#dashboard .main .card:nth-child(6) p {
+    font-size: 12px;
+}
+
+/* Dashboard paths */
+
+#dashboard .main .card:nth-child(6) .paths {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+#dashboard .main .card:nth-child(6) .paths .path {
+    width: 100%;
+    height: 6vh;
+    padding: 5px 10px;
+    text-align: left;
+    border-radius: 10px;
+    color: var(--dark);
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#dashboard .main .card:nth-child(6) .paths .path i {
+    font-size: 30px;
+}
+#dashboard .main .card:nth-child(6) .paths .path:nth-child(1) {
+    margin-bottom: 5px;
 }
 
 
-/* Software - boxes */
 
-#software .boxes .box{
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- CLIENTS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Clients grid Layout */
+
+#clients .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 1fr;
+    grid-template-areas: 
+        "c1"
+        "c2"    
+    ;
+    gap: 10px;
+}
+
+
+/* Clients Link */
+
+body#clients .sidebar .menu li:nth-child(2) {
+    background-color: var(--light);
+}
+body#clients .sidebar .menu li:nth-child(2) a {
+    color: var(--dark);
+}
+
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
+#clients .main .card {
+    grid-area: c2;
+}
+#clients .main .card .table-container {
+    flex-grow: 1;
+    overflow: auto; 
+    margin: 10px;
+}
+#clients .main .card table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: white;
+}
+#clients .main .card table th,
+#clients .main .card table td {
+    padding: 5px; 
+    text-align: left; 
+}
+#clients .main .card table thead {
+    color: var(--dark); 
+}
+
+
+/* --------------------------------- Clients Sort & Filter ----------------------------------------- */
+
+#clients .main .sort-filter {
+    grid-area: c1;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#clients .main .sort-box, 
+#clients .main .filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+#clients .main select,
+#clients .main input {
+    margin-bottom: 0;
+    height: 35px;
+    border-radius: 5px;
+}
+#clients .main .sort-box {
+    width: 35%;
+}
+#clients .main .sort-box select {
+    width: 55%;
+}
+#clients .main .filter-box {
+    width: 60%;
+}
+#clients .main .filter-box select {
+    width: 60%;
+}
+
+
+/* Sort Filter - Buttons */
+
+#clients .main .sort-filter .sort-filter-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#clients .main .sort-filter .sort-filter-btns a {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: none;
+    transform: translateY(5px);
+    transition: ease-in-out 0.2s;
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child {
+    background-color: white;
+    color: rgb(3, 234, 138);
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child:hover {
+    background-color: rgb(3, 234, 138);
+    color: white;
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child {
+    background-color: white;
+    color: rgb(234, 3, 126);
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child:hover {
+    color: white;
+    background-color: rgb(234, 3, 126);
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- PURCHASE -------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+/* Purchase - layout */
+
+#purchase .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#purchase .main .container {
+    padding: 30px;
+}
+
+
+/* Purchase Link */
+
+body#purchase .sidebar .menu li:nth-child(3) {
+    background-color: var(--light);
+}
+body#purchase .sidebar .menu li:nth-child(3) a {
+    color: var(--dark);
+}
+#purchase .main .container h2 {
+    margin: 0;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* --------------------------------------------- STATS --------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Stats grid Layout */
+
+#stats .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c5 c6"
+    ;
+    gap: 10px;
+}
+#stats .main .card p {
+    font-size: 30px;
+}
+
+
+/* Stats - Link */
+
+body#stats .sidebar .menu li:nth-child(4) {
+    background-color: var(--light);
+}
+body#stats .sidebar .menu li:nth-child(4) a {
+    color: var(--dark);
+}
+
+
+/* Stats Cards */
+
+#stats .main .card:nth-child(1) {
+    grid-area: c1;
+}
+#stats .main .card:nth-child(2) {
+    grid-area: c2;
+}
+#stats .main .card:nth-child(3) {
+    grid-area: c3;
+}
+#stats .main .card:nth-child(4) {
+    grid-area: c4;
+}
+#stats .main .card:nth-child(5) {
+    grid-area: c5;
+}
+#stats .main .card:nth-child(6) {
+    grid-area: c6;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------ CAMPAIGNS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Campaigns - layout */
+
+#campaigns .main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 
-    "left right"
+        "c1 c2"
     ;
-
-    width: 100%;
-    height: 500px;
-    margin-bottom: 20px;
-
-    text-align: left;
-
-    border-radius: 30px;
-    background-color: var(--light);
+    gap: 10px;
+}
+#campaigns .main .card:nth-child(2) {
+    grid-area: c1;
+}
+#campaigns .main .card:nth-child(3) {
+    grid-area: c2;
 }
 
-#software .box .left {
-    grid-area: left;
 
+/* Campaigns Link */
+
+body#campaigns .sidebar .menu li:nth-child(5) {
+    background-color: var(--light);
+}
+body#campaigns .sidebar .menu li:nth-child(5) a {
+    color: var(--dark);
+}
+
+
+/* Campaigns - cards */
+
+#campaigns .main .card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
-    padding: 0 2vw 0 6vw;
-}
-#software .boxes .box h3 {
-    margin-bottom: 3vh;
-}
-#software .boxes .box p {
-    margin-bottom: 4vh;
-}
-
-#software .boxes .box .right {
-    height: 500px;
-    grid-area: right;
-
-    display: flex;
     align-items: center;
     justify-content: center;
-}
-#software .boxes .box .right img{
-    width: 90%;
-    height: auto;
-}
-#software .boxes .box:nth-of-type(2) .right img {
-    height: 100%;
-    width: auto;
-}
 
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* ------------------------------------------- FEATURES -------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
-
-/* Features - grid */
-
-#features .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 350px 300px;
-    grid-template-areas: 
-    "b1 b1 b2"
-    "b3 b4 b4"
-    ;
-    gap: 20px;
+    padding: 30px 50px;
 }
-#features .grid .box:nth-of-type(1) {
-    grid-area: b1;
+#campaigns .main .card i{
+    font-size: 40px;
 }
-#features .grid .box:nth-of-type(2) {
-    grid-area: b2;
+#campaigns .main .card h3{
+    font-size: 30px;
+    margin: 10px 0;
 }
-#features .grid .box:nth-of-type(3) {
-    grid-area: b3;
+#campaigns .main .card p{
+    font-size: 15px;
+    transform: translateY(-20px);
 }
-#features .grid .box:nth-of-type(4) {
-    grid-area: b4;
-}
-
-/* Features - boxes */
-
-#features .grid .box {
-    background-color: var(--light);
-    border-radius: 30px;
-    height: 100%;
-    padding: 8vh 4vw;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-}
-#features .grid .box h3 {
-    margin-bottom: 1vh;
-}
-#features .grid .box p {
-    margin-bottom: 2vh;
-}
-#features .grid .box:nth-of-type(1) img{
-    width: 80%;
-    transform: translateX(15%);
-}
-#features .grid .box:nth-of-type(2) {
-    padding: 8vh 0 0 0;
-}
-#features .grid .box:nth-of-type(2) p,
-#features .grid .box:nth-of-type(2) h3,
-#features .grid .box:nth-of-type(2) .link {
-    padding: 0 4vw;
-}
-#features .grid .box:nth-of-type(2) img {
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; 
-    border-bottom-left-radius: 30px; 
-    border-bottom-right-radius: 30px; 
-}
-
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* --------------------------------------------- STACK --------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
-
-#stack {
-    border-radius: 30px;
-    position: relative;
-    max-width: 80%;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-/* Heading */
-
-#stack h2:nth-child(1) {
-    display: block;
-}
-#stack h2:nth-child(2) {
-    display: none;
-}
-
-/* Carousel */
-
-.carousel {
+#campaigns .main .card .header {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 20px;
-    position: relative;
-    animation: scroll 15s linear infinite; 
-}
-
-/* Carousel Items */
-
-.carousel .item {
-    min-width: 300px; 
-    margin: 0 10px;
-    text-align: center;
-}
-.carousel .item img {
+    gap: 10px;
     width: 100%;
-    height: auto;
-    border-radius: 20px;
+}
+#campaigns .main .card textarea {
+    resize: none; 
+    height: 20%;
 }
 
-/* Carousel Animation */
+/* Campaigns - file upload */
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-200px * 6)); /* Scrolls through all items including duplicates */
-    }
-} 
+/* From Uiverse.io by omar49511 */ 
+.btn-file {
+    height: 7vh;
+    width: 100%;
+    position: relative;
 
-
-
-/* --------------------------------------------------------------------------------------------------*/
-/* -------------------------------------------- ROADMAP -------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
-
-#roadmap {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 6vh 4vw;
-    margin-top: 20vh;
-    height: 120vh;
+    border: 2px solid var(--dark);
+    border-radius: 10px;
+    /* background-color: #4c6fe3; */
+    background-color: transparent;
+    color: var(--dark);
+    transition: ease-in-out 0.2s;
+}
+.btn-file:hover {
     background-color: var(--dark);
-    color: var(--white);
+    color: var(--light);
+}
+.btn-file input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.btn-file i {
+    font-size: 30px !important;
+    margin-right: 10px;
 }
 
-/* Roadmap - grid */
 
-#roadmap .grid {
-    width: 80%;
-    margin: 0 auto;
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- DOWNLOAD -------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+/* Download - layout */
+
+#download .main .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-        "b1 b2"
-        "b3 b4"
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "c1 c2"
     ;
-    gap: 100px;
-}
-#roadmap .grid .box:nth-of-type(1) {
-    grid-area: b1;
-}
-#roadmap .grid .box:nth-of-type(2) {
-    grid-area: b2;
-}
-#roadmap .grid .box:nth-of-type(3) {
-    grid-area: b3;
-}
-#roadmap .grid .box:nth-of-type(4) {
-    grid-area: b4;
-}
-
-/* Roadmap - Boxes */
-
-#roadmap .grid .box {
-    text-align: left;
-}
-#roadmap .grid .box h4,
-#roadmap .grid .box p {
-    color: var(--white);
-    margin-bottom: 1vh;
-}    
-#roadmap .grid .box h4 {
-    color: var(--primary);
-}
-#roadmap .grid .box h6 {
-    font-size: 20px;
-    font-weight: 100;
-    margin-bottom: 2vh;
+    gap: 10px;
 }
 
 
+/* Download Link */
 
-/* --------------------------------------------------------------------------------------------------*/
-/* -------------------------------------------- FOOTER --------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
+body#download .sidebar .menu .export {
+    background-color: var(--light);
+    color: var(--dark);
+}
 
-footer {
+
+/* Download cards */
+
+#download .main .cards,
+#download .main .cards .card {
+    height: 100%;
+}
+#download .main .cards .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    padding: 5vh 4vw;
-    width: 100vw;
-    height: 45vh;
-    color: var(--white);
-    background-color: var(--dark);
+    justify-content: center;
+    font-size: 20px;
+    transition: ease-in-out 0.2s;
+    border: 2px solid white;
+    cursor: pointer;
 }
-
-/* Footer - logo */
-
-footer .logo{
-    display: flex;
+#download .main .cards .card i {
+    font-size: 40px;
+    margin-bottom: 10px;
 }
-footer .logo i{
-    width: 80px;
-}
-footer .logo h3{
-    color: var(--white);
-    font-size: 24px;
-    font-family: 'Poppins', sans-serif;
-    transform: translateY(14px);
-}
-
-/* Footer - social media */
-
-footer .social-media img{
-    width: 40px;
-    padding: 5px;
-    margin: 0 0.5vw;
-    transition: 0.2 ease-in-out;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -652,308 +938,206 @@ footer .social-media img{
 
 
 /* --------------------------------------------------------------------------------------------------*/
-/* ---------------------------------------- RESPONSIVE --------------------------------------------- */
+/* ------------------------------------------- RESPONSIVE ------------------------------------------ */
 /* --------------------------------------------------------------------------------------------------*/
 
-@media only screen and (max-width: 900px) {
+@media (max-width: 950px) {
 
-    /* RESPONSIVE | General Styling */
+    body {
+        overflow-y: scroll;
 
-    h1 {
-        font-size: 42px;
-    }
-    h2 {
-        font-size: 28px;
-        margin-bottom: 10vh;
-    }
-    h3 {
-        font-size: 24px;
-        color: var(--dark);
-    }
-    h4 {
-        font-size: 18px;
-    }
-    p {
-        font-size: 16px;
-        color: var(--grey);
+        display: grid;
+        grid-template-columns: 55px 1fr;
+        grid-template-rows: 75px 1fr;
+        grid-template-areas: 
+            "side header"
+            "side main"
+        ;
     }
 
-    /* RESPONSIVE | Navigation Bar */
+    /* RESPONSIVE | Loader */
 
-    nav {
-        height: 68px;
-        padding: 15px 4vw;
-    }
-
-    /* RESPONSIVE | Navigation Bar - burger */
-
-    nav .burger {
-      display: block;
-      cursor: pointer;
-    }
-    nav .burger div {
-      position: relative;
-      margin: 0 20px 0 10px;
-    }
-    nav .burger span {
-      width: 30px;
-      height: 2px;
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--grey);
-      transition: 0.4s;
-    }
-    nav .burger .line-1 {
-      transform: translate(-50%, -10px);
-    }
-    nav .burger .line-3 {
-      transform: translate(-50%, 7px);
-    }
-    nav .burger.active .line-1 {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-    nav .burger.active .line-2 {
-      width: 0;
-    }
-    nav .burger.active .line-3 {
-      transform: translate(-50%, -50%) rotate(45deg);
+    #loader {
+        background-size: 15%;
+        height: calc(100vh - 75px);
     }
 
-    /* RESPONSIVE | Navigation Bar - menu */
 
-    nav .menu {
-      height: 0;
-      width: 100vw;
+    /* RESPONSIVE | NAVBAR */
 
-      left: 0;
-      right: 4.5vw;
-      top: 68px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-
-      overflow: hidden;
-      opacity: 0;
-      transition: 0.4s;
-      background-color: var(--light);
+    .navbar {
+        grid-column: span 2;
+        margin-left: 75px; 
     }
-    nav .menu.active {
-      height: 95vh;
-      background-color: rgba(255, 255, 255, 0.90);
-      opacity: 1;
-      backdrop-filter: blur(10px);
+    .navbar .nav-btns .reload {
+        transform: translateY(0);
     }
-    nav .menu a {
-      margin-bottom: 10px;
-      text-align: center;
-      padding: 10px 0;
-      width: 100%;
-      box-sizing: border-box;
-      color: var(--dark);
+    .navbar .nav-btns .reload i {
+        font-size: 20px;
+        margin: 5px;
     }
-    nav .menu a:hover::after {
-        width: 0%; 
-    }
-
-    /* RESPONSIVE | Navigation Bar - button */ 
-    
-    nav .btn{
+    .navbar .nav-btns .btn {
         display: none;
     }
 
 
+    /* RESPONSIVE | SIDEBAR */
 
-    /* RESPONSIVE | NEWS */
+    .sidebar.active {
+        padding: 10px;
+        width: 55px;
+    }
 
-    .news {
-        transform: translateY(68px);
+    /* RESPONSIVE | Sidebar - Top */
+
+    .sidebar.active .menu {
+        margin: 0 auto;
+    }
+    .sidebar.active .top .logo {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* RESPONSIVE | Sidebar - Burger */
+
+    .sidebar.active .top .burger{
+        position: absolute;
+        transform: translate(12px, -10px);
+    }
+
+    /* RESPONSIVE | Sidebar - Menu List */
+
+    .sidebar.active .menu li a {
+        justify-content: center !important;
+    }
+    .sidebar.active .menu li a i {
+        margin-right: 0;
+    }
+    .sidebar.active .menu li a .link {
+        display: none;
+    }
+
+    /* RESPONSIVE | Sidebar - export */
+
+    .sidebar.active .export {
+        transform: translateY(-100%);
         justify-content: center;
-        height: 45px;
+        width: 50%;
+        margin-left: 3.5px;
     }
-    .news h4 {
-        font-size: 16px;
+    .sidebar.active .export i {
+        margin-right: 0;
+        width: 90%;
     }
-    .news span {
-        margin: 0 10px;
-    }
-    .news p {
-        font-size: 14px;
-    }
-
-
-
-    /* RESPONSIVE | HERO SECTION */
-
-    #hero h3 {
-        margin-bottom: 2vh;
-    }
-    #hero p {
-        width: 80vw;
-        margin-bottom: 4vh;
-    }
-    #hero .hero-btns {
-        flex-direction: column;
-    }
-    #hero .hero-btns .btn {
-        margin-bottom: 2vh;
+    .sidebar.active .export .link {
+        display: none;
     }
 
 
+    /* RESPONSIVE | MAIN CONTENT */
 
-    /* RESPONSIVE | SOFTWARE */
-
-    #software {
-        padding: 4vh 8vw;
-        padding-top: 15vh;
+    .main {
+        grid-column: span 2;
+        margin-left: 75px;
     }
 
-    /* Software - boxes */
 
-    #software .boxes {
-        width: 80vw;
+    /* RESPONSIVE | DASHBOARD */
+
+    #dashboard .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas: 
+            "c1"
+            "c2"
+            "c3"
+            "c4"
+            "c5"
+        ;
+        gap: 20px;
+    }
+    #dashboard .main .card {
+        padding: 10px 20px;
+    }
+    #dashboard .main .card h2 {
+        margin: 0;
+    }
+    #dashboard .main .card:nth-child(5) {
+        height: 400px;
+    }
+    #dashboard .main .card:nth-child(6) {
+        padding: 20px;
+    }
+    #dashboard .main .card:nth-child(6) p {
+        display: none;
+    }
+    
+
+    /* RESPONSIVE | CLIENTS */
+
+    #clients .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas: 
+            "c2"
+        ;
+    }
+    #clients .main .sort-filter {
+        display: none;
     }
 
-    #software .boxes .box{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    /* RESPONSIVE | STATS */
 
-        width: 100%;
-        height: auto;
-        padding: 6vh 8vw;
+    #stats .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 180px);
+        grid-template-areas: initial;
+    }
+    #stats .main .card {
+        grid-area: initial !important;
+    }
 
+    /* RESPONSIVE | CAMPAIGNS */
+
+    #campaigns .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 80vh 1fr;
+        grid-template-areas: 
+            "c1"
+            "c2"
+        ;
+        gap: 20px;
+    }
+    #campaigns .main .card {
+        padding: 20px;
         text-align: center;
     }
-
-    #software .boxes .box .left {
-        height: auto;
-        padding: 0;
+    #campaigns .main .card .header {
+        flex-direction: column;
+        gap: 0px;
+        margin-bottom: 10px;
     }
-    #software .boxes .box .left .link {
-        margin-bottom: 2vh;
+    #campaigns .main .card h3 {
+        font-size: 25px;
     }
-    #software .boxes .box .right {
-        padding-top: 0;
-        height: auto;
+    #campaigns .main .card textarea {
+        height: 30%;
     }
-    #software .boxes .box .right img{
-        height: auto;
-        width: 100%;
-    }
-    #software .boxes .box:nth-of-type(2) .right img{
-        height: auto;
-        width: 80vw;
-    }
-
-
-
-    /* RESPONSIVE | FEATURES */
-
-    #features {
-        padding-top: 10vh;
-    }
-    #features .grid {
-        width: 80vw;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "b1"
-            "b2"
-            "b3"
-            "b4";
-    }
-    #features .grid .box {
-        padding: 6vh 8vw;
-    }
-
-    #features .grid .box:nth-of-type(1) img{
-        width: 100%;
-        transform: translateX(0);
-    }
-    #features .grid .box:nth-of-type(2) {
-        height: 280px;
-        padding: 6vh 4vw 0 4vw;
-    }
-
-
-    /* RESPONSIVE | STACK */
-
-    #stack {
-        padding-top: 20vh;
-    }
-
-    #stack h2:nth-child(1) {
+    #campaigns .main .card p {
         display: none;
     }
-    #stack h2:nth-child(2) {
-        display: block;
-    }
 
-    #stack .carousel .item {
-        min-width: 200px; 
-    }
 
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(200px * 6)); 
-        }
-    }
-    
+    /* RESPONSIVE | DOWNLOAD */
 
-}
-
-@media only screen and (max-width: 685px) {
-
-    /* RESPONSIVE | SOFTWARE */
-
-    /* Software - boxes */
-
-    #software .boxes .box{
-        text-align: left;
-    }
-
-    /* RESPONSIVE | ROADMAP */
-
-    #roadmap {
-        padding: 2vh;
-        margin-top: 20vh;
-        height: calc(100vh - 68px);
-    }
-    
-    /* Roadmap - grid */
-    
-    #roadmap .grid {
-        width: 80vw;
-        margin: 0 auto;
+    #download .main .cards {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         grid-template-areas: 
-            "b1"
-            "b2"
-            "b3"
-            "b4"
+            "c1"
+            "c2"
         ;
-        gap: 10px;
+        gap: 20px;
     }
-
-    /* FOOTER | RESPONSIVE */
-
-    /* Footer - logo */
-
-    footer .logo h3{
-        font-size: 16px;
-        transform: translateY(10px);
-    }
-
 
 }
