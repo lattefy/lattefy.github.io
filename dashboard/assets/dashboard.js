@@ -236,20 +236,19 @@ function displayClients(clients) {
     '_id', 'lastrating', 'emissiondate', 'expirationdate', 'discountsclaimed', 'discountsgotten', 'discountavailable', 'totalspent', 'averageexpenditure', '__v'
   ]
 
-  clients.forEach(client => {
-    const row = document.createElement('tr')
-
+  let rows = clients.map(client => {
+    let row = '<tr>'
     Object.entries(client).forEach(([key, value]) => {
       if (!fieldsToAvoid.includes(key.toLowerCase())) {
-        const cell = document.createElement('td')
-        cell.textContent = value
-        cell.setAttribute('data-label', capitalizeFirstLetter(key))
-        row.appendChild(cell)
+        row += `<td data-label="${capitalizeFirstLetter(key)}">${value}</td>`
       }
     })
-
-    clientOutput.appendChild(row)
-  })
+    row += '</tr>'
+    return row
+  }).join('')
+  
+  clientOutput.innerHTML = rows
+  
 }
 
 function capitalizeFirstLetter(string) {
@@ -339,11 +338,11 @@ async function uploadPurchase(email, amountSpentNow) {
 /* ------------------------------------------- CAMPAIGNS ------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------- */
 
-async function sendCampaignEmail(clients, title, content) {
+// Function to send emails using EmailJS
+async function sendCampaignEmail(clients, title, content, imageUrl) {
 
   try {
     for (const client of clients) {
-
       if (!client.email) {
         console.error(`Missing email for client: ${client.name}`)
         continue
@@ -354,18 +353,48 @@ async function sendCampaignEmail(clients, title, content) {
         name: client.name,
         title: title,
         content: content,
+        image_url: imageUrl || ''
       }
 
       const response = await emailjs.send("service_w0y5b66", "template_d029ld1", templateParams)
-      console.log(`Email sent successfully to ${client.name}:`, response.status, response.text)
-    }
-  } 
-  catch (error) {
-    console.error('Error sending campaign emails:', error)
-    throw error
-  }
-  alert('Campaña enviada con exito!')
 
+      if (response.status === 200) {
+        console.log(`Email sent successfully to ${client.name}:`, response.status, response.text)
+      } else {
+        throw new Error(`Failed to send email to ${client.name}: ${response.status}`)
+      }
+    }
+    console.log('All emails sent successfully!')
+    alert('Campaign sent successfully!')
+  } catch (error) {
+    console.error('Error sending campaign emails:', error)
+    alert('Error sending campaign emails. Please try again.')
+  }
+
+}
+
+// Function to upload images to Cloudinary
+async function uploadImageToCloudinary(imageFile) {
+  const formData = new FormData()
+  formData.append('file', imageFile)
+  formData.append('upload_preset', 'my_unsigned_preset')
+
+  try {
+    const response = await fetch('https://api.cloudinary.com/v1_1/djassgqhi/image/upload', {
+      method: 'POST',
+      body: formData
+    })
+    const data = await response.json()
+
+    if (response.ok) {
+      return data.secure_url
+    } else {
+      throw new Error(data.error.message)
+    }
+  } catch (error) {
+    console.error('Error uploading the image:', error)
+    alert('Error uploading the image. Please try again.')
+  }
 }
 
 
@@ -466,7 +495,6 @@ function downloadPDF(clients) {
 
 
 
-
 /* --------------------------------------------------------------------------------------------------*/
 /* ---------------------------------------- LOAD FUNCTIONS ----------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
@@ -503,6 +531,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Purchase 
   if (document.getElementById('purchase')) {
+
     // Purchase Upload
     const purchaseBtn = document.getElementById('purchase-btn')
     purchaseBtn.addEventListener('click', function () {
@@ -512,6 +541,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       email.value = ''
       document.getElementById('amount-spent').value = ''
     })
+
   }
 
   // Stats
@@ -533,21 +563,33 @@ document.addEventListener('DOMContentLoaded', async function () {
       e.preventDefault()
 
       loader.style.display = "block"
-  
+    
       const title = document.getElementById('title').value
       const content = document.getElementById('content').value
-  
-      if (title && content) {
-        await sendCampaignEmail(clients, title, content)
-        title.value = ''
-        content.value = ''
-      } else {
-        alert('Por favor, completa el título y el contenido.')
+      const imageFile = document.getElementById('image-upload').files[0]
+    
+      if (!title || !content) {
+        alert('Please fill out the title and content.')
+        loader.style.display = "none"
+        return
+      }
+    
+      let imageUrl = ''
+    
+      if (imageFile) {
+        imageUrl = await uploadImageToCloudinary(imageFile)
+      }
+    
+      try {
+        await sendCampaignEmail(clients, title, content, imageUrl)
+      } catch (error) {
+        console.error('Error sending campaign emails:', error)
+        alert('Error sending campaign emails. Please try again.')
       }
 
       loader.style.display = "none"
 
-    })
+    })    
 
   }
 
