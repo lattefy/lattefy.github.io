@@ -311,7 +311,7 @@ async function uploadPurchase(email, amountSpentNow) {
 
     if (client.discountAvailable) {
       if (expired) {
-        alert('El descuento esta vencido')
+        alert('El descuento esta vencido.')
       } else {
         updates.discountAvailable = false
         updates.emissionDate = calculateDate(1)
@@ -322,13 +322,13 @@ async function uploadPurchase(email, amountSpentNow) {
         updates.averageExpenditure = averageExpenditure.toFixed(2)
 
         await updateClient(email, updates)
-        alert('Se ha cargado la compra con exito')
+        alert('Se ha cargado la compra con exito!')
       }
     } else {
-      alert('No hay descuento disponible')
+      alert('No hay descuento disponible.')
     }
   } else {
-    alert('No se ha encontrado el cliente')
+    alert('No se ha encontrado el cliente.')
   }
 }
 
@@ -356,19 +356,13 @@ async function sendCampaignEmail(clients, title, content, imageUrl) {
         image_url: imageUrl || ''
       }
 
-      const response = await emailjs.send("service_w0y5b66", "template_d029ld1", templateParams)
+      await emailjs.send("service_w0y5b66", "template_d029ld1", templateParams)
 
-      if (response.status === 200) {
-        console.log(`Email sent successfully to ${client.name}:`, response.status, response.text)
-      } else {
-        throw new Error(`Failed to send email to ${client.name}: ${response.status}`)
-      }
     }
-    console.log('All emails sent successfully!')
-    alert('Campaign sent successfully!')
+    alert('Campaña enviada con exito!')
   } catch (error) {
     console.error('Error sending campaign emails:', error)
-    alert('Error sending campaign emails. Please try again.')
+    alert('Error al enviar la campaña.')
   }
 
 }
@@ -393,7 +387,7 @@ async function uploadImageToCloudinary(imageFile) {
     }
   } catch (error) {
     console.error('Error uploading the image:', error)
-    alert('Error uploading the image. Please try again.')
+    alert('Error al cargar el archivo.')
   }
 }
 
