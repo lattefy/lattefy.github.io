@@ -1,11 +1,15 @@
+<!-- Lattefy | Uy Software Company - landing page -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Dashboard</title>
-    <meta property="og:title" content="Lattefy | Dashboard">
+    <title>Lattefy | Uy Software Company</title>
+    <meta property="og:title" content="Lattefy | Uy Software Company">
+    <meta property="og:description" content="Transformá visitantes en clientes frecuentes con nuestro software de fidelización.">
+    <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -16,135 +20,221 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="dashboard" class="collapsed-sidebar">
+	
+<body>
+    <main>
 
-    <!-- Navigation Bar -->
-    <header class="navbar full-width">
-        <h2>Dashboard</h2>
-        <div class="nav-btns">
-            <a class="reload" href="index.html">
-                <i class="ph ph-arrow-clockwise"></i>
+        <!-- Navigation Bar -->
+        
+        <nav>
+            <a href="#">
+                <div class="logo">
+                    <i class="ph ph-coffee"></i>
+                    <h2>Lattefy</h2>
+                </div>
             </a>
-            <a href="../form/index.html" class="btn">Cargar Cliente</a>
-        </div>
-    </header>
-
-    <!-- Side Bar -->
-    <section class="sidebar active">
-
-        <div class="top">
-            <div class="logo">
-                <i class="ph ph-coffee"></i>
-                <h1>Lattefy</h1>
+            <div class="menu">
+                <a href="#">Home</a>
+                <span></span>
+                <a href="#software">Software</a>
+                <span></span>
+                <a href="#roadmap">Roadmap</a>
+                <span></span>
+                <a href="#contact-us">Contact Us</a>
+                <span></span>
             </div>
-            <div class="burger" id="sidebar-btn">
-                <span class="line-1"></span>
-                <span class="line-2"></span>
-                <span class="line-3"></span>
-            </div>
-        </div>
-
-        <ul class="menu">
-            <li>
-                <a href="index.html">
-                    <i class="ph ph-squares-four"></i>
-                    <span class="link">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="clients.html">
-                    <i class="ph ph-user-circle"></i>
-                    <span class="link">Clientes</span>
-                </a>
-            </li>
-            <li>
-                <a href="purchase.html">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="link">Cargar compra</span>
-                </a>
-            </li>
-            <li>
-                <a href="stats.html">
-                    <i class="ph ph-presentation-chart"></i>
-                    <span class="link">Estadisticas</span>
-                </a>
-            </li>
-            <li>
-                <a href="campaigns.html">
-                    <i class="ph ph-bell"></i>
-                    <span class="link">Campaigns</span>
-                </a>
-            </li>
-        </ul>
-
-        <a href="download.html" class="export">
-            <i class="ph ph-export"></i>
-            <span class="link">Exportar Info.</span>
-        </a>
-
-    </section>
-
-    <!-- Main Content -->
-    <main class="main full-width">
-
-        <div id="loader" style="display: block;"></div>
-
-        <a href="stats.html" class="card">
-            <h2>Total Clients</h2>
-            <p id="client-amount"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Rating Promedio</h2>
-            <p id="sentiment-analysis"></p>
-        </a>
-        <a href="stats.html" class="card">
-            <h2>Total Facturado</h2>
-            <p id="total-profit"></p>
-        </a>
-        <a href="clients.html" class="card">
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Celular</th>
-                            <th>Email</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody id="allClients"></tbody>
-                </table>
-            </div>
-
-        </a>
-        <a href="campaigns.html" class="card">
-            <i class="ph ph-bell"></i>
-            <h2>Campaigns</h2>
-            <p>Administra todas tus campanas desde un solo lugar</p>
-            <div class="paths">
-                <div class="path">
-                    Email Marketing
-                    <i class="ph ph-envelope"></i>
-                </div>
-                <div class="path">
-                    WhatsApp Api
-                    <i class="ph ph-whatsapp-logo"></i>
+            <a href="#software" class="btn">
+                Comenzar ahora
+            </a>
+            <div class="burger">
+                <div>
+                    <span class="line-1"></span>
+                    <span class="line-2"></span>
+                    <span class="line-3"></span>
                 </div>
             </div>
-        </a>
+        </nav>
 
+        <!-- News -->
+
+        <div class="news">
+            <h4>🎁 REGALO</h4>
+            <span></span>
+            <p>Mes de prueba gratis.</p>
+        </div>
+
+        <!-- Hero Section -->
+
+        <section id="hero">
+            <h3>¿Qué estás esperando?</h3>
+            <h1>Aumentá tus ventas</h1>
+            <p>
+                Transformá visitantes en clientes frecuentes con nuestro software de fidelización. 
+            </p>
+            <div class="hero-btns">
+                <a href="#contact-us" class="btn">Empezar ahora gratis</a>
+                <a href="#software" class="link">
+                    Descubre más
+                    <i class="ph ph-caret-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Software Section -->
+
+        <section id="software">
+            <div class="reveal">
+                <h2>Un Software con todo</h2>
+                <div class="boxes">
+                    <div class="box">
+                        <div class="left">
+                            <h3>Programa de Fidelidad</h3>
+                            <p>
+                                Transformá visitantes en clientes frecuentes con nuestro software 
+                                de fidelización. Con tan solo escanear un código QR y una recompensa 
+                                lograras que tus clientes quieran volver.  
+                            </p>
+                            <a href="#" class="link">
+                                Mas Info.
+                                <i class="ph ph-caret-right"></i>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <img src="assets/images/hero-image.svg" alt="dashboard">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="left">
+                            <h3>Base de Datos</h3>
+                            <p>
+                                Transformá visitantes en clientes frecuentes con nuestro software 
+                                de fidelización. 
+                            </p>
+                            <a href="#" class="link">
+                                Mas Info.
+                                <i class="ph ph-caret-right"></i>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <img src="assets/images/animations/messages.gif" alt="messages">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+
+        <section id="features">
+            <div class="reveal">
+                <h2>Ideal para tu empresa</h2>
+                <div class="grid">
+                    <div class="box">
+                        <h3>Gestiona Campañas</h3>
+                        <p>
+                            Transformá visitantes en clientes frecuentes con nuestro software 
+                            de fidelización.   
+                        </p>
+                        <div class="link">
+                            Mas Info.
+                            <i class="ph ph-caret-right"></i>
+                        </div>
+                        <img src="assets/images/animations/mail notification.svg" alt="notification">
+                    </div>
+                    <div class="box">
+                        <h3>Analisis de Datos</h3>
+                        <p>
+                            Optimiza tus campanas con la informacion de tus clientes.
+                        </p>
+                        <div class="link">
+                            Mas Info.
+                            <i class="ph ph-caret-right"></i>
+                        </div>
+                        <img src="assets/images/animations/analytics img.svg" alt="analytics">
+                    </div>
+                    <div class="box">
+                        <h3>Dominio</h3>
+                        <p>
+                            Dominio personalizado respaldado por un certificado SSL.
+                        </p>
+                        <img src="assets/images/animations/domain_animation.gif" alt="domain">
+                    </div>
+                    <div class="box">
+                        <h3>Flexible</h3>
+                        <p>
+                            Podras administrar el sistema desde un dashboard. El sistema
+                            es intuitivo y accesible desde cualquier dispositvo.
+                        </p>
+                        <div class="link">
+                            Mas Info.
+                            <i class="ph ph-caret-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack Section -->
+
+        <section id="stack">
+            <div class="reveal">
+                <h2>Usamos las mejores tecnologias</h2>
+                <h2>Tecnologias</h2>
+            <div class="carousel">
+                <div class="item">
+                    <img src="assets/images/businesses/github.svg" alt="github">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/mongodb.svg" alt="mongodb">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/express.svg" alt="express">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/render.svg" alt="render">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/vscode.svg" alt="vscode">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/nodejs.svg" alt="nodejs">
+                </div>
+                <!-- Duplicated -->
+                <div class="item">
+                    <img src="assets/images/businesses/github.svg" alt="github">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/mongodb.svg" alt="mongodb">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/express.svg" alt="express">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/render.svg" alt="render">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/vscode.svg" alt="vscode">
+                </div>
+                <div class="item">
+                    <img src="assets/images/businesses/nodejs.svg" alt="nodejs">
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section></section>
+        
+       
     </main>
 
-    <!-- Js File to connect with the server -->
-    <script src="assets/dashboard.js"></script>
-
-    <!-- Js File to download .pdf data -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <!---------- General Js File ------------->
+    <!-- JavaScript File -->
     <script src="assets/script.js"></script>
+	
+    <!-- Email -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <!-- Google Calendar -->
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
 
 </body>
 </html>
