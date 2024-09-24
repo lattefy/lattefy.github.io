@@ -14,8 +14,9 @@
     --white: #fff;
     --light: #f2f3f5;
     --grey: #666e77;
-    --dark: #242424;
-    --black: #000;
+    --dark: #181C1f;
+
+    --nav-bg-color: rgba(255, 255, 255, 0.8);
 
     --shadow: 0 .6021873017743928px 2.2883117467426928px -1.5px #00000036, 0 2.288533303243457px 8.696426552325137px -3px #0000002e, 0 10px 38px -4.5px
 }
@@ -35,7 +36,7 @@
 body {
     overflow-x: hidden;
     font-family: "Montserrat", sans-serif;
-    color: var(--black);
+    color: var(--dark);
     background-color: var(--white);
 }
 html {
@@ -113,20 +114,19 @@ p {
 
     font-weight: 600;
     font-size: 15px;
-    box-shadow: rgba(0, 0, 0, 0.06)
+    box-shadow: var(--shadow)
 }
 
 /* Button */
 
 .btn{
     border-style: solid;
-    border-color: var(--black);
+    border-color: var(--dark);
     color: var(--white);
-    background-color: var(--black);
+    background-color: var(--dark);
 }
 .btn:hover{
-    background-color: transparent;
-    color: var(--black);
+    opacity: 0.8;
 }
 
 /* Text Anchor */
@@ -162,7 +162,7 @@ nav {
     margin-bottom: 20vh;
     z-index: 2;
 
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--nav-bg-color);
     opacity: 1;
     backdrop-filter: blur(10px);
 }
@@ -177,7 +177,7 @@ nav a .logo {
 }
 nav a .logo i {
     font-size: 40px;
-    color: var(--black);
+    color: var(--dark);
     margin: 0 10px 10px 0;
 }
 nav a .logo h2{
@@ -185,7 +185,7 @@ nav a .logo h2{
     font-weight: 700;
     font-size: 30px;
     margin-bottom: 0;
-    color: var(--black);
+    color: var(--dark);
 }
 
 /* Navigation Bar - burger */
@@ -199,7 +199,8 @@ nav a .logo h2{
 nav .menu{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-grow: 1;
 }
 nav .menu a {
     margin: 0 1vw;
@@ -219,6 +220,18 @@ nav .menu a::after {
 }
 nav .menu a:hover::after {
     width: 100%;
+}
+
+/* Navigation Bar - auth */
+
+nav .auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+nav .auth a:first-of-type {
+    color: var(--dark);
 }
 
 
