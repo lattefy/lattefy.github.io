@@ -9,17 +9,12 @@
   box-sizing: border-box;
 }
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: "Poppins", sans-serif;
     color: var(--dark);
     background: var(--dark) url(images/background.jpg) no-repeat center center;
     opacity: 1;
     backdrop-filter: blur(10px);
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
 }
 html {
@@ -30,7 +25,6 @@ img {
 }
 h1 {
     color: var(--dark);
-    margin-bottom: 10px;
     font-size: 24px;
 }
 p {
@@ -62,6 +56,7 @@ div {
     --border-color-active: var(--primary);
     --input-bg-color: #eee;
     --btn-text-color: #fff;
+    --nav-bg-color: rgba(255, 255, 255, 1);
     --container-bg-color: #fff;
 }
 
@@ -83,7 +78,7 @@ div {
 .btn {
     width: 100%;
     height: 45px;
-    margin: 5px 0;
+    margin: 15px 0;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -148,7 +143,81 @@ label {
 }
 
 
+/* Navigation Bar */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+
+    width: 100vw;
+    height: 55px;
+    padding: 10px 2vw;
+    z-index: 2;
+
+    background-color: var(--nav-bg-color);    
+}
+
+/* Navigation Bar - logo */
+
+nav a .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+nav a .logo i {
+    font-size: 30px;
+    color: var(--dark);
+    margin: 0 7px 7px 0;
+}
+nav a .logo h2{
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 23px;
+    margin-bottom: 0;
+    color: var(--dark);
+}
+
+/* Navigation Bar - burger */
+
+nav .burger {
+    display: block;
+    cursor: pointer;
+}
+nav .burger div {
+    position: relative;
+    margin: 0 20px 0 10px;
+}
+nav .burger span {
+    width: 25px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--grey);
+    transition: 0.4s;
+}
+nav .burger .line-1 {
+    transform: translate(-50%, -7px);
+}
+nav .burger .line-3 {
+    transform: translate(-50%, 5px);
+}
+
+
 /* Container */
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding-top: 70px;
+}
 
 .container {
     display: flex;
@@ -156,12 +225,20 @@ label {
     align-items: left;
     text-align: left;
     justify-content: space-evenly;
+
+    min-height: 400px;
+
     background-color: var(--container-bg-color);
     padding: 30px;
     border-radius: 15px;
 }
 .container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 .container .forms {
     display: flex;
@@ -173,11 +250,11 @@ label {
 
 
 #login .container {
-    height: 400px;
+    height: auto;
     width: 320px;
 } 
 #signup .container {
-    height: 500px;
+    height: auto;
     width: 700px;
 } 
 #thanks .container {
@@ -188,3 +265,24 @@ label {
 
 
 
+/* RESPONSIVE */
+
+@media only screen and (max-width: 730px) {
+
+    /* RESPONSVE - Container */
+
+    section {
+        height: 100vh;
+        padding: 70px 0 30px 0;
+    }
+
+    #signup .container {
+        top: 5vh;
+        width: 85vw;
+    }
+    .container .forms {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+}
