@@ -185,8 +185,6 @@ nav a .logo h2{
 nav .burger {
     display: block;
     cursor: pointer;
-}
-nav .burger div {
     position: relative;
     margin: 0 20px 0 10px;
 }
@@ -211,12 +209,17 @@ nav .burger .line-3 {
 
 /* Container */
 
-section {
+section{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    padding-top: 70px;
+    text-align: center;
+
+    padding: 10vw 10vw;
+
+    height: calc(100vh - 55px);
+    transform: translateY(55px);
+    width: 100vw;
 }
 
 .container {
@@ -227,6 +230,7 @@ section {
     justify-content: space-evenly;
 
     min-height: 400px;
+    height: auto;
 
     background-color: var(--container-bg-color);
     padding: 30px;
@@ -250,11 +254,9 @@ section {
 
 
 #login .container {
-    height: auto;
     width: 320px;
 } 
 #signup .container {
-    height: auto;
     width: 700px;
 } 
 #thanks .container {
@@ -269,20 +271,21 @@ section {
 
 @media only screen and (max-width: 730px) {
 
-    /* RESPONSVE - Container */
+    /* RESPONSIVE - Section */
 
     section {
-        height: 100vh;
-        padding: 70px 0 30px 0;
+        height: auto;
+    }
+
+    /* RESPONSIVE - Container */
+
+    #signup .container .forms {
+        flex-direction: column;
+        gap: 0px;
     }
 
     #signup .container {
-        top: 5vh;
-        width: 85vw;
-    }
-    .container .forms {
-        flex-direction: column;
-        gap: 0px;
+        width: 320px;
     }
 
 }

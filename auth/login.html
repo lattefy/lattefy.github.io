@@ -18,48 +18,50 @@
 </head>
 <body id="login">
 
-  <div id="loader" style="display: none;"></div>
+    <main>
 
-  <!-- Navigation Bar -->
-        
-  <nav>
-    <a href="../index.html">
-        <div class="logo">
-            <i class="ph ph-coffee"></i>
-            <h2>Lattefy</h2>
-        </div>
-    </a>
-    <div class="burger">
-        <div href="signup.html">
-            <span class="line-1"></span>
-            <span class="line-2"></span>
-            <span class="line-3"></span>
-        </div>
-    </div>
-  </nav>
+        <div id="loader" style="display: none;"></div>
 
-  <!-- Section - container -->
+        <!-- Navigation Bar -->
+                      
+        <nav>
+            <a href="../index.html">
+                <div class="logo">
+                    <i class="ph ph-coffee"></i>
+                    <h2>Lattefy</h2>
+                </div>
+            </a>
+            <a href="../index.html" class="burger">
+                <span class="line-1"></span>
+                <span class="line-2"></span>
+                <span class="line-3"></span>
+            </a>
+        </nav>
+      
+        <!-- Section - container -->
+      
+        <section>
+          <div class="container">
+              <div class="header">
+                  <h1>Bienvenido,</h1>
+              </div>
+              <form class="form">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="ejemplo@gmail.com" required>
+                  <label for="password">Password</label>
+                  <input type="password" id="password" placeholder="********" required>
+              </form>
+              <a class="btn" id="login-btn" href="../dashboard/index.html">Iniciar Sesion</a>
+              <div class="link">
+                  <p>
+                      No tienes cuenta?
+                      <a href="signup.html"> Registrate ahora</a>
+                  </p>
+              </div>
+          </div>
+        </section>
 
-  <section>
-    <div class="container">
-        <div class="header">
-            <h1>Bienvenido,</h1>
-        </div>
-        <form class="form">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="ejemplo@gmail.com" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="********" required>
-        </form>
-        <a class="btn" id="login-btn" href="../dashboard/index.html">Iniciar Sesion</a>
-        <div class="link">
-            <p>
-                No tienes cuenta?
-                <a href="signup.html"> Registrate ahora</a>
-            </p>
-        </div>
-    </div>
-  </section>
+    </main>
 
   <!-- Js File to connect with the server -->
   <script src="assets/auth.js"></script>

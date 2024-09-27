@@ -7,7 +7,7 @@
   <title>Lattefy | Sign Up</title>
   <meta property="og:title" content="Lattefy | Form">
   <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
-  
+
   <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
 
@@ -17,76 +17,79 @@
   <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
 <body id="signup">
-    <div id="loader" style="display: none;"></div>
 
-    <!-- Navigation Bar -->
-        
-    <nav>
-        <a href="../index.html">
-            <div class="logo">
-                <i class="ph ph-coffee"></i>
-                <h2>Lattefy</h2>
-            </div>
-        </a>
-        <div class="burger">
-            <div href="login.html">
-                <span class="line-1"></span>
-                <span class="line-2"></span>
-                <span class="line-3"></span>
-            </div>
-        </div>
-    </nav>
+	<main>
 
-    <!-- Section - container -->
+		<div id="loader" style="display: none;"></div>
 
-    <section>
+		<!-- Navigation Bar -->
+			
+		<nav>
+			<a href="../index.html">
+				<div class="logo">
+					<i class="ph ph-coffee"></i>
+					<h2>Lattefy</h2>
+				</div>
+			</a>
+			<a href="../index.html" class="burger">
+				<span class="line-1"></span>
+				<span class="line-2"></span>
+				<span class="line-3"></span>
+			</a>
+		</nav>
 
-        <div class="container">
-            <div class="header">
-                <h1>Bienvenido,</h1>
-                <p>Nos alegra que quieras usar <b>Lattefy</b></p>
-            </div>
-            
-            <div class="forms">
-                <form class="form">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" placeholder="Juan Perez" required>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="ejemplo@gmail.com" required>
-                    <label for="phone-number">Celular</label>
-                    <input type="tel" id="phone-number" placeholder="091234567" required>
-                </form>
-        
-                <form class="form">
-                    <label for="business">Empresa</label>
-                    <input type="text" id="business" placeholder="Lattefy Inc." required>
-                    <label for="reason">Cual es tu rol en la empresa?</label>
-                    <select id="role">
-                        <option value="manager">Encargado</option>
-                        <option value="owner">Dueno</option>
-                        <option value="other">Otro</option>
-                    </select>
-                    <label for="reason">Para que quires usar Lattefy?</label>
-                    <select id="reason">
-                        <option value="loyalty">Programa de Fidelidad</option>
-                        <option value="database">Base de datos con tus clientes</option>
-                        <option value="restaurant">Administrar restaurante</option>
-                        <option value="business">Administrar empresa</option>
-                    </select>
-                </form>
-    
-            </div>
-            
-            <a class="btn" id="signup-btn" href="thanks.html">Enviar solicitud</a>
-            <div class="link">
-                <p>
-                    Ya tienes cuenta?
-                    <a href="login.html">Iniciar sesion</a>
-                </p>
-            </div>
-        </div>
+		<!-- Section - container -->
 
-    </section>
+		<section>
+
+			<div class="container">
+				<div class="header">
+					<h1>Bienvenido,</h1>
+					<p>Nos alegra que quieras usar <b>Lattefy</b></p>
+				</div>
+				
+				<div class="forms">
+					<form class="form">
+						<label for="name">Nombre completo</label>
+						<input type="text" id="name" placeholder="Juan Perez" required>
+						<label for="email">Email</label>
+						<input type="email" id="email" placeholder="ejemplo@gmail.com" required>
+						<label for="phone-number">Celular</label>
+						<input type="tel" id="phone-number" placeholder="091234567" required>
+					</form>
+			
+					<form class="form">
+						<label for="business">Empresa</label>
+						<input type="text" id="business" placeholder="Lattefy Inc." required>
+						<label for="reason">Cual es tu rol en la empresa?</label>
+						<select id="role">
+							<option value="manager">Encargado</option>
+							<option value="owner">Dueno</option>
+							<option value="other">Otro</option>
+						</select>
+						<label for="reason">Para que quires usar Lattefy?</label>
+						<select id="reason">
+							<option value="loyalty">Programa de Fidelidad</option>
+							<option value="database">Base de datos con tus clientes</option>
+							<option value="restaurant">Administrar restaurante</option>
+							<option value="business">Administrar empresa</option>
+						</select>
+					</form>
+		
+				</div>
+				
+				<a class="btn" id="signup-btn" href="thanks.html">Enviar solicitud</a>
+				<div class="link">
+					<p>
+						Ya tienes cuenta?
+						<a href="login.html">Iniciar sesion</a>
+					</p>
+				</div>
+			</div>
+
+		</section>
+
+	</main>
 
   <!-- Js File to connect with the server -->
   <script src="assets/auth.js"></script>
