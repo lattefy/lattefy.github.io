@@ -65,7 +65,7 @@ async function auth() {
     clearURL()
   } else {
     console.error('Error authenticating user')
-    window.location.href = `lattefy.github.io/auth/login.html`
+    window.location.href = `../auth/login.html`
   }
 
 }
