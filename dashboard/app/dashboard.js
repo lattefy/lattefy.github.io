@@ -55,12 +55,12 @@ async function updateClient(email, updates) {
 
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', async function () {
-  
-  
 
   if (!localStorage.getItem('auth')) {
     await auth()
     localStorage.setItem('auth', 'true')
+  } else {
+    clearURL()
   }
 
   const clients = await getAll('clients')
