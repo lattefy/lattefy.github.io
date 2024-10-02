@@ -97,7 +97,7 @@ function displayClients(clients) {
     const clientOutput = document.getElementById('allClients')
     clientOutput.innerHTML = ''
     const fieldsToAvoid = [
-        '_id', 'lastrating', 'emissiondate', 'expirationdate', 'discountsclaimed', 'discountsgotten', 'discountavailable', 'totalspent', 'averageexpenditure', '__v'
+        '_id', 'password', 'lastrating', 'emissiondate', 'expirationdate', 'discountsclaimed', 'discountsgotten', 'discountavailable', 'totalspent', 'averageexpenditure', '__v'
     ]
 
     let rows = clients.map(client => {
