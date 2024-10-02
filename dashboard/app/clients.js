@@ -62,7 +62,7 @@ function initializeSortAndFilter(clients) {
         const clientOutput = document.getElementById('allClients')
         clientOutput.innerHTML = ''
         const fieldsToAvoid = [
-            '_id', 'lastrating', 'emissiondate', 'expirationdate', 'discountsgotten', 'discountavailable', 'totalspent', '__v'
+            '_id', 'password', 'lastrating', 'emissiondate', 'expirationdate', 'discountsgotten', 'discountavailable', 'totalspent', '__v'
         ]
 
         clients.forEach(client => {
@@ -92,7 +92,7 @@ function initializeSortAndFilter(clients) {
 
 /* ----------------------------------------- Dashboard Table -------------------------------------- */
 
-function displayClients(clients) {
+function displayClientsDashboard(clients) {
 
     const clientOutput = document.getElementById('allClients')
     clientOutput.innerHTML = ''

@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Dashboard
   if (document.getElementById('dashboard')) {
-    displayClients(clients)
+    displayClientsDashboard(clients)
     displayClientCount(clients)
     sentimentAnalysis(clients)
     displayTotalProfit(clients)
