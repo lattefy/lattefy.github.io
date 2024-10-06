@@ -2,7 +2,8 @@
 
 // const apiUrl = 'http://localhost:3089'
 // const apiUrl = 'https://lattefy-server.glitch.me'
-const apiUrl = 'https://backend-5v26.onrender.com'
+// const apiUrl = 'https://backend-5v26.onrender.com'
+const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
 
 // Fetch all clients
 async function getAll() {
@@ -140,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const phoneNumber = document.getElementById("phoneNumber").value
       const email = document.getElementById("email").value
       const birthDate = document.getElementById("birthdate").value
+      const password = document.getElementById("password").value
 
       // Discount Data
       const discountAvailable = true
@@ -159,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
             phoneNumber,
             email,
             birthDate,
+            password,
             lastRating,
             averageRating,
             discountAvailable,

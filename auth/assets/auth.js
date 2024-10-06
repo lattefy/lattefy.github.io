@@ -5,16 +5,18 @@
 /* --------------------------------------------------------------------------------------------------*/
 
 // const apiUrl = 'http://localhost:3089'
-const apiUrl = 'https://backend-5v26.onrender.com'
+// const apiUrl = 'https://backend-5v26.onrender.com'
+const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
+
 
 // Fetch all users
-async function getAll() {
+async function getAll(database) {
   try {
-    const response = await fetch(`${apiUrl}/users`)
+    const response = await fetch(`${apiUrl}/${database}`)
     if (!response.ok) throw new Error('Network response was not ok')
     return await response.json()
   } catch (error) {
-    console.error('Error fetching users:', error)
+    console.error(`Error fetching ${database}:`, error)
     return []
   }
 }
@@ -44,6 +46,7 @@ async function authenticateUser (users, email, password) {
   console.log(user)
   if (!authenticateEmail(users, email) || !authenticatePassword(users, email, password)) {
     console.log("Error authenticating user")
+    window.location.href = "./signup.html"
     return false
   }
   return true
@@ -58,7 +61,7 @@ if (document.getElementById('login')) {
 
   async function login () {
 
-    const users = await getAll()
+    const users = await getAll('users')
     const email = document.getElementById('user-email').value
     const password = document.getElementById('user-password').value
 
