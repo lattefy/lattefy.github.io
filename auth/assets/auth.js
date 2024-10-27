@@ -4,8 +4,8 @@
 /* -------------------------------------- DATABASE CONNECTION -------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-const apiUrl = 'http://localhost:3089'
-// const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
+// const apiUrl = 'http://localhost:3089'
+const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
 
 // assets/auth.js
 
