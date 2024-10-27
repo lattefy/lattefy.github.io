@@ -1,50 +1,106 @@
-/* --------------------------------------------------------------------------------------------------*/
-/* ------------------------------------------ USER AUTH -------------------------------------------- */
-/* --------------------------------------------------------------------------------------------------*/
+// DASHBOARD AUTH
 
-// Get user by email
-function getUserByEmail(users, email) {
-  return users.find(user => user.email === email)
+// const authUrl = 'http://localhost:3089'
+const authUrl = 'https://backend-v1-2-63a1.onrender.com'
+
+async function auth() {
+  const email = getEmailFromURL()
+  const password = getPasswordFromURL()
+
+  if (email && password) {
+    await authLogin(email, password) 
+  } else {
+    await validateTokens() 
+  }
 }
 
-// Function to Authenticate user
-async function authenticateUser (users, email, password) {
+// Token Validation
+async function validateTokens() {
 
-  console.log(`USER AUTH: email: ${email}, password: ${password}`)
+  const accessToken = localStorage.getItem('accessToken')
+  const refreshToken = localStorage.getItem('refreshToken')
 
-  // Authenticate email
-  function authenticateEmail(users, email) {
-    return users.some(user => user.email === email)
+  if (!accessToken) {
+    console.log('No access token found, redirecting to login')
+    window.location.href = '../auth/login.html'
+    return
   }
 
-  // Authenticate Password
-  function authenticatePassword(users, email, password) {
-    const user = users.find(user => user.email === email)
-    return user && user.password === password
+  // Validate access token against the server
+  const isValid = await validateAccessToken(accessToken)
+  if (!isValid) {
+    if (!refreshToken) {
+      console.log('No refresh token available, redirecting to login')
+      window.location.href = '../auth/login.html'
+      return
+    }
+
+    console.log('Access token expired or invalid, refreshing...')
+    await refreshAccessToken(refreshToken)
+
+  } else {
+    console.log('Access token is valid')
   }
 
-  if (!authenticateEmail(users, email) || !authenticatePassword(users, email, password)) {
-    console.log("Error authenticating user")
-    return false
-  }
-  return true
 }
 
-// Get email from URL
+async function validateAccessToken(accessToken) {
+
+  try {
+      const response = await fetch(`${authUrl}/users`, {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${accessToken}`
+          }
+      })
+
+      if (response.ok) {
+          return true
+      } else if (response.status === 403 || response.status === 401) {
+          return false
+      }
+
+  } catch (error) {
+      console.log('Error checking access token validity: ' + error.message)
+      return false
+  }
+
+}
+
+// Refresh the access token using the refresh token
+async function refreshAccessToken(refreshToken) {
+  try {
+    const response = await fetch(`${authUrl}/auth/token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ token: refreshToken })
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to refresh access token')
+    }
+
+    const data = await response.json()
+    localStorage.setItem('accessToken', data.accessToken)
+  
+  } catch (error) {
+    console.log('Error refreshing access token: ' + error.message)
+    throw error 
+  }
+
+}
+
+// URL utility functions
 function getEmailFromURL() {
   const urlParams = new URLSearchParams(window.location.search)
-  console.log(urlParams.get('email'))
   return urlParams.get('email')
 }
-
-// Get password from URL
 function getPasswordFromURL() {
   const urlParams = new URLSearchParams(window.location.search)
-  console.log(urlParams.get('password'))
-  return urlParams.get('password')  
+  return urlParams.get('password')
 }
-
-// Delete email & password from URL
 function clearURL() {
   const urlParams = new URLSearchParams(window.location.search)
   urlParams.delete('email')
@@ -52,20 +108,32 @@ function clearURL() {
   const newUrl = window.location.pathname + (urlParams.toString() ? `?${urlParams.toString()}` : '')
   window.history.replaceState({}, '', newUrl)
 }
-  
-async function auth() {
-  
-  const users = await getAll('users')
-  const email = getEmailFromURL()
-  const password = getPasswordFromURL()
 
-  if (await authenticateUser(users, email, password)) {
-    const user = getUserByEmail(users, email)
-    console.log(`User authenticated: ${user.name}`)
-    clearURL()
-  } else {
-    console.error('Error authenticating user')
-    window.location.href = `../auth/login.html`
+// Login process
+async function authLogin(email, password) {
+  clearURL() 
+
+  try {
+    const response = await fetch(`${authUrl}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    })
+
+    if (!response.ok) {
+      const errorMsg = await response.json()
+      throw new Error(errorMsg)
+    }
+
+    const data = await response.json()
+    localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('refreshToken', data.refreshToken)
+  
+  } catch (error) {
+    console.log('Authorization failed: ' + error.message)
+    window.location.href = '../auth/login.html'
   }
 
 }

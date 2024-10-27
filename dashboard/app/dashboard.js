@@ -7,20 +7,27 @@
 /* --------------------------------------------------------------------------------------------------*/
 
 // const apiUrl = 'http://localhost:3089'
-// const apiUrl = 'https://lattefy-server.glitch.me'
-// const apiUrl = 'https://backend-5v26.onrender.com'
 const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
 
 // Fetch all clients
 async function getAll(database) {
   try {
-    const response = await fetch(`${apiUrl}/${database}`)
+
+    const response = await fetch(`${apiUrl}/${database}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    }) 
     if (!response.ok) throw new Error('Network response was not ok')
     return await response.json()
+
   } catch (error) {
     console.error('Error fetching clients:', error)
     return []
   }
+
 }
 
 // Authenticate email
@@ -38,7 +45,9 @@ async function updateClient(email, updates) {
   try {
     const response = await fetch(`${apiUrl}/clients/${email}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(updates)
     })
     const data = await response.json()
@@ -57,11 +66,11 @@ async function updateClient(email, updates) {
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', async function () {
 
-  if (!localStorage.getItem('auth')) {
-    await auth()
-    localStorage.setItem('auth', 'true')
+  // auth
+  if (!localStorage.getItem('accessToken')) {
+    authLogin()
   } else {
-    clearURL()
+    auth()
   }
 
   const clients = await getAll('clients')
