@@ -66,12 +66,12 @@ async function updateClient(email, updates) {
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', async function () {
 
-  // auth
-  if (!localStorage.getItem('accessToken')) {
-    authLogin()
-  } else {
-    auth()
-  }
+    // auth
+    if (!localStorage.getItem('accessToken')) {
+      authLogin()
+    } else {
+      auth()
+    }
 
   const clients = await getAll('clients')
 
