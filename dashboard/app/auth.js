@@ -22,16 +22,16 @@ async function validateTokens() {
 
   if (!accessToken) {
     console.log('No access token found, redirecting to login')
-    window.location.href = '../auth/login.html'
+    window.location.href = 'https://lattefy.com.uy/auth'
     return
   }
 
   // Validate access token against the server
-  const isValid = await validateAccessToken(accessToken)
-  if (!isValid) {
+  const tokenValid = await validateAccessToken(accessToken)
+  if (!tokenValid) {
     if (!refreshToken) {
       console.log('No refresh token available, redirecting to login')
-      window.location.href = '../auth/login.html'
+      window.location.href = 'https://lattefy.com.uy/auth'
       return
     }
 
@@ -114,6 +114,8 @@ function clearURL() {
 async function authLogin(email, password) {
   clearURL() 
 
+  console.log(email, password)
+
   try {
     const response = await fetch(`${authUrl}/auth/login`, {
       method: 'POST',
@@ -129,12 +131,14 @@ async function authLogin(email, password) {
     }
 
     const data = await response.json()
+
+    console.log(data)
     localStorage.setItem('accessToken', data.accessToken)
     localStorage.setItem('refreshToken', data.refreshToken)
   
   } catch (error) {
     console.log('Authorization failed: ' + error.message)
-    window.location.href = '../auth/login.html'
+    //window.location.href = 'https://lattefy.com.uy/auth'
   }
 
 }
