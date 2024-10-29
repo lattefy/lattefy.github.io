@@ -4,8 +4,8 @@
 /* -------------------------------------- DATABASE CONNECTION -------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-// const apiUrl = 'http://localhost:3089'
-const apiUrl = 'https://backend-v1-2-63a1.onrender.com'
+// const authUrl = 'http://localhost:3089'
+const authUrl = 'https://backend-v1-2-63a1.onrender.com'
 
 // assets/auth.js
 
@@ -24,7 +24,7 @@ loader.style.display = 'block' // Show loader while processing
 
 try {
     // Send login request to the server
-    const response = await fetch(`${apiUrl}/auth/login`, { 
+    const response = await fetch(`${authUrl}/auth/login`, { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ try {
     localStorage.setItem('refreshToken', data.refreshToken)
 
     // Fetch user by email with token protection
-    const userResponse = await fetch(`${apiUrl}/users/${email}`, {
+    const userResponse = await fetch(`${authUrl}/users/${email}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -118,5 +118,4 @@ if (document.getElementById('signup')) {
     })
 
 }
-
 

@@ -64,7 +64,7 @@ div {
 /* LOADER */
 
 #loader {
-    background: var(--dark) url(media/loader.svg) no-repeat center center;
+    background: var(--dark) url(images/loaders/loader-white.svg) no-repeat center center;
     display: block;
     background-size: 10%;
     position: fixed;
