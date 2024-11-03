@@ -1,7 +1,7 @@
 // DASHBOARD AUTH
 
 // const authUrl = 'http://localhost:3089'
-const authUrl = 'https://backend-v1-2-63a1.onrender.com'
+const authUrl = 'https://backend-v2-esfc.onrender.com'
 
 async function auth() {
   const email = getEmailFromURL()
