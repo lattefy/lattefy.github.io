@@ -1,6 +1,26 @@
 // Lattefy | Uy Software Company - landing page
 
 
+// FAQs Animation
+
+document.addEventListener('DOMContentLoaded', function () {
+  const faqs = document.querySelectorAll('.faq')
+
+  faqs.forEach(faq => {
+      const header = faq.querySelector('.header i')
+      header.addEventListener('click', () => {
+          faqs.forEach(item => {
+              if (item !== faq) {
+                  item.classList.remove('active')
+              }
+          })
+
+          faq.classList.toggle('active')
+      })
+  })
+})
+
+
 // Confetti Animation:
 
 function createConfetti() {
@@ -17,10 +37,7 @@ function createConfetti() {
     confettiContainer.appendChild(confetti)
   }
 }
-
-// Trigger the confetti animation
 createConfetti()
-
 
 
 // NavBar - toggle Responsive Menu:

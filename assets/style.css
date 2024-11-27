@@ -11,14 +11,14 @@
 :root {
     --primary: #1db97b;
 
-    --white: #fff;
-    --light: #f2f3f5;
+    --white: #f2f3f5;
+    --light: #e2e3e5;
     --grey: #666e77;
     --dark: #181C1f;
 
     --nav-bg-color: rgba(255, 255, 255, 0.8);
 
-    --shadow: 0 .6021873017743928px 2.2883117467426928px -1.5px #00000036, 0 2.288533303243457px 8.696426552325137px -3px #0000002e, 0 10px 38px -4.5px
+    --shadow: 0px 0px 10px rgba(70, 70, 70, 0.5);
 }
 
 
@@ -34,6 +34,9 @@
   box-sizing: border-box;
 }
 body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
     overflow-x: hidden;
     font-family: "Montserrat", sans-serif;
     color: var(--dark);
@@ -538,65 +541,92 @@ nav .auth a:first-of-type {
 
 
 /* --------------------------------------------------------------------------------------------------*/
-/* -------------------------------------------- ROADMAP -------------------------------------------- */
+/* --------------------------------------------- FAQs ---------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-#roadmap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 6vh 4vw;
-    margin-top: 20vh;
-    height: 120vh;
-    background-color: var(--dark);
-    color: var(--white);
-}
-
-/* Roadmap - grid */
-
-#roadmap .grid {
-    width: 80%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-        "b1 b2"
-        "b3 b4"
-    ;
-    gap: 100px;
-}
-#roadmap .grid .box:nth-of-type(1) {
-    grid-area: b1;
-}
-#roadmap .grid .box:nth-of-type(2) {
-    grid-area: b2;
-}
-#roadmap .grid .box:nth-of-type(3) {
-    grid-area: b3;
-}
-#roadmap .grid .box:nth-of-type(4) {
-    grid-area: b4;
-}
-
-/* Roadmap - Boxes */
-
-#roadmap .grid .box {
+#faqs {
+    padding: 0 10vw;
+    padding-top: 30vh;
+    width: 100vw;
+    position: relative;
     text-align: left;
 }
-#roadmap .grid .box h4,
-#roadmap .grid .box p {
-    color: var(--white);
-    margin-bottom: 1vh;
-}    
-#roadmap .grid .box h4 {
-    color: var(--primary);
+#faqs .reveal {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "text faqs"
+    ;
+    grid: 10px;
 }
-#roadmap .grid .box h6 {
+
+#faqs .reveal .text h5 {
+    color: var(--primary);
     font-size: 20px;
-    font-weight: 100;
-    margin-bottom: 2vh;
+    margin-bottom: 10px;
+}
+
+#faqs .faqs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    background-color: white;
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+}
+#faqs .reveal .faqs-container .faq-line {
+    margin-bottom: 10px;
+}
+#faqs .reveal .faqs-container .faq-line:last-child {
+    display: none;
+}
+#faqs .reveal .faqs-container .faq .header {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+#faqs .reveal .faqs-container .faq .header p b {
+    color: var(--dark);
+    font-size: 18px;
+}
+#faqs .reveal .faqs-container .faq .header i {
+    cursor: pointer;
+    margin: 0 20px 0 0;
+    color: var(--grey);
+    opacity: 0.4;
+    font-size: 25px;
+    transition: ease-in-out 0.2s;
+}
+#faqs .reveal .faqs-container .faq .answer {
+    font-size: 16px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 0 0 50px;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+}
+#faqs .reveal .faqs-container .faq-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--grey);
+    opacity: 0.2;
+}
+
+/* FAQs - Active */
+
+#faqs .reveal .faqs-container .faq.active .answer {
+    max-height: fit-content;
+    margin: 10px 0;
+    opacity: 1;
+}
+#faqs .reveal .faqs-container .faq.active .header i {
+    transform: rotate(-45deg);
 }
 
 
@@ -640,15 +670,6 @@ footer .social-media img{
     margin: 0 0.5vw;
     transition: 0.2 ease-in-out;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -921,8 +942,17 @@ footer .social-media img{
             transform: translateX(calc(200px * 6)); 
         }
     }
-    
 
+
+    /* RESPONSIVE - FAQS */
+
+    #faqs .reveal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
 }
 
 @media only screen and (max-width: 685px) {
