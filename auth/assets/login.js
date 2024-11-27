@@ -5,7 +5,7 @@
 /* --------------------------------------------------------------------------------------------------*/
 
 // const authUrl = 'http://localhost:3089'
-const authUrl = 'https://backend-v2-esfc.onrender.com'
+const authUrl = 'https://backend-v2-2.onrender.com'
 
 // assets/auth.js
 
