@@ -1,6 +1,23 @@
 // Lattefy | Uy Software Company - landing page
 
 
+// Card Info. Animation
+
+pointsBtn = document.getElementById('points-btn')
+discountBtn = document.getElementById('discount-btn')
+
+points = document.getElementById('points')
+dicount = document.getElementById('discount')
+
+function displayCardInfo (btn, card) {
+  btn.addEventListener('click', () => {
+    card.classList.toggle('active')
+  })
+}
+
+displayCardInfo(pointsBtn, points)
+displayCardInfo(discountBtn, discount)
+
 // FAQs Animation
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -77,51 +94,51 @@ function reveal(){
 }
 
 
-var formBtn = document.getElementById("form-btn")
+// var formBtn = document.getElementById("form-btn")
 
-formBtn.addEventListener('click', function() {
-  window.open(
-    'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3klyCDkaLkpVv7koIvli2WPb5PF5PVgfMeVgdVJdjBG6zZjZKgjEswSOsCF28E-Qw1kxn7_gbz?gv=true', 
-    'Meeting Window', 
-  )
+// formBtn.addEventListener('click', function() {
+//   window.open(
+//     'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3klyCDkaLkpVv7koIvli2WPb5PF5PVgfMeVgdVJdjBG6zZjZKgjEswSOsCF28E-Qw1kxn7_gbz?gv=true', 
+//     'Meeting Window', 
+//   )
 
-})
+// })
 
 
-var contactBtn = document.getElementById("contact-btn")
+// var contactBtn = document.getElementById("contact-btn")
 
-contactBtn.addEventListener('click', function(e){
-  e.preventDefault()
+// contactBtn.addEventListener('click', function(e){
+//   e.preventDefault()
 
-  var nombre = document.getElementById('name')
-  var empresa = document.getElementById('business')
-  var email = document.getElementById('email')
-  var phoneNumber = document.getElementById('phone-number')
-  var msg = document.getElementById('msg')
+//   var nombre = document.getElementById('name')
+//   var empresa = document.getElementById('business')
+//   var email = document.getElementById('email')
+//   var phoneNumber = document.getElementById('phone-number')
+//   var msg = document.getElementById('msg')
 
-  var body = '<br/> name: ' + nombre.value + '<br/> business: ' + empresa.value + 
-             '<br/> email: ' + email.value + '<br/> phone number: ' + phoneNumber.value +
-             '<br/> message: ' + msg.value 
+//   var body = '<br/> name: ' + nombre.value + '<br/> business: ' + empresa.value + 
+//              '<br/> email: ' + email.value + '<br/> phone number: ' + phoneNumber.value +
+//              '<br/> message: ' + msg.value 
              
 
-  function clearInputs(){
-    nombre.value = ""
-    empresa.value = ""
-    email.value = ""
-    phoneNumber.value = ""
-    msg.value = ""
-  }
+//   function clearInputs(){
+//     nombre.value = ""
+//     empresa.value = ""
+//     email.value = ""
+//     phoneNumber.value = ""
+//     msg.value = ""
+//   }
 
-  Email.send({
-    SecureToken : "09c36a42-e397-48c2-a1a7-7a86178c331c",
-    To : 'fusion.labs.uy@gmail.com',
-    From : 'fusion.labs.uy@gmail.com',
-    Subject : "FusionLabs | Contact Message",
-    Body : body
-  }).then(
-    message => alert("Tu mensaje fue enviado, pronto te llegara una respuesta!")
-  )
+//   Email.send({
+//     SecureToken : "09c36a42-e397-48c2-a1a7-7a86178c331c",
+//     To : 'fusion.labs.uy@gmail.com',
+//     From : 'fusion.labs.uy@gmail.com',
+//     Subject : "Lattefy | Contact Message",
+//     Body : body
+//   }).then(
+//     message => alert("Tu mensaje fue enviado, pronto te llegara una respuesta!")
+//   )
 
-  clearInputs()
+//   clearInputs()
   
-})
+// })

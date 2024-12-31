@@ -81,11 +81,14 @@ h3 {
     color: var(--dark);
 }
 h4 {
-    font-size: 26px;
+    font-size: 24px;
 }
 p {
     font-size: 18px;
     color: var(--grey);
+}
+ul {
+    list-style: none;
 }
 
 /* On Scroll effect */
@@ -94,6 +97,8 @@ p {
     transform: translateY(100px);
     opacity: 0;
     transition: all 0.5s ease;
+    width: 100%;
+    height: 100%
 }
 
 .reveal.active{
@@ -411,6 +416,97 @@ nav .auth a:first-of-type {
 
 
 /* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- CARDS ---------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+#cards .reveal .cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    height: 500px;
+    width: 100%;
+}
+#cards .reveal .cards .card {
+    background-color: white;
+    border-radius: 30px;
+    padding: 40px 60px;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+#cards .reveal .cards .card .cover {
+    width: 100%;
+    height: 100%;
+}
+#cards .reveal .cards .card .cover img {
+    height: 85%;
+    width: auto;
+}
+#cards .reveal .cards .card .cover .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+#cards .reveal .cards .card .cover .footer .card-btn i {
+    background-color: var(--dark);
+    color: white;
+    font-size: 22.5px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+/* Display Card Info. */
+
+/* active */
+#cards .reveal .cards .card.active .cover img {
+    display: none;
+}
+#cards .reveal .cards .card.active .cover .footer h4 {
+    visibility: hidden;
+}
+#cards .reveal .cards .card.active .info {
+    display: flex;
+}
+#cards .reveal .cards .card.active .cover .footer .card-btn i {
+    transform: rotate(45deg);
+}
+
+/* not-active */
+#cards .reveal .cards .card .cover img,
+#cards .reveal .cards .card.active .cover h4 {
+    display: block;
+}
+#cards .reveal .cards .card .info {
+    display: none;
+}
+
+#cards .reveal .cards .card .info {
+    height: 85%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#cards .reveal .cards .card .info ul li {
+    margin: 0 0 20px 0;
+    display: flex;
+}
+#cards .reveal .cards .card .info ul i {
+    font-size: 25px;
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
 /* ------------------------------------------- FEATURES -------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
@@ -601,7 +697,7 @@ nav .auth a:first-of-type {
     color: var(--grey);
     opacity: 0.4;
     font-size: 25px;
-    transition: ease-in-out 0.2s;
+    transition: 0.2s ease-in-out;
 }
 #faqs .reveal .faqs-container .faq .answer {
     font-size: 16px;
@@ -705,7 +801,7 @@ footer .social-media img{
         color: var(--dark);
     }
     h4 {
-        font-size: 18px;
+        font-size: 20px;
     }
     p {
         font-size: 16px;
@@ -781,7 +877,7 @@ footer .social-media img{
       height: 95vh;
       background-color: rgba(255, 255, 255, 0.90);
       opacity: 1;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
     }
     nav .menu a {
       margin-bottom: 10px;
@@ -886,6 +982,25 @@ footer .social-media img{
         width: 80vw;
     }
 
+
+
+    /* RESPONSIVE | CARDS */
+
+    #cards {
+        transform: translateY(-200px);
+        height: 1250px;
+    }
+    #cards .reveal .cards {
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 1020px;
+    }
+    #cards .reveal .cards .card {
+        padding: 30px 30px 20px 30px;
+        height: 500px;
+    }
+
+    
 
 
     /* RESPONSIVE | FEATURES */
