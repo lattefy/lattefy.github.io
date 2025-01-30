@@ -47,31 +47,40 @@ div {
 /* ----------------------------------------- Variables ---------------------------------------------- */
 
 :root {
+
+    /* colors */
     --blue: #1778f2;
     --green: #1db97b;
-    --white: #fff2e9;
+    --white: #fff;
     --light: #dfdfdf;
     --dark: #181c1f;
 
+    /* backgrounds */
     --bg-color: white;
-    --section-bg-color: var(--light);
-    --loader-bg-color: var(--dark);
+    --dark-bg-color: var(--dark);
+    --light-bg-color: var(--white);
+    --loader-bg-color: var(--white);
     --nav-bg-color: rgba(255, 255, 255, 1);
     --container-bg-color: white;
 
+    /* card */
     --card-section-bg-color: white;
     --card-bg-color: var(--dark);
     --card-text-color: white;
 
+    /* input */
     --border-color: #ddd;
     --border-color-active: var(--blue);
     --input-bg-color: #eee;
     --burger-color: #aaa;
 
+    /* links */
     --link-color: var(--blue);
     --btn-text-color: #fff;
     --btn-bg-color: var(--dark);
+    --login-btn-bg-color: var(--blue);
 
+    /* shadows */
     --shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 
 }
@@ -79,14 +88,14 @@ div {
 /* ------------------------------------------- Loader ---------------------------------------------- */
 
 #loader {
-    background: var(--loader-bg-color) url(images/loaders/loader-white.svg) no-repeat center center;
+    background: var(--loader-bg-color) url(images/loaders/loader-black.svg) no-repeat center center;
     display: block;
     background-size: 5%;
     position: fixed;
     height: 100vh;
     width: 100vw;
     position: fixed;
-    z-index: 100;
+    z-index: 1;
 }
 
 /* ------------------------------------------- Button ---------------------------------------------- */
@@ -275,7 +284,7 @@ nav .menu .btn {
 
 /* ------------------------------------------ Section ---------------------------------------------- */
 
-section{
+section {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -285,7 +294,7 @@ section{
 
     width: 100vw;
     height: 100vh;
-    background-color: var(--section-bg-color);
+    background-color: var(--light-bg-color);
 }
 
 /* ------------------------------------------ Container -------------------------------------------- */
@@ -330,27 +339,33 @@ section{
 }
 
 
+
 /* LOGIN */
 
-#login {
-    background-color: var(--section-bg-color);
+#login section {
+    background-color: var(--dark-bg-color);
 }
-
 #login .container {
     width: 300px;
     height: auto;
     align-items: center;
+    box-shadow: var(--shadow);
 }
 #login .container i {
     font-size: 40px;
     margin: 5px 0 10px 0;
 }
-#login .container *input:nth-of-type(1) {
+#login .container .btn {
+    background-color: var(--login-btn-bg-color);
+}
+#login .container input:nth-of-type(1) {
     margin-bottom: 10px;
 }
 #login .container p:nth-child(3) {
     margin-bottom: 15px;
 }
+
+
 
 /* DONE */
 
@@ -371,15 +386,11 @@ section{
 
 
 
+/* CARD */
 
-/* CARD SECTION */
 #home {
     overflow-y: hidden;
 }
-
-
-
-/* CARD CONTAINER */
 .card-container {
     display: flex;
     flex-direction: column;
@@ -393,28 +404,20 @@ section{
     padding: 20px 30px 30px 30px;
     border-radius: 15px;
 }
-
-/* CARD LOGO */
 .card-logo {
     width: 50%;
     margin: 0 auto 10px auto;
 }
-
-/* CARD HEADER */
 .card-header {
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 }
-
-/* CLIENT NAME */
 .card-client-name {
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 10px;
 }
-
-/* POINTS DISPLAY */
 .card-points {
     display: flex;
     align-items: center;
@@ -434,8 +437,6 @@ section{
     font-size: 16px;
     font-weight: 300;
 }
-
-/* REWARD SECTION */
 .reward-box {
     border-radius: 30px;
     height: 30px;
@@ -448,89 +449,16 @@ section{
     justify-content: center;
     gap: 5px;
 }
-
 .reward-box p {
     font-size: 14px;
     font-weight: bold;
 }
-
-
-
-
-/* CARROUSEL */
-
-/* Carousel Container */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    overflow: hidden;
-    margin: auto;
-}
-
-/* Carousel Wrapper */
-.carousel-wrapper {
-    display: flex;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
-    width: auto; 
-}
-
-
-/* Individual Card Items */
-.carousel-item {
-    min-width: 100%;
-    flex-shrink: 0;
-    transition: transform 0.3s ease-out;
-}
-
-/* Dots Indicator */
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.carousel-dot {
-    width: 8px;
-    height: 8px;
-    margin: 5px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.carousel-dot.active {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Smooth transition for swiping */
-@media (hover: none) {
-    .carousel-wrapper {
-        transition: transform 0.2s ease-out;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* FOOTER */
 .card-rewards {
     align-items: center;
     text-align: center;
     list-style: none;
     padding: 0;
 }
-
 .card-footer {
     align-items: center;
     text-align: center;
@@ -541,33 +469,81 @@ section{
 
 
 
+/* CARROUSEL */
 
-
-
-
-/* LATTEFY */
-
-.lattefy {
-    color: var(--dark);
-    height: 55px;
-    position: fixed;
-    bottom: 0;
+.carousel-container {
+    position: relative;
     width: 100%;
-    background-color: transparent; 
+    max-width: 320px;
+    overflow: hidden;
+    margin: auto;
+}
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+    width: auto; 
+}
+.carousel-item {
+    min-width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-out;
+}
+.carousel-indicators {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.carousel-dot.active {
+    background-color: var(--blue);
+}
+@media (hover: none) {
+    .carousel-wrapper {
+        transition: transform 0.2s ease-out;
+    }
+}
+
+
+
+/* Footer */
+
+.footer {
+    color: var(--dark);
+    background-color: transparent;
+    border-radius: 30px; 
+
+    height: 55px;
+    width: 100%;
+    padding: 0px 20px;
+    bottom: 0;
+    z-index: 2;
+    
+    display: flex;
+    position: fixed;
+    justify-content: center;
     align-items: center;
-    padding: 20px 0 20px 0;
     text-align: center;
 }
-.lattefy i {
+.footer i {
     font-size: 24px;
-    margin-right: 10px; 
+    margin-right: 5px; 
     margin-bottom: 5.5px;
 }
-.lattefy h2 {
+.footer h2 {
     margin: 0;
     font-size: 18px;
+}
+#login .footer {
+    color: var(--white);
 }
 
 
@@ -576,7 +552,13 @@ section{
 
 @media only screen and (max-width: 730px) {
 
-    /* RESPONSIVE - Container */
+    /* Responsive - loader */
+
+    #loader {
+        background-size: 10%;
+    }
+
+    /* Responsive - Container */
 
     #form .container .forms {
         flex-direction: column;
@@ -587,17 +569,5 @@ section{
         width: 320px;
     }
 
-    #path section {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: 
-            "c1"
-            "c2"
-        ;
-        gap: 10px;
-    }
-    #path .container {
-        height: calc(50vh - 27.5px - 20px - 5px);
-    }
 
 }

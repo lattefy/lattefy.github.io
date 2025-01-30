@@ -70,6 +70,7 @@ async function getTemplate(templateId) {
 
 // Display client cards in a swipeable carousel
 async function displayClientCards(cards, clientPhoneNumber) {
+
     const container = document.getElementById('cards-container')
     container.innerHTML = ''
     
@@ -128,6 +129,7 @@ async function displayClientCards(cards, clientPhoneNumber) {
         dot.onclick = () => setActiveCard(index)
         indicators.appendChild(dot)
         console.log('Added card:', card)
+
     }
     
     const carouselContainer = document.createElement('div')
@@ -137,6 +139,9 @@ async function displayClientCards(cards, clientPhoneNumber) {
     container.appendChild(carouselContainer)
 
     setActiveCard(0)
+
+    loader.style.display = 'none'
+
 }
 
 function setActiveCard(index) {

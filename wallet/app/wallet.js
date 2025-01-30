@@ -4,9 +4,9 @@
 document.addEventListener('DOMContentLoaded', async function () {
 
     const loader = document.getElementById("loader")
-    window.addEventListener("load", function () {
-      loader.style.display = "none"
-    })
+    // window.addEventListener("load", function () {
+    //   loader.style.display = "none"
+    // })
 
     // Login
     if (document.getElementById('login')) {
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (accessToken && refreshToken) {
             window.location.href = './index.html'
         }
-
 
         // Client login
         document.getElementById('login-btn').addEventListener('click', async function (event) {
@@ -62,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const refreshToken = localStorage.getItem('refreshToken')
 
         try {
+
             const clientData = await authClient(accessToken, refreshToken)
             if (!clientData || !clientData.phoneNumber) {
                 throw new Error('Client authentication failed or missing phone number')
@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             } else {
                 console.log('No cards to display')
             }
+
         } catch (error) {
             console.error('Error fetching or displaying cards:', error)
         }
     }
-
 
 
     // Logged in activity
