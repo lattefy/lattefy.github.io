@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         try {
 
+            loader.style.display = 'block'
+
             const clientData = await authClient(accessToken, refreshToken)
             if (!clientData || !clientData.phoneNumber) {
                 throw new Error('Client authentication failed or missing phone number')
@@ -86,11 +88,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.log('No cards to display')
             }
 
+            loader.style.display = 'none'
+
         } catch (error) {
             console.error('Error fetching or displaying cards:', error)
         }
     }
 
+    // Discover page
+    if (document.getElementById("discover")) {
+        console.log("Initializing Discover Page...") // Debugging log
+        initializeDiscoverPage()
+    }
 
     // Logged in activity
     if (document.getElementById('home') || document.getElementById('discover')) {

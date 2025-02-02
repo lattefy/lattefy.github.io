@@ -1,7 +1,7 @@
 // Lattefy's auth script
 
 // Client login
-async function clientLogin (phoneNumber, password) {
+async function clientLogin(phoneNumber, password) {
     try{
         const response = await fetch(`${apiUrl}/auth/clients/login`, {
             method: 'POST',
@@ -22,48 +22,45 @@ async function clientLogin (phoneNumber, password) {
 
 // Client authentication
 async function authClient(accessToken, refreshToken) {
-    loader.style.display = 'block'
 
-    if (accessToken && refreshToken) {
-        try {
-            const response = await fetch(`${apiUrl}/auth/clients/verify-token`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`,
-                },
-            })
-
-            if (response.ok) {
-                const clientData = await response.json()
-                console.log('Token valid. Client:', clientData)
-                loader.style.display = 'none'
-                return clientData
-            } else if (response.status === 403) {
-                console.log('Access token expired, attempting refresh...')
-                const newAccessToken = await refreshAccessToken(refreshToken)
-
-                if (newAccessToken) {
-                    return authClient(newAccessToken, refreshToken)
-                } else {
-                    console.error('Failed to refresh token.')
-                    localStorage.removeItem('accessToken')
-                    localStorage.removeItem('refreshToken')
-                    window.location.href = './login.html'
-                }
-            } else {
-                console.error('Unexpected error:', response.statusText)
-            }
-        } catch (error) {
-            console.error('Auth error:', error)
-            window.location.href = './login.html'
-        } finally {
-            loader.style.display = 'none'
-        }
-    } else {
+    if (!accessToken || !refreshToken) {
         console.log('No tokens found, redirecting to login.')
         window.location.href = './login.html'
     }
+
+    try {
+        const response = await fetch(`${apiUrl}/auth/clients/verify-token`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        })
+
+        if (response.ok) {
+            const clientData = await response.json()
+            console.log('Token valid. Client:', clientData)
+            return clientData
+        } else if (response.status === 403) {
+            console.log('Access token expired, attempting refresh...')
+            const newAccessToken = await refreshAccessToken(refreshToken)
+
+            if (newAccessToken) {
+                return authClient(newAccessToken, refreshToken)
+            } else {
+                console.error('Failed to refresh token.')
+                localStorage.removeItem('accessToken')
+                localStorage.removeItem('refreshToken')
+                window.location.href = './login.html'
+            }
+        } else {
+            console.error('Unexpected error:', response.statusText)
+        }
+    } catch (error) {
+        console.error('Auth error:', error)
+        window.location.href = './login.html'
+    } 
+
 }
 
 // Generate access token (refresh token)

@@ -1,31 +1,23 @@
-<!-- Lattefy's discover page -->
+<!-- Lattefy Discover Page -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
     <title>Lattefy | Discover</title>
     <meta property="og:title" content="Lattefy | Discover">
     <meta property="og:image" content="assets/images/meta/meta-img.png"/>
-    
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
-    
     <link rel="stylesheet" href="assets/style.css">
-    
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
 <body id="discover">
-    
     <main>
-
         <div id="loader" style="display: none;"></div>
-
         <!-- Navigation Bar -->
-        
         <nav>
             <a href="./index.html">
                 <div class="logo">
@@ -44,23 +36,38 @@
                 <span class="line-3"></span>
             </a>
         </nav>        
-
-        <a href="https://lattefy.com.uy">
-            <div class="lattefy">
-                <i class="ph ph-coffee"></i>
-                <h2>Lattefy</h2>
+        <section id="discover">
+            <h1>Discover New Cards</h1>
+            <div id="business-list" class="business-list">
+                <div class="business-box">
+                    <h3>Billy Burgers</h3>
+                    <p>Reward: Free Burger</p>
+                    <p>Type: Fidelity</p>
+                </div>
+                <div class="business-box">
+                    <h3>Coffee Hub</h3>
+                    <p>Reward: Free Coffee</p>
+                    <p>Type: Loyalty</p>
+                </div>
+                <div class="business-box">
+                    <h3>Fresh Mart</h3>
+                    <p>Reward: Discount Coupons</p>
+                    <p>Type: Discount</p>
+                </div>
             </div>
-        </a>
-
+        </section>
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <p id="popup-message"></p>
+                <button id="add-card" class="btn hidden">Add Card</button>
+                <button id="cancel" class="btn">Cancel</button>
+            </div>
+        </div>
     </main>
-
     <script src="config.js"></script>
-
     <script src="app/auth.js"></script>
+    <script src="app/discover.js"></script>
     <script src="app/wallet.js"></script>
-
-    <!-- General Js File -->
     <script src="assets/script.js"></script>
-
 </body>
 </html>

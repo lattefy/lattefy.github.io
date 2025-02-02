@@ -103,22 +103,37 @@ async function displayClientCards(cards, clientPhoneNumber) {
         cardElement.style.width = '100%'
         cardElement.style.flexShrink = '0'
 
+        let method 
+        console.log(template.pointAddition)
+        if (template.pointAddition === 'LINEAL') {
+            method = 'cada'
+        } else if (template.pointAddition === 'FIXED') {
+            method = '= compra mayor a'
+        } else {
+            method = '='
+        }
+
         cardElement.innerHTML = `
             <img src="${imageUrl}" alt="${template.name}" class="card-logo">
-            <h5 class="card-header" style="color: ${template.headerColor || 'inherit'}">${template.header || 'Tarjeta'}</h5>
+
+            <h5 class="card-header" style="color: ${template.headerColor || 'inherit'}">${template.header || 'FIDELITY CARD'}</h5>
+
             <h1 class="card-client-name" style="color: ${template.nameColor || 'inherit'}">${clientName}</h1>
-            <div class="card-points" style="background-color: ${template.lightColor || 'white'}; color: ${template.primaryColor || 'black'}">
+
+            <div class="card-points" style="background-color: ${template.pointsBgColor || 'white'}; color: ${template.pointsTextColor || 'black'}">
                 <h3>${card.currentPoints || 0} / ${template.pointsNeeded || 'N/A'}</h3>
-                <span>${template.pointName || 'Puntos'}</span>
+                <span>${template.pointsName || 'Puntos'}</span>
             </div>
+
             <ul class="card-rewards">
                 <li>
                     <div class="reward-box" style="background-color: ${template.rewardBgColor || 'white'}; color: ${template.rewardTextColor || 'black'}">
-                        <p>${template.pointsNeeded || 0} ${template.pointName || 'Puntos'} =</p>
-                        <p><b>${template.reward || 'Recompensa'}</b></p>
+                        <p style="color: ${template.priceTextColor}">${template.pointsNeeded || 0} ${template.pointsName || 'Puntos'} =</p>
+                        <p style="color: ${template.rewardTextColor}"><b>${template.reward || 'Recompensa'}</b></p>
                     </div>
                 </li>
                 <li class="card-footer" style="color: ${template.footerColor || 'inherit'}">${template.footer || 'Acumula puntos con tus compras'}</li>
+                <li class="card-price" style"color: ${template.footerColor || 'inherit'}"><b>1 ${template.pointName} ${method} $ ${template.pointCost}</b></li>
             </ul>
         `
 
@@ -150,7 +165,7 @@ function setActiveCard(index) {
     if (!wrapper) return
     
     wrapper.style.transition = 'transform 0.3s ease-out'
-    wrapper.style.transform = `translateX(${-index * 105}%)`
+    wrapper.style.transform = `translateX(${-index * 107}%)`
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === index)
     })
