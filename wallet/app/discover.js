@@ -1,69 +1,140 @@
-// Lattefy Discover Page Logic
+// Lattefy's frontend discover script
 
-let selectedBusiness = null
+// Get all templates
+async function fetchTemplates() {
+    const templatesContainer = document.getElementById("templates-container")
 
-function showPopup(businessName, businessId, templateId) {
-    selectedBusiness = { businessId, templateId }
-    
-    console.log(`Popup for ${businessName}, Business ID: ${businessId}, Template ID: ${templateId}`) // Debugging log
-    
-    const popupMessage = document.getElementById("popup-message")
-    popupMessage.textContent = `Add card for ${businessName}?`
-    
-    document.getElementById("add-card").classList.remove("hidden")
-    document.getElementById("popup").classList.remove("hidden")
-}
-
-async function addCardToWallet() {
-    if (!selectedBusiness) return
-    const clientPhoneNumber = localStorage.getItem("clientPhoneNumber")
-    
     try {
-        const token = localStorage.getItem("accessToken")
-        
-        const response = await fetch(`${apiUrl}/cards`, {
-            method: "POST",
+        const response = await fetch(`${apiUrl}/templates`, {
+            method: 'GET',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                clientPhoneNumber,
-                businessId: selectedBusiness.businessId,
-                templateId: selectedBusiness.templateId
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        if (!response.ok) throw new Error("Error fetching templates")
+
+        const templates = await response.json()
+
+        if (templates.length === 0) {
+            templatesContainer.innerHTML = `<p class="no-templates">No hay tarjetas disponibles.</p>`
+            return
+        }
+
+        templatesContainer.innerHTML = templates.map(template => `
+            <div class="template-box" style="background-color: ${template.bgColor}" data-id="${template.templateId}" data-business="${template.businessId}">
+                <h3>${template.businessName}</h3>
+                <p>${template.reward || template.promotion || template.gift || "Recompensa no disponible"}</p>
+                <p>${template.pointsNeeded ? `${template.pointsNeeded} ${template.pointsName}` : "Sin costo de puntos"}</p>
+                <p>${template.pointCost ? `1 ${template.pointName} = $${template.pointCost}` : "Sin costo de puntos"}</p>
+            </div>
+        `).join("")
+        
+        document.querySelectorAll(".template-box").forEach(box => {
+            box.addEventListener("click", function () {
+                openPopup({
+                    templateId: box.getAttribute("data-id"),
+                    businessId: box.getAttribute("data-business"),
+                    businessName: box.querySelector("h3").innerText
+                })
             })
         })
-        
-        if (!response.ok) throw new Error("Failed to add card")
-        
-        document.getElementById("popup-message").textContent = "Card successfully added!"
-        document.getElementById("add-card").classList.add("hidden")
+
     } catch (error) {
-        console.error(error)
-        document.getElementById("popup-message").textContent = "Error adding card. Please try again."
+        console.error("Error loading templates:", error)
     }
 }
 
+// Functio to open pop up
+function openPopup(template) {
+    const popup = document.getElementById("popup")
+    const popupOverlay = document.getElementById("popup-overlay")
+    const popupBusinessName = document.getElementById("popup-template-hezder")
+
+    selectedTemplate = template
+    popupBusinessName.innerText = `Negocio: ${template.businessName}`
+    popup.classList.add("active")
+    popupOverlay.classList.add("active")
+}
+
+
+// Function to close pop up
 function closePopup() {
-    document.getElementById("popup").classList.add("hidden")
+    document.getElementById("popup").classList.remove("active")
+    document.getElementById("popup-overlay").classList.remove("active")
 }
 
-function initializeDiscoverPage() {
-    console.log("Attaching event listeners to business boxes...") // Debugging log
-    const businesses = [
-        { name: "Billy Burgers", businessId: 1, templateId: 101 },
-        { name: "Coffee Hub", businessId: 2, templateId: 102 },
-        { name: "Fresh Mart", businessId: 3, templateId: 103 }
-    ]
+// Function to add a card
+async function addCard() {
+    if (!selectedTemplate) return
 
-    document.querySelectorAll(".business-box").forEach((box, index) => {
-        console.log(`Adding listener to: ${box.textContent.trim()}`) // Debugging log
-        box.addEventListener("click", () => {
-            const { name, businessId, templateId } = businesses[index]
-            showPopup(name, businessId, templateId)
+    try {
+        const clientData = await authClient(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"))
+
+        const response = await fetch(`${apiUrl}/cards`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({
+                clientPhoneNumber: clientData.phoneNumber,
+                businessId: selectedTemplate.businessId,
+                templateId: selectedTemplate.templateId
+            })
         })
-    })
-    
-    document.getElementById("add-card").addEventListener("click", addCardToWallet)
-    document.getElementById("cancel").addEventListener("click", closePopup)
+
+        if (!response.ok) {
+            const errorData = await response.json()
+            if (errorData.message === "Card already exists") {
+                return showConfirmationMessage("Ya tienes esta tarjeta")
+            } else {
+                return showConfirmationMessage("Error al agregar tarjeta")
+            }
+        }
+
+        // Add the business ID to the client
+        await fetch(`${apiUrl}/clients/${clientData.phoneNumber}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({
+                newBusinessId: selectedTemplate.businessId
+            })
+        })
+
+        showConfirmationMessage("Tarjeta agregada con éxito", true) // Pass true to trigger redirect
+
+    } catch (error) {
+        console.error("Error adding card:", error)
+        showConfirmationMessage("Error en la solicitud")
+    }
 }
+
+// Function to show confirmation message
+function showConfirmationMessage(message, redirect = false) {
+    const confirmation = document.getElementById("confirmation")
+    confirmation.querySelector("h2").textContent = message
+
+    document.getElementById("popup").classList.remove("active") // Hide popup
+    confirmation.classList.add("active")
+
+    // Keep blur and remove confirmation after 2 seconds
+    setTimeout(() => {
+        confirmation.classList.remove("active")
+        document.getElementById("popup-overlay").classList.remove("active") // Remove blur
+
+        // Redirect only after the message has been displayed
+        if (redirect) {
+            window.location.href = './index.html'
+        }
+
+    }, 2000)
+}
+
+
+
+
+

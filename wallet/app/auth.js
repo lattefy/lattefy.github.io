@@ -20,6 +20,41 @@ async function clientLogin(phoneNumber, password) {
     }
 }
 
+// Client Signup
+async function clientSignup(name, phoneNumber, email, password) {
+    try {
+        const response = await fetch(`${apiUrl}/auth/clients/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, phoneNumber, email, password })
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+            throw new Error(data.message || "Error desconocido")
+        }
+
+        localStorage.setItem('accessToken', data.accessToken)
+        localStorage.setItem('refreshToken', data.refreshToken)
+        return data
+
+    } catch (error) {
+        console.error('Signup error:', error)
+
+        // Specific error messages
+        if (error.message.includes("El cliente ya existe")) {
+            alert("El cliente ya existe. Inicie sesión en su cuenta.")
+            window.location.href = './login.html'
+        } else if (error.message.includes("Error en el servidor")) {
+            alert("Hubo un problema en el servidor. Intente más tarde.")
+        } else {
+            alert("Error en el registro: " + error.message)
+        }
+        
+    }
+}
+
 // Client authentication
 async function authClient(accessToken, refreshToken) {
 
@@ -58,6 +93,8 @@ async function authClient(accessToken, refreshToken) {
         }
     } catch (error) {
         console.error('Auth error:', error)
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
         window.location.href = './login.html'
     } 
 

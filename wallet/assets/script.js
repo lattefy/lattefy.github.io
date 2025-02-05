@@ -10,17 +10,36 @@ window.addEventListener("load",function() {
     }, 0)
 })
 
-// NavBar - toggle Responsive Menu:
+// menu - toggle Responsive Menu:
 
 burger = document.querySelector(".burger")
-navBar = document.querySelector(".menu")
+menu = document.querySelector(".menu")
 
 burger.onclick = function(){
-    navBar.classList.toggle("active")
+    menu.classList.toggle("active")
     burger.classList.toggle("active")
 }
 
-navBar.onclick = function(){
-    navBar.classList.toggle("active")
+menu.onclick = function(){
+    menu.classList.toggle("active")
     burger.classList.toggle("active")
+}
+
+
+// Check animation
+
+if (document.getElementById("done")) {
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            document.querySelector("#done .container").classList.add("show-text")
+        }, 600) 
+    })
+}
+
+if (document.getElementById("discover")) {
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            document.querySelector("#discover #confirmation").classList.add("show-text")
+        }, 600) 
+    })
 }

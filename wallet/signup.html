@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>Lattefy | Login</title>
-    <meta property="og:title" content="Lattefy | Login">
+    <title>Lattefy | Registrarse</title>
+    <meta property="og:title" content="Lattefy | Registrarse">
     <meta property="og:image" content="assets/images/meta/meta-img.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -18,7 +18,7 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="login">
+<body id="signup">
     
     <main>
 
@@ -34,7 +34,7 @@
                 </div>
             </a>
             <div class="menu">
-                <a target="_blank" href="https://www.instagram.com/lattefy.uy/">@lattefy.uy</a> 
+              <a target="_blank" href="https://www.instagram.com/lattefy.uy/">@lattefy.uy</a> 
             </div>
             <a href="#" class="burger">
                 <span class="line-1"></span>
@@ -47,30 +47,39 @@
 
             <div class="container">
               <h1>Bienvenido</h1>
-              <p>
-                Crea tu propia <b>fidelity wallet</b>.
-              </p>
-              <form>
-                <label for="name" id="name-label" class="label">Nombre</label>
-                <input type="text" id="name" placeholder="Juan Perez" required>
-                <label for="phoneNumber" id="phoneNumber-label" class="label">Celular</label>
-                <input type="text" id="phoneNumber" placeholder="09XXXXXXX" required>
-                <label for="email" id="email-label" class="label">Email</label>
-                <input type="email" id="email" placeholder="juanperez@ejemplo.com" required>
-                <label for="password" id="passsword-label" class="label">Password</label>
-                <input type="password" id="password" placeholder="********" required>
-              </form>
-              <a href="./done.html" class="btn" id="login-btn">Regístrate</a>
               <div class="link">
                 <p>
                   ¿Ya tienes cuenta?
                   <a href="./login.html">Iniciar sesión</a>
                 </p>
               </div>
+              <form>
+                <div class="left">
+                  <label for="name" id="name-label" class="label">Nombre</label>
+                  <input type="text" id="name" placeholder="Juan Perez" required>
+                  <label for="phoneNumber" id="phone-number-label" class="label">Celular</label>
+                  <input type="text" id="phone-number" placeholder="09XXXXXXX" required>
+                </div>
+                <div class="right">
+                  <label for="email" id="email-label" class="label">Email</label>
+                  <input type="email" id="email" placeholder="juanperez@ejemplo.com" required>
+                  <label for="password" id="password-label" class="label">Password</label>
+                  <input type="password" id="password" placeholder="********" required>
+                </div>
+              </form>
+              <a class="btn" id="signup-btn">Regístrate</a>
+              <div class="link" id="terms">
+                <p>
+                  Al registrarse, acepta los
+                  <a href="https://lattefy.com.uy/terms" target="_blank" class="link">términos y condiciones</a>.
+                </p>
+              </div>
             </div>
         </section>
 
     </main>
+
+    <script src="config.js"></script>
 
     <script src="app/auth.js"></script>
     <script src="app/validation.js"></script>
