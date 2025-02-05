@@ -65,6 +65,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         })
     }
 
+    // Done
+    if (document.getElementById('done')) {
+        const accessToken = localStorage.getItem('accessToken')
+        const refreshToken = localStorage.getItem('refreshToken')
+        if (accessToken && refreshToken) {
+            document.getElementById('done-btn').addEventListener('click', async () => {
+                window.location.href = './index.html'
+            })
+        }
+    }
+
     // Homepage Authentication
     if (document.getElementById('home')) {
         const accessToken = localStorage.getItem('accessToken')
