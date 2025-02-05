@@ -165,7 +165,7 @@ function setActiveCard(index) {
     if (!wrapper) return
     
     wrapper.style.transition = 'transform 0.3s ease-out'
-    wrapper.style.transform = `translateX(${-index * 107}%)`
+    wrapper.style.transform = `translateX(${-index * 106.65}%)`
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === index)
     })
