@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     const data = await clientSignup(name, phoneNumber, email, password)
                     if (data) {
-                        window.location.href = './index.html'
+                        window.location.href = './done.html'
                     }
                 } catch (error) {
                     window.location.href = './signup.html'
