@@ -68,22 +68,19 @@ async function getTemplate(templateId) {
     }
 }
 
-// Display client cards in a swipeable carousel
-async function displayClientCards(cards, clientPhoneNumber) {
 
+async function displayClientCards(cards, clientPhoneNumber) {
     const container = document.getElementById('cards-container')
     container.innerHTML = ''
-    
+
     console.log('Fetching client for phoneNumber:', clientPhoneNumber)
     const client = await getClient(clientPhoneNumber)
     const clientName = client ? client.name : 'Cliente'
-    
-    // Create carousel wrapper
+
     const carouselWrapper = document.createElement('div')
     carouselWrapper.className = 'carousel-wrapper'
     carouselWrapper.style.width = '100%'
     carouselWrapper.style.justifyContent = 'left'
-
 
     const indicators = document.createElement('div')
     indicators.className = 'carousel-indicators'
@@ -94,7 +91,7 @@ async function displayClientCards(cards, clientPhoneNumber) {
         const template = await getTemplate(card.templateId)
         if (!template) continue
         
-        const imageUrl = template.imageUrl ? template.imageUrl : 'assets/images/brand/default-logo.png'
+        const cardImage = template.cardUrl ? template.cardUrl : 'assets/images/brand/default-logo.png'
 
         const cardElement = document.createElement('div')
         cardElement.className = 'card-container carousel-item'
@@ -103,39 +100,20 @@ async function displayClientCards(cards, clientPhoneNumber) {
         cardElement.style.width = '100%'
         cardElement.style.flexShrink = '0'
 
-        let method 
-        console.log(template.pointAddition)
-        if (template.pointAddition === 'LINEAL') {
-            method = 'cada'
-        } else if (template.pointAddition === 'FIXED') {
-            method = '= compra mayor a'
-        } else {
-            method = '='
+        // Determine which card type to render
+        switch (template.type) {
+            case 'FIDELITY':
+                cardElement.innerHTML = fidelityCardHTML(card, clientName, template, cardImage)
+                break
+            case 'GIFT':
+                cardElement.innerHTML = giftCardHTML(card, clientName, template, cardImage)
+                break
+            case 'DISCOUNT':
+                cardElement.innerHTML = discountCardHTML(card, clientName, template, cardImage)
+                break
+            default:
+                cardElement.innerHTML = `<p>Unknown Card Type</p>`
         }
-
-        cardElement.innerHTML = `
-            <img src="${imageUrl}" alt="${template.name}" class="card-logo">
-
-            <h5 class="card-header" style="color: ${template.headerColor || 'inherit'}">${template.header || 'FIDELITY CARD'}</h5>
-
-            <h1 class="card-client-name" style="color: ${template.nameColor || 'inherit'}">${clientName}</h1>
-
-            <div class="card-points" style="background-color: ${template.pointsBgColor || 'white'}; color: ${template.pointsTextColor || 'black'}">
-                <h3>${card.currentPoints || 0} / ${template.pointsNeeded || 'N/A'}</h3>
-                <span>${template.pointsName || 'Puntos'}</span>
-            </div>
-
-            <ul class="card-rewards">
-                <li>
-                    <div class="reward-box" style="background-color: ${template.rewardBgColor || 'white'}; color: ${template.rewardTextColor || 'black'}">
-                        <p style="color: ${template.priceTextColor}">${template.pointsNeeded || 0} ${template.pointsName || 'Puntos'} =</p>
-                        <p style="color: ${template.rewardTextColor}"><b>${template.reward || 'Recompensa'}</b></p>
-                    </div>
-                </li>
-                <li class="card-footer" style="color: ${template.footerColor || 'inherit'}">${template.footer || 'Acumula puntos con tus compras'}</li>
-                <li class="card-price" style"color: ${template.footerColor || 'inherit'}"><b>1 ${template.pointName} ${method} $ ${template.pointCost}</b></li>
-            </ul>
-        `
 
         carouselWrapper.appendChild(cardElement)
         
@@ -144,7 +122,6 @@ async function displayClientCards(cards, clientPhoneNumber) {
         dot.onclick = () => setActiveCard(index)
         indicators.appendChild(dot)
         console.log('Added card:', card)
-
     }
     
     const carouselContainer = document.createElement('div')
@@ -154,10 +131,9 @@ async function displayClientCards(cards, clientPhoneNumber) {
     container.appendChild(carouselContainer)
 
     setActiveCard(0)
-
     loader.style.display = 'none'
-
 }
+
 
 function setActiveCard(index) {
     const wrapper = document.querySelector('.carousel-wrapper')

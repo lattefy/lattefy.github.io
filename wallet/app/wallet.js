@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             document.getElementById("add-card-btn").addEventListener("click", addCard)
             document.getElementById("cancel-btn").addEventListener("click", closePopup)
-            fetchTemplates()
+            await fetchTemplates()
+            setupSearch("search-bar", "templates-container", "template-box", ".template-business-name")
 
             loader.style.display = 'none'
         } catch (error) {

@@ -1,5 +1,7 @@
 // Lattefy's frontend discover script
 
+setupSearch("search-bar", "template-box", "template-business-name")
+
 // Get all templates
 async function fetchTemplates() {
     const templatesContainer = document.getElementById("templates-container")
@@ -23,10 +25,20 @@ async function fetchTemplates() {
 
         templatesContainer.innerHTML = templates.map(template => `
             <div class="template-box" style="background-color: ${template.bgColor}" data-id="${template.templateId}" data-business="${template.businessId}">
-                <h3>${template.businessName}</h3>
-                <p>${template.reward || template.promotion || template.gift || "Recompensa no disponible"}</p>
-                <p>${template.pointsNeeded ? `${template.pointsNeeded} ${template.pointsName}` : "Sin costo de puntos"}</p>
-                <p>${template.pointCost ? `1 ${template.pointName} = $${template.pointCost}` : "Sin costo de puntos"}</p>
+                <img src="${template.imgUrl}" alt="${template.name}" class="template-img">
+                <div class="template-info">
+                    <img src="${template.logoUrl}" alt="${template.businessName}" class="template-logo">
+                    <div class="template-text">
+                        <h3 class="template-business-name">${template.businessName}</h3>
+                        <p class="template-text">
+                            ${template.pointsNeeded} ${template.pointsName} = ${template.reward}
+                        </p>
+                    </div>
+                    <div class="template-rating">
+                        <i class="ph ph-star"></i>
+                        <p><b>${template.rating}</b></p>
+                    </div>
+                </div>
             </div>
         `).join("")
         
