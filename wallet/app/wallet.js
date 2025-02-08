@@ -10,7 +10,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         const refreshToken = localStorage.getItem('refreshToken')
 
         if (accessToken && refreshToken) {
-            window.location.href = './index.html'
+            // Restore parameters if they exist
+            const storedBusinessId = sessionStorage.getItem('businessId')
+            const storedTemplateId = sessionStorage.getItem('templateId')
+
+            let redirectURL = './index.html'
+            if (storedBusinessId && storedTemplateId) {
+                redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
+            }
+
+            window.location.href = redirectURL
         }
 
         document.getElementById('login-btn').addEventListener('click', async function (event) {
@@ -25,7 +34,19 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     const data = await clientLogin(phoneNumber, password)
                     if (data) {
-                        window.location.href = './index.html'
+                        // Restore parameters if they exist
+                        const storedBusinessId = sessionStorage.getItem('businessId')
+                        const storedTemplateId = sessionStorage.getItem('templateId')
+
+                        let redirectURL = './index.html'
+                        if (storedBusinessId && storedTemplateId) {
+                            redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
+                        }
+
+                        sessionStorage.removeItem('businessId')
+                        sessionStorage.removeItem('templateId')
+
+                        window.location.href = redirectURL
                     } else {
                         alert('Error al iniciar sesión')
                         window.location.href = './login.html'
@@ -54,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     const data = await clientSignup(name, phoneNumber, email, password)
                     if (data) {
+
                         window.location.href = './done.html'
                     }
                 } catch (error) {
@@ -71,17 +93,39 @@ document.addEventListener('DOMContentLoaded', async function () {
         const refreshToken = localStorage.getItem('refreshToken')
         if (accessToken && refreshToken) {
             document.getElementById('done-btn').addEventListener('click', async () => {
-                window.location.href = './index.html'
-            })
+                // Restore parameters if they exist
+                const storedBusinessId = sessionStorage.getItem('businessId')
+                const storedTemplateId = sessionStorage.getItem('templateId')
+
+                let redirectURL = './index.html'
+                if (storedBusinessId && storedTemplateId) {
+                    redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
+                }
+
+                window.location.href = redirectURL
+                })
         }
     }
 
-    // Homepage Authentication
+    // Homepage 
     if (document.getElementById('home')) {
         const accessToken = localStorage.getItem('accessToken')
         const refreshToken = localStorage.getItem('refreshToken')
 
         const noCardsMessage = document.getElementById("no-cards-message")
+
+        const urlParams = new URLSearchParams(window.location.search)
+        const businessId = urlParams.get('businessId')
+        const templateId = urlParams.get('templateId')
+
+        // If user is not logged in, save params and redirect to login
+        if (!accessToken || !refreshToken) {
+            if (businessId && templateId) {
+                sessionStorage.setItem('businessId', businessId)
+                sessionStorage.setItem('templateId', templateId)
+            }
+            window.location.href = './login.html' // Redirect to login
+        }
 
         try {
             loader.style.display = 'block'
@@ -90,6 +134,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (!clientData || !clientData.phoneNumber) {
                 throw new Error('Client authentication failed or missing phone number')
             }
+
+            // Handle QR card creation
+            await handleBusinessQR(clientData.phoneNumber)
 
             console.log('Authenticated Client:', clientData)
 
@@ -104,7 +151,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             if (cards && cards.length > 0) {
                 await displayClientCards(cards, clientData.phoneNumber)
-                noCardsMessage.classList.remove("active")
             } else {
                 console.log('No cards to display')
                 noCardsMessage.classList.add("active")
@@ -116,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // Discover Page Authentication
+    // Discover Page 
     if (document.getElementById("discover")) {
         const accessToken = localStorage.getItem('accessToken')
         const refreshToken = localStorage.getItem('refreshToken')
