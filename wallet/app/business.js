@@ -1,7 +1,5 @@
 // Lattefy's frontend wallet qr business file
 
-// business.js
-
 // Function to check URL parameters and create a card if necessary
 async function handleBusinessQR(clientPhoneNumber) {
     const urlParams = new URLSearchParams(window.location.search)
@@ -38,8 +36,9 @@ async function handleBusinessQR(clientPhoneNumber) {
             }
             return
         }
+        alert('Tarjeta agregada con éxito') 
+        window.history.replaceState(null, '', window.location.pathname)
 
-        alert('Tarjeta agregada con éxito') // Change to popup in the future
     } catch (error) {
         console.error('Error processing QR:', error)
         alert('Error en la solicitud')
