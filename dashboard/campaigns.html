@@ -1,3 +1,5 @@
+<!-- Lattefy's frontend dashboard campaigns page -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +22,17 @@
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Campaigns</h2>
+        <h2>Campañas</h2>
         <div class="nav-btns">
-            <a class="reload" href="campaigns.html">
+            <a class="reload">
                 <i class="ph ph-arrow-clockwise"></i>
             </a>
-            <a href="../form/index.html" class="btn">Cargar Cliente</a>
+            <a id="wallet-btn" class="btn">Cargar Cliente</a>
         </div>
     </header>
 
     <!-- Side Bar -->
     <section class="sidebar active">
-
         <div class="top">
             <div class="logo">
                 <i class="ph ph-coffee"></i>
@@ -44,44 +45,12 @@
             </div>
         </div>
 
-        <ul class="menu">
-            <li>
-                <a href="index.html">
-                    <i class="ph ph-squares-four"></i>
-                    <span class="link">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="clients.html">
-                    <i class="ph ph-user-circle"></i>
-                    <span class="link">Clientes</span>
-                </a>
-            </li>
-            <li>
-                <a href="purchase.html">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="link">Cargar compra</span>
-                </a>
-            </li>
-            <li>
-                <a href="stats.html">
-                    <i class="ph ph-presentation-chart"></i>
-                    <span class="link">Estadisticas</span>
-                </a>
-            </li>
-            <li>
-                <a href="campaigns.html">
-                    <i class="ph ph-bell"></i>
-                    <span class="link">Campaigns</span>
-                </a>
-            </li>
-        </ul>
+        <ul class="menu"></ul>
 
-        <a href="download.html" class="export">
-            <i class="ph ph-export"></i>
-            <span class="link">Exportar Info.</span>
+        <a id="logout-btn" class="log-out">
+            <i class="ph ph-sign-out"></i>
+            <span class="link">Cerrar sesión</span>
         </a>
-
     </section>
 
 
@@ -92,13 +61,12 @@
 
         <div class="card">
             <i class="ph ph-bell"></i>
-            <h3>Crear nueva campana</h3>
-            <p>Crea una campana y hacela llegar a todos tus clientes.</p>
+            <h3>Crear nueva campaña</h3>
             <div class="header">
                 <input type="text" id="title" placeholder="Titulo">
                 <div class="btn-file">
                     <i class="ph ph-arrow-circle-up"></i>
-                    Subir archivo
+                    <span id="file-name">Subir Archivo</span>
                     <input type="file" id="image-upload" accept="image/*">
                 </div>
             </div>
@@ -107,23 +75,56 @@
         </div>
 
         <div class="card">
-            <i class="ph ph-gift"></i>
-            <h3>Birthday Gifts</h3>
-            <p>Enviale un regalo a tus clientes por su cumpleanos. </p>
+            <i class="ph ph-users"></i>
+            <h3>Filtrar audiencia</h3>
+            <p id="audience-size"></p>
+            <div class="filter">
+            
+                <!-- Filter Box -->
+                <div class="filter-box">
+                    <i class="ph ph-funnel-simple"></i>
+                    <select id="filter-variable">
+                        <option value="name">Nombre</option>
+                        <option value="currentBillies">Billies</option>
+                        <option value="claimedBillies">Tarjetas</option>
+                        <option value="totalSpent">Consumo</option>
+                        <option value="startDate">Fecha</option>
+                    </select>
+                    <select id="filter-condition">
+                        <option value="contains">contiene</option>
+                        <option value="not-contains">no contiene</option>
+                        <option value="greater-than">></option>
+                        <option value="smaller-than"><</option>
+                    </select>
+                    <input type="text" id="filter-value" placeholder="Ingresar valor">
+                </div>
+    
+                <div class="filter-btns">
+                    <a href="#" id="apply-btn" class="btn">
+                        <i class="ph ph-check"></i>
+                    </a>
+                    <a href="#" id="reset-btn" class="btn">
+                        <i class="ph ph-trash"></i>
+                    </a>
+                </div>
+    
+            </div> 
         </div>
 
     </main>
 
-    <!-- auth -->
+    <script src="./config.js"></script>
+
     <script src="app/auth.js"></script>
 
-    <!-- campaigns -->
-    <script src="app/campaigns.js"></script>
+    <script src="app/templates.js"></script>
+    <script src="app/business.js"></script>
+    <script src="app/clients.js"></script>
 
-    <!-- dashboard -->
+    <script src="app/role.js"></script>
+    <script src="app/custom.js"></script>
     <script src="app/dashboard.js"></script>
 
-    <!-- Js File to send EmailJS email -->
     <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -131,10 +132,6 @@
         emailjs.init('Cv6Kl2E7kwi4IO4GQ')
     </script>
 
-    <!-- Js File to download .pdf data -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <!---------- General Js File ------------->
     <script src="assets/script.js"></script>
 
 </body>

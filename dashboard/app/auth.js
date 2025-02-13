@@ -1,144 +1,75 @@
-// DASHBOARD AUTH
+// Lattefy's frontend dashboard auth file
 
-// const authUrl = 'http://localhost:3089'
-const authUrl = 'https://backend-v2-esfc.onrender.com'
-
-async function auth() {
-  const email = getEmailFromURL()
-  const password = getPasswordFromURL()
-
-  if (email && password) {
-    await authLogin(email, password) 
-  } else {
-    await validateTokens() 
-  }
-}
-
-// Token Validation
-async function validateTokens() {
-
-  const accessToken = localStorage.getItem('accessToken')
-  const refreshToken = localStorage.getItem('refreshToken')
-
-  if (!accessToken) {
-    console.log('No access token found, redirecting to login')
-    window.location.href = 'https://lattefy.com.uy/auth'
-    return
-  }
-
-  // Validate access token against the server
-  const tokenValid = await validateAccessToken(accessToken)
-  if (!tokenValid) {
-    if (!refreshToken) {
-      console.log('No refresh token available, redirecting to login')
-      window.location.href = 'https://lattefy.com.uy/auth'
-      return
+// User authentication
+async function authUser(accessToken, refreshToken) {
+    if (!accessToken || !refreshToken) {
+        console.log('No tokens found, redirecting to login.')
+        if (!window.location.pathname.includes('login.html')) {
+            window.location.href = './login.html'
+        }
+        return
     }
 
-    console.log('Access token expired or invalid, refreshing...')
-    await refreshAccessToken(refreshToken)
+    try {
+        const response = await fetch(`${apiUrl}/auth/users/verify-token`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        })
 
-  } else {
-    console.log('Access token is valid')
-  }
+        if (response.ok) {
+            const userData = await response.json()
+            console.log('Token valid. User:', userData)
+            return userData
+        } else if (response.status === 403) {
+            console.log('Access token expired, attempting refresh...')
+            const newAccessToken = await refreshAccessToken(refreshToken)
 
+            if (newAccessToken) {
+                return authUser(newAccessToken, refreshToken)
+            } else {
+                console.error('Failed to refresh token.')
+                localStorage.clear()
+                if (!window.location.pathname.includes('login.html')) {
+                    window.location.href = './login.html'
+                }
+            }
+        } else {
+            console.error('Unexpected error:', response.statusText)
+        }
+    } catch (error) {
+        console.error('Auth error:', error)
+        localStorage.clear()
+        if (!window.location.pathname.includes('login.html')) {
+            window.location.href = './login.html'
+        }
+    }
 }
 
-async function validateAccessToken(accessToken) {
 
-  try {
-      const response = await fetch(`${authUrl}/users`, {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${accessToken}`
-          }
-      })
-
-      if (response.ok) {
-          return true
-      } else if (response.status === 403 || response.status === 401) {
-          return false
-      }
-
-  } catch (error) {
-      console.log('Error checking access token validity: ' + error.message)
-      return false
-  }
-
-}
-
-// Refresh the access token using the refresh token
+// Generate access token (refresh token)
 async function refreshAccessToken(refreshToken) {
-  try {
-    const response = await fetch(`${authUrl}/auth/token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ token: refreshToken })
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to refresh access token')
+    console.log('Refresh Token:', refreshToken);
+    try {
+        const response = await fetch(`${apiUrl}/auth/users/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: refreshToken }),
+        })
+        if (response.ok) {
+            const { accessToken } = await response.json()
+            localStorage.setItem('dbAccessToken', accessToken)
+            return accessToken
+        } else {
+            console.error('Failed to refresh access token.')
+            return null
+        }
+    } catch (error) {
+        console.error('Error refreshing access token:', error)
+        return null
     }
-
-    const data = await response.json()
-    localStorage.setItem('accessToken', data.accessToken)
-    window.location.reload()
-  
-  } catch (error) {
-    console.log('Error refreshing access token: ' + error.message)
-    throw error 
-  }
-
 }
 
-// URL utility functions
-function getEmailFromURL() {
-  const urlParams = new URLSearchParams(window.location.search)
-  return urlParams.get('email')
-}
-function getPasswordFromURL() {
-  const urlParams = new URLSearchParams(window.location.search)
-  return urlParams.get('password')
-}
-function clearURL() {
-  const urlParams = new URLSearchParams(window.location.search)
-  urlParams.delete('email')
-  urlParams.delete('password')
-  const newUrl = window.location.pathname + (urlParams.toString() ? `?${urlParams.toString()}` : '')
-  window.history.replaceState({}, '', newUrl)
-}
 
-// Login process
-async function authLogin(email, password) {
-  clearURL() 
-
-  console.log(email, password)
-
-  try {
-    const response = await fetch(`${authUrl}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    })
-
-    if (!response.ok) {
-      const errorMsg = await response.json()
-      throw new Error(errorMsg)
-    }
-
-    const data = await response.json()
-
-    console.log(data)
-    localStorage.setItem('accessToken', data.accessToken)
-    localStorage.setItem('refreshToken', data.refreshToken)
-  
-  } catch (error) {
-    console.log('Authorization failed: ' + error.message)
-    //window.location.href = 'https://lattefy.com.uy/auth'
-  }
-
-}

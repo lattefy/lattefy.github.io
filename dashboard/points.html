@@ -1,4 +1,4 @@
-<!-- Lattefy's frontend dashboard main page -->
+<!-- Lattefy's frontend dashboard purchase page -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Dashboard</title>
-    <meta property="og:title" content="Lattefy | Dashboard">
+    <title>Lattefy | Cargar Compra</title>
+    <meta property="og:title" content="Lattefy | Cargar Compra">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -18,11 +18,11 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="dashboard" class="collapsed-sidebar">
+<body id="points" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2 id="business-name"></h2>
+        <h2>Puntos</h2>
         <div class="nav-btns">
             <a class="reload">
                 <i class="ph ph-arrow-clockwise"></i>
@@ -53,67 +53,31 @@
         </a>
     </section>
 
+
     <!-- Main Content -->
     <main class="main full-width">
 
-        <div id="loader" style="display: block;"></div>
-
-        <a class="card">
-            <h2>Clientes Totales</h2>
-            <p id="total-clients"></p>
-        </a>
-        <a class="card">
-            <h2 id="total-points-title"></h2>
-            <p id="total-points"></p>
-        </a>
-        <a class="card">
-            <h2>Total Facturado</h2>
-            <p id="total-spent"></p>
-        </a>
-        <a class="card">
-            <h2>Consumo Promedio</h2>
-            <p id="average-expenditure"></p>
-        </a>
-        <a class="card">
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Celular</th>
-                        </tr>
-                    </thead>
-                    <tbody id="allClients"></tbody>
-                </table>
-            </div>
-
-        </a>
-        <a href="campaigns.html" class="card">
-            <i class="ph ph-bell"></i>
-            <h2>Campañas</h2>
-            <div class="paths">
-                <div class="path">
-                    Email Marketing
-                    <i class="ph ph-envelope"></i>
+        <div class="container">
+            <h2 id="function-header"></h2>
+            <select id="function-selector">
+                <option value="add-points">Sumar Puntos</option>
+                <option value="claim-reward">Reclamar Regalo</option>
+            </select>
+            <div id="add-points-inputs" style="display: flex; flex-direction: column;">
+                <input type='text' id='phone-add' placeholder='Celular: 091234567' required>
+                <input type='number' id='amount-spent' placeholder='importe' step='100' required>
+                <div class="point-amount">
+                    <a id="add-point">+</a>
+                    <h4 id="point-amount"></h4>
+                    <a id="subtract-point">-</a>
                 </div>
+                <a class="btn" id="add-points-btn">Sumar</a>
             </div>
-        </a>
-        <a class="card">
-            <i class="ph ph-shopping-cart"></i>
-            <h2>Fidelidad</h2>
-            <div class="paths">
-                <div class="path">
-                    Sumar Puntos
-                    <i class="ph ph-plus-circle"></i>
-                </div>
-                <div class="path">
-                    Reclamar Regalo
-                    <i class="ph ph-gift"></i>
-                </div>
+            <div id="claim-reward-inputs" style="display: none; flex-direction: column;">
+                <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
+                <a class="btn" id="claim-reward-btn">Reclamar</a>
             </div>
-        </a>
+        </div>
 
     </main>
 
@@ -124,10 +88,21 @@
     <script src="app/templates.js"></script>
     <script src="app/business.js"></script>
     <script src="app/clients.js"></script>
+    <script src="app/cards.js"></script>
 
-    <script src="app/stats.js"></script>
+    <script src="app/points.js"></script>
+
+    <script src="app/validation.js"></script>
+    <script src="app/role.js"></script>
     <script src="app/custom.js"></script>
     <script src="app/dashboard.js"></script>
+
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        emailjs.init('Cv6Kl2E7kwi4IO4GQ')
+    </script>
 
     <script src="assets/script.js"></script>
 
