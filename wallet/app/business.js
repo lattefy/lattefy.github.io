@@ -1,10 +1,9 @@
 // Lattefy's frontend wallet qr business file
 
+// business.js
+
 // Function to check URL parameters and create a card if necessary
-async function handleBusinessQR(clientPhoneNumber) {
-    const urlParams = new URLSearchParams(window.location.search)
-    const businessId = urlParams.get('businessId')
-    const templateId = urlParams.get('templateId')
+async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
     
     if (!businessId || !templateId || !clientPhoneNumber) return
 

@@ -1,8 +1,17 @@
-// Lattefy's frontend wallet script (main)
+// Lattefy's frontend wallet main file
 
 // DOM Content Load
 document.addEventListener('DOMContentLoaded', async function () {
     const loader = document.getElementById("loader")
+
+    // URL Params
+    const urlParams = new URLSearchParams(window.location.search)
+    const businessIdParam = urlParams.get('businessId')
+    const templateIdParam = urlParams.get('templateId')
+    if (businessIdParam && templateIdParam) {
+        sessionStorage.setItem('businessId', businessIdParam)
+        sessionStorage.setItem('templateId', templateIdParam)
+    }
 
     // Login
     if (document.getElementById('login')) {
@@ -34,19 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     const data = await clientLogin(phoneNumber, password)
                     if (data) {
-                        // Restore parameters if they exist
-                        const storedBusinessId = sessionStorage.getItem('businessId')
-                        const storedTemplateId = sessionStorage.getItem('templateId')
-
-                        let redirectURL = './index.html'
-                        if (storedBusinessId && storedTemplateId) {
-                            redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
-                        }
-
-                        sessionStorage.removeItem('businessId')
-                        sessionStorage.removeItem('templateId')
-
-                        window.location.href = redirectURL
+                        window.location.href = './index.html'
                     } else {
                         alert('Error al iniciar sesión')
                         window.location.href = './login.html'
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     const data = await clientSignup(name, phoneNumber, email, password)
                     if (data) {
-
                         window.location.href = './done.html'
                     }
                 } catch (error) {
@@ -93,17 +89,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         const refreshToken = localStorage.getItem('refreshToken')
         if (accessToken && refreshToken) {
             document.getElementById('done-btn').addEventListener('click', async () => {
-                // Restore parameters if they exist
-                const storedBusinessId = sessionStorage.getItem('businessId')
-                const storedTemplateId = sessionStorage.getItem('templateId')
-
-                let redirectURL = './index.html'
-                if (storedBusinessId && storedTemplateId) {
-                    redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
-                }
-
-                window.location.href = redirectURL
-                })
+                window.location.href = './index.html'
+            })
         }
     }
 
@@ -114,16 +101,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const noCardsMessage = document.getElementById("no-cards-message")
 
-        const urlParams = new URLSearchParams(window.location.search)
-        const businessId = urlParams.get('businessId')
-        const templateId = urlParams.get('templateId')
-
-        // If user is not logged in, save params and redirect to login
+        // If user is not logged in
         if (!accessToken || !refreshToken) {
-            if (businessId && templateId) {
-                sessionStorage.setItem('businessId', businessId)
-                sessionStorage.setItem('templateId', templateId)
-            }
             window.location.href = './login.html' // Redirect to login
         }
 
@@ -136,7 +115,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
 
             // Handle QR card creation
-            await handleBusinessQR(clientData.phoneNumber)
+            const storedBusinessId = sessionStorage.getItem('businessId')
+            const storedTemplateId = sessionStorage.getItem('templateId')
+
+            if (storedBusinessId && storedTemplateId) {
+                await handleBusinessQR(clientData.phoneNumber, storedBusinessId, storedTemplateId)
+                sessionStorage.removeItem('businessId')
+                sessionStorage.removeItem('templateId')
+            }
 
             console.log('Authenticated Client:', clientData)
 

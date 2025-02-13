@@ -1,4 +1,4 @@
-// Lattefy's wallet script
+// Lattefy's frontend wallet script
 
 
 // Hide toolbar
