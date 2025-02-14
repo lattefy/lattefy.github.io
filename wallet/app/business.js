@@ -35,6 +35,19 @@ async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
             }
             return
         }
+
+        // Add the business ID to the client
+        await fetch(`${apiUrl}/clients/${clientData.phoneNumber}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({
+                newBusinessId: businessId
+            })
+        })
+
         alert('Tarjeta agregada con éxito') 
         window.history.replaceState(null, '', window.location.pathname)
 
