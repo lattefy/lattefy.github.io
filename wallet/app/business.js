@@ -37,7 +37,7 @@ async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
         }
 
         // Add the business ID to the client
-        await fetch(`${apiUrl}/clients/${clientData.phoneNumber}`, {
+        await fetch(`${apiUrl}/clients/${clientPhoneNumber}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
