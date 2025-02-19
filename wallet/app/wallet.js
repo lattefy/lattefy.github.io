@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // URL Params
     const urlParams = new URLSearchParams(window.location.search)
-    const businessIdParam = urlParams.get('businessId')
-    const templateIdParam = urlParams.get('templateId')
+    const businessIdParam = urlParams.get('b')
+    const templateIdParam = urlParams.get('t')
     if (businessIdParam && templateIdParam) {
-        sessionStorage.setItem('businessId', businessIdParam)
-        sessionStorage.setItem('templateId', templateIdParam)
+        sessionStorage.setItem('storedBusinessId', businessIdParam)
+        sessionStorage.setItem('storedTemplateId', templateIdParam)
     }
 
     // Login
@@ -19,16 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const refreshToken = localStorage.getItem('refreshToken')
 
         if (accessToken && refreshToken) {
-            // Restore parameters if they exist
-            const storedBusinessId = sessionStorage.getItem('businessId')
-            const storedTemplateId = sessionStorage.getItem('templateId')
-
-            let redirectURL = './index.html'
-            if (storedBusinessId && storedTemplateId) {
-                redirectURL += `?businessId=${storedBusinessId}&templateId=${storedTemplateId}`
-            }
-
-            window.location.href = redirectURL
+            window.location.href = './index.html'
         }
 
         document.getElementById('login-btn').addEventListener('click', async function (event) {
@@ -114,16 +105,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 throw new Error('Client authentication failed or missing phone number')
             }
 
-            // Handle QR card creation
-            const storedBusinessId = sessionStorage.getItem('businessId')
-            const storedTemplateId = sessionStorage.getItem('templateId')
-
-            if (storedBusinessId && storedTemplateId) {
-                await handleBusinessQR(clientData.phoneNumber, storedBusinessId, storedTemplateId)
-                sessionStorage.removeItem('businessId')
-                sessionStorage.removeItem('templateId')
-            }
-
             console.log('Authenticated Client:', clientData)
 
             const client = await getClient(clientData.phoneNumber)
@@ -133,18 +114,55 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             console.log('Client details:', client)
 
-            const cards = await getClientCards(clientData.phoneNumber)
+            // Check if a specific businessId and templateId were stored (QR Scan)
+            const storedBusinessId = sessionStorage.getItem('storedBusinessId')
+            const storedTemplateId = sessionStorage.getItem('storedTemplateId')
 
-            if (cards && cards.length > 0) {
-                await displayClientCards(cards, clientData.phoneNumber)
+            // Retrieve cardBusinessId and cardTemplateId for Discover Page additions
+            const cardBusinessId = sessionStorage.getItem('cardBusinessId')
+            const cardTemplateId = sessionStorage.getItem('cardTemplateId')
+
+
+            let cards = await getClientCards(clientData.phoneNumber) // Fetch cards 
+
+            if (storedBusinessId && storedTemplateId) {
+                console.log("QR scan detected. Handling business QR...")
+
+                // QR Code Scan
+                const updatedCards = await handleBusinessQR(clientData.phoneNumber, storedBusinessId, storedTemplateId)
+                sessionStorage.removeItem('storedBusinessId')
+                sessionStorage.removeItem('storedTemplateId')
+
+                if (updatedCards.length > 0) {
+                    console.log("Sorting the added card to the front...")
+                    await sortCards(updatedCards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
+                } else {
+                    console.log("Sorting the selected card to the front...")
+                    await sortCards(cards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
+                }
+
+            }
+
+            // Discover page / Display Cards
+            else if (cards.length > 0) {
+                if (cardBusinessId && cardTemplateId) {
+                    console.log("Sorting the card to the front (Discover Page)...")
+                    await sortCards(cards, cardBusinessId, cardTemplateId, clientData.phoneNumber)
+                    sessionStorage.removeItem('cardBusinessId')
+                    sessionStorage.removeItem('cardTemplateId') // Clear after sorting
+                } else {
+                    console.log("Displaying cards...")
+                    await displayClientCards(cards, clientData.phoneNumber)
+                }
             } else {
                 console.log('No cards to display')
-                noCardsMessage.classList.add("active")
+                noCardsMessage.classList.add("active") // Ensure this always runs when there are no cards
             }
 
             loader.style.display = 'none'
         } catch (error) {
             console.error('Error fetching or displaying cards:', error)
+            noCardsMessage.classList.add("active") // Display "No Cards" message on error
         }
     }
 

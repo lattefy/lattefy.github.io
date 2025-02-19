@@ -76,13 +76,20 @@ function closePopup() {
     document.getElementById("popup-overlay").classList.remove("active")
 }
 
-// Function to add a card
+// Function to add a card and redirect to wallet with confirmation message
 async function addCard() {
     if (!selectedTemplate) return
 
     try {
         const clientData = await authClient(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"))
 
+        // Store sessionStorage before API calls to avoid data loss
+        sessionStorage.setItem('cardBusinessId', selectedTemplate.businessId)
+        sessionStorage.setItem('cardTemplateId', selectedTemplate.templateId)
+
+        let cardExists = false
+
+        // Attempt to create the card
         const response = await fetch(`${apiUrl}/cards`, {
             method: 'POST',
             headers: {
@@ -99,25 +106,40 @@ async function addCard() {
         if (!response.ok) {
             const errorData = await response.json()
             if (errorData.message === "Card already exists") {
-                return showConfirmationMessage("Ya tienes esta tarjeta")
+                console.log("Ya tienes esta tarjeta")
+                cardExists = true
+                showConfirmationMessage("Ya tienes esta tarjeta") // Show pop-up confirmation
             } else {
-                return showConfirmationMessage("Error al agregar tarjeta")
+                return showConfirmationMessage("Error al agregar tarjeta") // Exit on error
+            }
+        } else {
+            showConfirmationMessage("Tarjeta agregada con éxito") // Show success message
+        }
+
+        // Only update the business ID if the card was newly added
+        if (!cardExists) {
+            const updateClientResponse = await fetch(`${apiUrl}/clients/${clientData.phoneNumber}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify({
+                    newBusinessId: selectedTemplate.businessId
+                })
+            })
+
+            if (!updateClientResponse.ok) {
+                console.error("Error updating client with new business ID")
             }
         }
 
-        // Add the business ID to the client
-        await fetch(`${apiUrl}/clients/${clientData.phoneNumber}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify({
-                newBusinessId: selectedTemplate.businessId
-            })
-        })
+        console.log("Tarjeta agregada con éxito")
 
-        showConfirmationMessage("Tarjeta agregada con éxito", true) // Pass true to trigger redirect
+        // Redirect to wallet (index.html) after a short delay to show the confirmation
+        setTimeout(() => {
+            window.location.href = './index.html'
+        }, 2000) // 2-second delay to let the confirmation message appear
 
     } catch (error) {
         console.error("Error adding card:", error)
@@ -125,7 +147,8 @@ async function addCard() {
     }
 }
 
-// Function to show confirmation message
+
+
 function showConfirmationMessage(message, redirect = false) {
     const confirmation = document.getElementById("confirmation")
     confirmation.querySelector("h2").textContent = message

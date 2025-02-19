@@ -1,17 +1,15 @@
-// Lattefy's frontend wallet qr business file
-
-// business.js
+// Lattefy's frontend wallet QR business file
 
 // Function to check URL parameters and create a card if necessary
 async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
-    
-    if (!businessId || !templateId || !clientPhoneNumber) return
+    if (!businessId || !templateId || !clientPhoneNumber) return []
 
-    // Ensure user is logged in
     const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) return
+    if (!accessToken) return []
 
     try {
+        let cardAdded = false
+
         // Attempt to create a new card
         const response = await fetch(`${apiUrl}/cards`, {
             method: 'POST',
@@ -29,30 +27,43 @@ async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
         if (!response.ok) {
             const errorData = await response.json()
             if (errorData.message === 'Card already exists') {
-                alert('Ya tienes esta tarjeta') // Change to popup in the future
+                console.log('Ya tienes esta tarjeta')
             } else {
+                console.error('Card creation error:', errorData)
                 alert('Error al agregar tarjeta')
+                return []
             }
-            return
+        } else {
+            cardAdded = true
+            alert('Tarjeta agregada con éxito')
+
+            // Add the business ID to the client only if a new card was added
+            await fetch(`${apiUrl}/clients/${clientPhoneNumber}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify({
+                    newBusinessId: businessId
+                })
+            })
         }
 
-        // Add the business ID to the client
-        await fetch(`${apiUrl}/clients/${clientPhoneNumber}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify({
-                newBusinessId: businessId
-            })
-        })
+        // Fetch updated cards **only if a new card was added**
+        let updatedCards = []
+        if (cardAdded) {
+            console.log("Fetching updated cards...")
+            updatedCards = await getClientCards(clientPhoneNumber)
+        }
 
-        alert('Tarjeta agregada con éxito') 
-        window.history.replaceState(null, '', window.location.pathname)
+        return updatedCards
 
     } catch (error) {
         console.error('Error processing QR:', error)
         alert('Error en la solicitud')
+        return []
+    } finally {
+        window.history.replaceState(null, '', window.location.pathname) // Ensure URL cleanup
     }
 }

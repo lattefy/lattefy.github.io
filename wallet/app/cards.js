@@ -35,6 +35,9 @@ async function getClient(clientPhoneNumber) {
             }
         })
         if (!response.ok) {
+            window.location.href = './login.html'
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken')
             throw new Error('Failed to fetch client details')
         }
         return await response.json()
@@ -172,3 +175,44 @@ function handleSwipe() {
     }
     setActiveCard(currentIndex)
 }
+
+
+// Sort cards to bring the specified one to the front
+async function sortCards(cards, businessId, templateId, clientPhoneNumber) {
+    try {
+        if (!Array.isArray(cards) || cards.length === 0) {
+            console.error("No cards available to sort")
+            return
+        }
+
+        // Ensure numbers are correctly compared
+        const targetBusinessId = Number(businessId)
+        const targetTemplateId = Number(templateId)
+
+        console.log("Sorting cards for:", targetBusinessId, targetTemplateId)
+        console.log("Current cards list:", cards)
+
+        // Find the card with the specified businessId and templateId
+        const targetCardIndex = cards.findIndex(card => 
+            Number(card.businessId) === targetBusinessId && Number(card.templateId) === targetTemplateId
+        )
+
+        if (targetCardIndex !== -1) {
+            console.log("Card found at index:", targetCardIndex)
+
+            // Move the target card to the front
+            const targetCard = cards.splice(targetCardIndex, 1)[0]
+            cards.unshift(targetCard)
+
+            console.log("Updated card order:", cards)
+        } else {
+            console.warn("No matching card found for sorting")
+        }
+
+        // Display the sorted cards
+        await displayClientCards(cards, clientPhoneNumber)
+    } catch (error) {
+        console.error("Failed to sort cards:", error)
+    }
+}
+
