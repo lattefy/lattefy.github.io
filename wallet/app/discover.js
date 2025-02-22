@@ -113,6 +113,7 @@ async function addCard() {
                 return showConfirmationMessage("Error al agregar tarjeta") // Exit on error
             }
         } else {
+            await sendBusinessEmail(clientData.phoneNumber, selectedTemplate.templateId, 'card') // Send email
             showConfirmationMessage("Tarjeta agregada con éxito") // Show success message
         }
 
