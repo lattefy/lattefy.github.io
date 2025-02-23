@@ -50,6 +50,7 @@ async function fetchTemplates() {
                     businessId: box.getAttribute("data-business"),
                     businessName: box.querySelector("h3").innerText
                 })
+                box.style.opacity = "1"
             })
         })
 
