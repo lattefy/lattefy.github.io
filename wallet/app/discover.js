@@ -44,6 +44,7 @@ async function fetchTemplates() {
         
         document.querySelectorAll(".template-box").forEach(box => {
             box.addEventListener("click", async function () {
+                box.style.opacity = "0.5"
                 await openPopup({
                     templateId: box.getAttribute("data-id"),
                     businessId: box.getAttribute("data-business"),

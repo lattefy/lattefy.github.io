@@ -223,7 +223,7 @@ nav {
     width: 100vw;
     height: 55px;
     padding: 10px 2vw;
-    z-index: 2;
+    z-index: 3;
 
     background-color: var(--nav-bg-color);    
 }
