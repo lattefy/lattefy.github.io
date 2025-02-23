@@ -717,7 +717,7 @@ section {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 280px;
-    height: 280px;
+    height: 290px;
     text-align: center;
     z-index: 3;
 }
