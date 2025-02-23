@@ -43,8 +43,8 @@ async function fetchTemplates() {
         `).join("")
         
         document.querySelectorAll(".template-box").forEach(box => {
-            box.addEventListener("click", function () {
-                openPopup({
+            box.addEventListener("click", async function () {
+                await openPopup({
                     templateId: box.getAttribute("data-id"),
                     businessId: box.getAttribute("data-business"),
                     businessName: box.querySelector("h3").innerText
@@ -58,13 +58,31 @@ async function fetchTemplates() {
 }
 
 // Functio to open pop up
-function openPopup(template) {
+async function openPopup(templateData) {
+
+    selectedTemplate = templateData
+    template = await getTemplate(templateData.templateId)
+
     const popup = document.getElementById("popup")
     const popupOverlay = document.getElementById("popup-overlay")
-    const popupBusinessName = document.getElementById("popup-template-hezder")
 
-    selectedTemplate = template
-    popupBusinessName.innerText = `Negocio: ${template.businessName}`
+    const popupHeader = document.querySelector(".popup-header")
+
+    const popupBusinessName = document.getElementById("popup-business-name")
+    const popupTemplateRating = document.getElementById("popup-template-rating")
+    const popupCardName = document.getElementById("popup-template-header")
+    const popupTemplateReward = document.getElementById("popup-template-reward")
+    const popupTemplateCost = document.getElementById("popup-template-point-cost")
+
+    popupHeader.style.backgroundColor = template.bgColor
+    popupHeader.style.color = template.textColor
+
+    popupBusinessName.innerText = templateData.businessName
+    popupTemplateRating.innerText = template.rating
+    popupCardName.innerText = template.header
+    popupTemplateReward.innerText = `Con ${template.pointsNeeded} ${template.pointsName}: ${template.reward}` 
+    popupTemplateCost.innerText = template.footer
+
     popup.classList.add("active")
     popupOverlay.classList.add("active")
 }
