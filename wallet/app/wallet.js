@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     if (data) {
                         window.location.href = './index.html'
                     } else {
-                        alert('Error al iniciar sesión')
+                        error('Error al iniciar sesión')
                         window.location.href = './login.html'
                     }
                 } catch (error) {

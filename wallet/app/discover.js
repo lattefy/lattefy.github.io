@@ -80,7 +80,19 @@ function closePopup() {
 async function addCard() {
     if (!selectedTemplate) return
 
+    const addCardBtn = document.getElementById("add-card-btn")
+    const addCardLoader = document.getElementById("btn-loader")
+
     try {
+
+        // Loader
+        if (addCardBtn && addCardLoader) {
+            addCardBtn.classList.add("loading")
+            addCardLoader.classList.remove("hidden")
+            addCardBtn.textContent = ""
+            addCardBtn.prepend(addCardLoader) 
+        }
+
         const clientData = await authClient(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"))
 
         // Store sessionStorage before API calls to avoid data loss
@@ -145,6 +157,12 @@ async function addCard() {
     } catch (error) {
         console.error("Error adding card:", error)
         showConfirmationMessage("Error en la solicitud")
+
+    } finally {
+        // Hide loader and enable button
+        addCardBtn.classList.remove("loading")
+        addCardLoader.classList.add("hidden")
+        addCardBtn.textContent = "Agregar tarjeta"
     }
 }
 

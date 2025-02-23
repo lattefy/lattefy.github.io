@@ -17,6 +17,13 @@ async function clientLogin(phoneNumber, password) {
 
     } catch (error) {
         console.error('Login error:', error)
+        
+        if (error.message.includes("El cliente no existe. Intente registrarse.")) {
+            alert(error.message)
+            window.location.href = './signup.html'
+        } else {
+            alert(error.message)
+        }
     }
 }
 
@@ -42,14 +49,11 @@ async function clientSignup(name, phoneNumber, email, password) {
     } catch (error) {
         console.error('Signup error:', error)
 
-        // Specific error messages
-        if (error.message.includes("El cliente ya existe")) {
-            alert("El cliente ya existe. Inicie sesión en su cuenta.")
+        if (error.message.includes("El cliente ya existe. Intente iniciar sesión.")) {
+            alert(error.message)
             window.location.href = './login.html'
-        } else if (error.message.includes("Error en el servidor")) {
-            alert("Hubo un problema en el servidor. Intente más tarde.")
         } else {
-            alert("Error en el registro: " + error.message)
+            alert(error.message)
         }
         
     }

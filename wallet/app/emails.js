@@ -1,5 +1,7 @@
 // Lattefy's frontend wallet emails file
 
+emailjs.init('Cv6Kl2E7kwi4IO4GQ')
+
 // Send business emails function
 async function sendBusinessEmail(clientPhoneNumber, templateId, type) {
 
