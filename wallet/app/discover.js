@@ -1,7 +1,5 @@
 // Lattefy's frontend discover script
 
-setupSearch("search-bar", "template-box", "template-business-name")
-
 // Get all templates
 async function fetchTemplates() {
     const templatesContainer = document.getElementById("templates-container")
@@ -30,6 +28,7 @@ async function fetchTemplates() {
                     <img src="${template.logoUrl}" alt="${template.businessName}" class="template-logo">
                     <div class="template-text">
                         <h3 class="template-business-name">${template.businessName}</h3>
+                        <p id="card-name" style="display: none">${template.header}</p>
                         <p class="template-text">
                             ${template.pointsNeeded} ${template.pointsName} = ${template.reward}
                         </p>
@@ -43,14 +42,13 @@ async function fetchTemplates() {
         `).join("")
         
         document.querySelectorAll(".template-box").forEach(box => {
-            box.addEventListener("click", async function () {
-                box.style.opacity = "0.5"
-                await openPopup({
+            box.addEventListener("click", function () {
+                openPopup({
                     templateId: box.getAttribute("data-id"),
                     businessId: box.getAttribute("data-business"),
-                    businessName: box.querySelector("h3").innerText
+                    businessName: box.querySelector("h3").innerText,
+                    header: box.querySelector("#card-name").innerText
                 })
-                box.style.opacity = "1"
             })
         })
 
@@ -60,31 +58,13 @@ async function fetchTemplates() {
 }
 
 // Functio to open pop up
-async function openPopup(templateData) {
-
-    selectedTemplate = templateData
-    template = await getTemplate(templateData.templateId)
-
+function openPopup(template) {
     const popup = document.getElementById("popup")
     const popupOverlay = document.getElementById("popup-overlay")
+    const popupBusinessName = document.getElementById("popup-template-header")
 
-    const popupHeader = document.querySelector(".popup-header")
-
-    const popupBusinessName = document.getElementById("popup-business-name")
-    const popupTemplateRating = document.getElementById("popup-template-rating")
-    const popupCardName = document.getElementById("popup-template-header")
-    const popupTemplateReward = document.getElementById("popup-template-reward")
-    const popupTemplateCost = document.getElementById("popup-template-point-cost")
-
-    popupHeader.style.backgroundColor = template.bgColor
-    popupHeader.style.color = template.textColor
-
-    popupBusinessName.innerText = templateData.businessName
-    popupTemplateRating.innerText = template.rating
-    popupCardName.innerText = template.header
-    popupTemplateReward.innerText = `Con ${template.pointsNeeded} ${template.pointsName}: ${template.reward}` 
-    popupTemplateCost.innerText = template.footer
-
+    selectedTemplate = template
+    popupBusinessName.innerText = template.header
     popup.classList.add("active")
     popupOverlay.classList.add("active")
 }

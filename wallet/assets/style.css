@@ -716,10 +716,13 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 320px;
-    height: 360px;
+    width: 280px;
+    height: 280px;
     text-align: center;
     z-index: 3;
+}
+#discover #popup h2 {
+    margin-bottom: 10px;
 }
 #discover #popup.active {
     display: block;
@@ -734,22 +737,6 @@ section {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     z-index: 2;
-}
-
-#discover .container .popup-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 15px 0 15px 0;
-    background-color: var(--blue);
-    color: var(--white);
-    border-radius: 5px;
-}
-
-#discover .container ul {
-    list-style: none;
-    text-align: left;
 }
 
 /* Popup btns */
