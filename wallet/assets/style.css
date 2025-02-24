@@ -287,8 +287,13 @@ nav .menu a {
 }
 nav .menu .btn {
     color: var(--btn-text-color);
-    width: 100px;
+    width: auto;
+    padding: 0 20px;
     border-radius: 30px;
+}
+nav .menu .btn i {
+    font-size: 20px;
+    margin: 0 10px 0 0;
 }
 
 /* Navigation Bar - burger */
