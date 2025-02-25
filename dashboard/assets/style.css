@@ -9,9 +9,9 @@
     --dark-active: #3a3a3a;
     --light: #f3f4f6;
     --white: #fff;
-    --red: #fa004f;
+    --red: #ff0077;
     --blue: #1778f2;
-    --green: #1db97b;
+    --green: #14d185;
     --lightBlue: #ecf4ff;
 
     --bg-color: var(--lightBlue);
@@ -542,13 +542,13 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
 
 /* --------------------------------- Clients Database Table ---------------------------------------- */
 
-#dashboard .main .card:nth-child(6) .table-container {
+.table-container {
     overflow-x: auto;
     overflow-y: auto;
     margin: 10px;
     max-height: 250px;
 }
-#dashboard .main .card:nth-child(6) table {
+.table-container table {
     width: 100%;
     height: 100%;
     border-collapse: collapse; 
@@ -556,13 +556,15 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
     font-size: 12px;
     margin-top: 10px;
 }
-#dashboard .main .card:nth-child(6) table th,
-#dashboard .main .card:nth-child(6) table td {
+.table-container table th,
+.table-container table td {
     padding: 5px;
     text-align: left;
 }
-#dashboard .main .card:nth-child(6) table thead {
+.table-container table thead {
     color: var(--dark);
+    position: sticky;
+    background-color: var(--white);
 }
 
 
@@ -886,23 +888,19 @@ body#stats .sidebar .menu #stats-sidebar-btn a {
 /* Campaigns - layout */
 
 #campaigns .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 
-        "c1 c2"
-    ;
-    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #campaigns .main .card:nth-child(2) {
     grid-area: c1;
-    align-items: center;
 }
 #campaigns .main .card:nth-child(3) {
     grid-area: c2;
-    align-items: left;
+    padding: 10px;
+    align-items: start;
+    justify-content: start;
 }
-
 
 /* Campaigns Link */
 
@@ -921,18 +919,10 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
     flex-direction: column;
     justify-content: center;
 
-    padding: 30px 50px;
+    padding: 30px 40px;
 }
-#campaigns .main .card i{
-    font-size: 40px;
-}
-#campaigns .main .card h3{
-    font-size: 30px;
-    margin: 10px 0 20px 0;
-}
-#campaigns .main .card p{
-    font-size: 15px;
-    transform: translateY(-20px);
+#campaigns .main .card h3 {
+    margin: 0 0 10px 0;
 }
 #campaigns .main .card .header {
     display: flex;
@@ -941,7 +931,10 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
 }
 #campaigns .main .card textarea {
     resize: none; 
-    height: 20%;
+    height: 80px;
+}
+#campaigns .main .card .btn {
+    margin: 0;
 }
 
 
@@ -956,15 +949,15 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
     align-items: center;
     justify-content: center;
 
-    border: 2px solid var(--dark);
+    border: 2px solid var(--blue);
     border-radius: 10px;
-    /* background-color: #4c6fe3; */
+
     background-color: transparent;
-    color: var(--dark);
+    color: var(--blue);
     transition: ease-in-out 0.2s;
 }
 .btn-file:hover {
-    background-color: var(--dark);
+    background-color: var(--blue);
     color: var(--light);
 }
 .btn-file input[type="file"] {
@@ -980,17 +973,10 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
 
 /* --------------------------------- Campaigns audience Filter -------------------------------------- */
 
-#campaigns .main .card:nth-child(3) .filter i {
+#campaigns .main .filter-box i {
     font-size: 30px;
 }
-#campaigns .main .card:nth-child(3) .filter {
-    grid-area: c1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-#campaigns .main .card:nth-child(3) .filter-box {
+#campaigns .main .filter-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -999,49 +985,49 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
     padding: 15px;
     border-radius: 8px;
     width: 95%;
-    margin-bottom: 20px;
 }
-#campaigns .main .card:nth-child(3) select,
-#campaigns .main .card:nth-child(3) input {
+#campaigns .main .filter-box select,
+#campaigns .main .filter-box input {
     margin-bottom: 0;
     height: 35px;
     border-radius: 5px;
 }
-#campaigns .main .card:nth-child(3) .filter-box select {
+#campaigns .main .filter-box select {
     width: 70%;
 }
 
 /* Sort Filter - Buttons */
 
-#campaigns .main .card:nth-child(3) .filter .filter-btns {
+#campaigns .main .filter-btns {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     gap: 10px;
 }
-#campaigns .main .card:nth-child(3) .filter .filter-btns a {
-    width: 45px;
-    height: 45px;
+#campaigns .main .filter-btns a {
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
     border: none;
-    transform: translateY(5px);
     transition: ease-in-out 0.2s;
+    margin: 0;
 }
-#campaigns .main .card:nth-child(3) .filter .filter-btns a:first-child {
-    background-color: var(--light);
-    color: rgb(3, 234, 138);
+#campaigns .main .filter-btns a i {
+    font-size: 20px;
 }
-#campaigns .main .card:nth-child(3) .filter .filter-btns a:first-child:hover {
-    background-color: rgb(3, 234, 138);
+#campaigns .main .filter-btns a:first-child {
+    background-color: var(--green);
     color: var(--light);
 }
-#campaigns .main .card:nth-child(3) .filter .filter-btns a:last-child {
-    background-color: var(--light);
-    color: rgb(234, 3, 126);
+#campaigns .main .filter-btns a:first-child:hover {
+    opacity: 0.6;
 }
-#campaigns .main .card:nth-child(3) .filter .filter-btns a:last-child:hover {
+#campaigns .main .filter-btns a:last-child {
+    background-color: var(--red);
     color: var(--light);
-    background-color: rgb(234, 3, 126);
+}
+#campaigns .main .filter-btns a:last-child:hover {
+    opacity: 0.6;
 }
 
 
@@ -1260,30 +1246,26 @@ body#download .sidebar .menu li:nth-child(6) a {
     /* RESPONSIVE | CAMPAIGNS */
 
     #campaigns .main {
-        grid-template-columns: 1fr;
-        grid-template-rows: 80vh 1fr;
-        grid-template-areas: 
-            "c1"
-            "c2"
-        ;
-        gap: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     #campaigns .main .card {
-        padding: 20px;
-        text-align: center;
+        padding:30px;
+    }
+    #campaigns .main .card h3,
+    #campaigns .main .card p {
+        margin: 0 0 10px 0;
     }
     #campaigns .main .card .header {
         flex-direction: column;
         gap: 0px;
         margin-bottom: 10px;
     }
-    #campaigns .main .card h3 {
-        font-size: 25px;
-    }
     #campaigns .main .card textarea {
-        height: 30%;
+        height: 100px;
     }
-    #campaigns .filter {
+    #campaigns .main .card .filter-box {
         display: none;
     }
     #campaigns .card:nth-child(3) {

@@ -57,18 +57,19 @@ document.addEventListener('DOMContentLoaded', async function () {
         })
     }
 
-    // Wallet
-    let urlTemplateId
+    // Template 
+    let templateId
     if (business.fidelityTemplateId) {
-        urlTemplateId = business.fidelityTemplateId
+        templateId = business.fidelityTemplateId
     } else if (business.giftTemplateId) {
-        urlTemplateId = business.giftTemplateId
+        templateId = business.giftTemplateId
     }
 
+    // Sign up client
     const walletBtn = document.getElementById('wallet-btn')
     if (walletBtn) {
         walletBtn.addEventListener("click", function() {
-            window.location.href = `https://lattefy.com.uy/wallet/signup.html?businessId=${user.businessId}&templateId=${urlTemplateId}`
+            window.location.href = `https://lattefy.com.uy/wallet/signup.html?b=${user.businessId}&t=${templateId}`
         })
     }
 
@@ -96,8 +97,86 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Campaigns 
     if (document.getElementById('campaigns')) {
+
+        // Handle role
         const allowedRoles = ['admin', 'manager']
         await checkRole(user.role, allowedRoles)
+
+        const fileInput = document.getElementById('image-upload');
+        const fileName = document.getElementById('file-name');
+    
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0]
+            if (file) {
+                fileName.textContent = file.name
+            } else {
+                fileName.textContent = '' 
+            }
+        })
+
+        let audience = clients
+        displayAudienceSize(audience)
+
+        // Apply clients filter
+        document.getElementById('apply-btn').addEventListener('click', async () => {
+            const variable = document.getElementById('filter-variable').value
+            const condition = document.getElementById('filter-condition').value
+            const value = document.getElementById('filter-value').value.trim()
+
+            if (!variable || !value) {
+                alert('Por favor ingrese valores válidos para filtrar')
+                return
+            }
+
+            // Wait for the filtered clients
+            audience = await filterClients(clients, variable, condition, value)
+            displayAudienceSize(audience)
+            console.log('Audience:', audience)
+        })
+
+        // Reset clients filter
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            audience = clients
+            document.getElementById('filter-variable').selectedIndex = 0
+            document.getElementById('filter-condition').selectedIndex = 0
+            document.getElementById('filter-value').value = ''
+            displayAudienceSize(clients)
+            console.log('filters reset')
+        })
+
+        // Send emails
+        document.getElementById('campaign-btn').addEventListener('click', async (e) => {
+            e.preventDefault()
+      
+            loader.style.display = "block"
+          
+            const title = document.getElementById('title').value
+            const content = document.getElementById('content').value
+            const imageFile = document.getElementById('image-upload').files[0]
+          
+            if (!title || !content) {
+              alert('Please fill out the title and content.')
+              loader.style.display = "none"
+              return
+            }
+          
+            let imageUrl = ''
+          
+            if (imageFile) {
+              imageUrl = await uploadImageToCloudinary(imageFile, `emails/campaigns/${business.domain}`)
+            }
+          
+            try {
+              await sendCampaignEmail(audience, templateId, title, content, imageUrl)
+            } catch (error) {
+              console.error('Error sending campaign emails:', error)
+              alert('Error sending campaign emails. Please try again.')
+            }
+      
+            loader.style.display = "none"
+      
+          }) 
+
     }
 
     // Points
