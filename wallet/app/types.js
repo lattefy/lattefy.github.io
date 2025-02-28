@@ -31,7 +31,7 @@ function fidelityCardHTML(card, clientName, template, cardImage) {
             ${template.text || `Sumá ${template.pointsName} con tu nº de teléfono` || 'Sumá puntos con tu nº de teléfono'}
         </p>
         <p class="card-footer" style"color: ${template.footerColor || 'inherit'}">
-            <b>${template.footer} || +1 ${template.pointName} ${method} $ ${template.pointCost}</b>
+            <b>${template.footer}</b>
         </p>
     `
 }
