@@ -15,13 +15,14 @@ async function fetchTemplates() {
         if (!response.ok) throw new Error("Error fetching templates")
 
         const templates = await response.json()
+        const activeTemplates = templates.filter(template => template.status === 'ACTIVE')
 
-        if (templates.length === 0) {
-            templatesContainer.innerHTML = `<p class="no-templates">No hay tarjetas disponibles.</p>`
+        if (activeTemplates.length === 0) {
+            templatesContainer.innerHTML = `<p class="no-templates">No hay beneficios disponibles.</p>`
             return
         }
 
-        templatesContainer.innerHTML = templates.map(template => `
+        templatesContainer.innerHTML = activeTemplates.map(template => `
             <div class="template-box" style="background-color: ${template.bgColor}" data-id="${template.templateId}" data-business="${template.businessId}">
                 <img src="${template.imgUrl}" alt="${template.name}" class="template-img">
                 <div class="template-info">

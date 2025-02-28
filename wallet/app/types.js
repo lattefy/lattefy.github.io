@@ -5,7 +5,7 @@
 function fidelityCardHTML(card, clientName, template, cardImage) {
 
     let method
-    if (template.pointAddition === 'LINEAL') {
+    if (template.pointAddition === 'LINEAR') {
         method = 'cada'
     } else if ( template.pointAddition === 'FIXED') {
         method = '= compra mayor a' 
@@ -31,7 +31,7 @@ function fidelityCardHTML(card, clientName, template, cardImage) {
             ${template.text || `Sumá ${template.pointsName} con tu nº de teléfono` || 'Sumá puntos con tu nº de teléfono'}
         </p>
         <p class="card-footer" style"color: ${template.footerColor || 'inherit'}">
-            <b>1 ${template.pointName} ${method} $ ${template.pointCost}</b>
+            <b>${template.footer} || +1 ${template.pointName} ${method} $ ${template.pointCost}</b>
         </p>
     `
 }
