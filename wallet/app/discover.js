@@ -15,7 +15,7 @@ async function fetchTemplates() {
         if (!response.ok) throw new Error("Error fetching templates")
 
         const templates = await response.json()
-        const activeTemplates = templates
+        const activeTemplates = templates.filter(template => template.status === 'ACTIVE')
 
         if (activeTemplates.length === 0) {
             templatesContainer.innerHTML = `<p class="no-templates">No hay beneficios disponibles.</p>`
