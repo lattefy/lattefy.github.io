@@ -15,32 +15,14 @@ async function fetchTemplates() {
         if (!response.ok) throw new Error("Error fetching templates")
 
         const templates = await response.json()
-        const activeTemplates = templates.filter(template => template.status === 'ACTIVE')
+        const activeTemplates = templates
 
         if (activeTemplates.length === 0) {
             templatesContainer.innerHTML = `<p class="no-templates">No hay beneficios disponibles.</p>`
             return
         }
 
-        templatesContainer.innerHTML = activeTemplates.map(template => `
-            <div class="template-box" style="background-color: ${template.bgColor}" data-id="${template.templateId}" data-business="${template.businessId}">
-                <img src="${template.imgUrl}" alt="${template.name}" class="template-img">
-                <div class="template-info">
-                    <img src="${template.logoUrl}" alt="${template.businessName}" class="template-logo">
-                    <div class="template-text">
-                        <h3 class="template-business-name">${template.businessName}</h3>
-                        <p id="card-name" style="display: none">${template.header}</p>
-                        <p class="template-text">
-                            ${template.pointsNeeded} ${template.pointsName} = ${template.reward}
-                        </p>
-                    </div>
-                    <div class="template-rating">
-                        <i class="ph ph-star"></i>
-                        <p><b>${template.rating}</b></p>
-                    </div>
-                </div>
-            </div>
-        `).join("")
+        templatesContainer.innerHTML = activeTemplates.map(template => generateTemplateHTML(template)).join("")
         
         document.querySelectorAll(".template-box").forEach(box => {
             box.addEventListener("click", function () {

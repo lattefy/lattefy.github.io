@@ -51,6 +51,7 @@ div {
     /* colors */
     --blue: #1778f2;
     --green: #1db97b;
+    --yellow: #ffd500;
     --white: #fff;
     --light: #dfdfdf;
     --dark: #181c1f;
@@ -84,6 +85,7 @@ div {
     /* shadows */
     --card-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
     --container-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+    --template-label-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -561,6 +563,15 @@ section {
     font-size: 12px;
 }
 
+/* -- GIFT CARD -- */
+
+#home .card-expiration {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+    text-align: center;
+}
+
 /* No cards */
 
 #home .no-cards {
@@ -656,6 +667,7 @@ section {
     height: auto;
 }
 .template-box {
+    position: relative;
     color: var(--white);
     width: 100%; 
     max-width: 350px;
@@ -670,6 +682,20 @@ section {
     object-fit: cover;
     display: block;
 }
+.template-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--white);
+    color: var(--dark);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    box-shadow: var(--template-label-shadow);
+}
+
 .template-info {
     display: flex;
     align-items: center;
@@ -708,7 +734,7 @@ section {
     gap: 5px;
     margin: 10px;
     font-size: 14px;
-    color: #f39c12;
+    color: var(--yellow);
     font-weight: bold;
 }
 
