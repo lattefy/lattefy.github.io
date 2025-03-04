@@ -58,18 +58,39 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Template 
-    let templateId
-    if (business.fidelityTemplateId) {
-        templateId = business.fidelityTemplateId
-    } else if (business.giftTemplateId) {
-        templateId = business.giftTemplateId
+    let templateId = null
+    if (business.templateIds.length >= 1) {
+        templateId = business.templateIds[0] 
+    }
+
+    // Specific templates
+    let fidelityTemplateId = null
+    let giftTemplateId = null
+    let discountTemplateId = null
+
+    if (business.templateIds && Array.isArray(business.templateIds)) {
+        business.templateIds.forEach(templateId => {
+            const firstDigit = templateId.toString().charAt(0)
+
+            if (firstDigit === "1") {
+                fidelityTemplateId = templateId
+            } else if (firstDigit === "2") {
+                giftTemplateId = templateId
+            } else if (firstDigit === "3") {
+                discountTemplateId = templateId
+            }
+        })
     }
 
     // Sign up client
     const walletBtn = document.getElementById('wallet-btn')
-    if (walletBtn) {
+    if (walletBtn && templateId) {
         walletBtn.addEventListener("click", function() {
             window.location.href = `https://lattefy.com.uy/wallet/signup.html?b=${user.businessId}&t=${templateId}`
+        })
+    } else if (walletBtn) {
+        walletBtn.addEventListener("click", function() {
+            window.location.href = `https://lattefy.com.uy/wallet/signup.html`
         })
     }
 
@@ -102,8 +123,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         const allowedRoles = ['admin', 'manager']
         await checkRole(user.role, allowedRoles)
 
-        const fileInput = document.getElementById('image-upload');
-        const fileName = document.getElementById('file-name');
+        const fileInput = document.getElementById('image-upload')
+        const fileName = document.getElementById('file-name')
     
         fileInput.addEventListener('change', (event) => {
             const file = event.target.files[0]
@@ -183,6 +204,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (document.getElementById("points")) {
         console.log("Initializing Points Page")
 
+        if (!fidelityTemplateId) {
+            console.error("Required template is missing. Redirecting...");
+            window.location.href = './index.html'; // Redirect to dashboard
+        }
+
         // Get button elements
         const purchaseBtn = document.getElementById("add-points-btn")
         const claimRewardBtn = document.getElementById("claim-reward-btn")
@@ -206,15 +232,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Listen for amount input change (Update suggested points dynamically)
         amountSpentInput.addEventListener("input", async () => {
-            const template = await getTemplateById(business.fidelityTemplateId)
-            if (!template) return
+            if (fidelityTemplateId) {
+                const template = await getTemplateById(fidelityTemplateId)
+                if (!template) return
 
-            const amountSpent = parseFloat(amountSpentInput.value)
-
-            // Reset user modification flag when amount is changed
-            window.userModifiedPoints = false
-
-            calculatePoints(template, amountSpent)
+                const amountSpent = parseFloat(amountSpentInput.value)
+                window.userModifiedPoints = false
+                calculatePoints(template, amountSpent)
+            } else {
+                console.log('No fidelity template found')
+            }
+ 
+        
         })
 
         // Handle Point Adjustment Buttons
@@ -268,14 +297,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return
             }
 
-            const template = await getTemplateById(business.fidelityTemplateId)
-            if (!template) {
-                alert("Could not find template")
-                return
+            if (fidelityTemplateId) {
+                const template = await getTemplateById(business.fidelityTemplateId)
+                if (!template) {
+                    alert("Could not find template")
+                    return
+                }
+                await claimReward(phoneNumber, business.businessId, template)
+                phoneRewardInput.value = ""
+            } else {
+                console.log('No fidelity template found')
             }
-
-            await claimReward(phoneNumber, business.businessId, template)
-            phoneRewardInput.value = ""
+            
         })
     }
 

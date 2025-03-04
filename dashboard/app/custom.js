@@ -32,12 +32,19 @@ async function displaySidebarBtns(business, role) {
         { id: "dashboard-sidebar-btn", href: "index.html", icon: "ph-squares-four", label: "Dashboard" }
     ]
 
-    if (business.fidelityTemplateId) {
-        buttons.push({ id: "points-sidebar-btn", href: "points.html", icon: "ph-plus-circle", label: "Sumar Puntos" })
-    }
+    // Check templateIds and add corresponding buttons
+    if (business.templateIds) {
+        business.templateIds.forEach(templateId => {
+            const firstDigit = templateId.toString().charAt(0);
 
-    if (business.giftTemplateId) {
-        buttons.push({ id: "rewards-sidebar-btn", href: "gifts.html", icon: "ph-gift", label: "Reclamar Regalos" })
+            if (firstDigit === "1") {
+                buttons.push({ id: "points-sidebar-btn", href: "points.html", icon: "ph-plus-circle", label: "Sumar Puntos" });
+            } else if (firstDigit === "2") {
+                buttons.push({ id: "rewards-sidebar-btn", href: "gifts.html", icon: "ph-gift", label: "Reclamar Regalos" });
+            } else if (firstDigit === "3") {
+                buttons.push({ id: "discounts-sidebar-btn", href: "discounts.html", icon: "ph-tag", label: "Descuentos" });
+            }
+        })
     }
 
     if (role === "manager" || role === "admin") {
