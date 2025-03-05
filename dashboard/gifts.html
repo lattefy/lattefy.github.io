@@ -1,4 +1,4 @@
-<!-- Lattefy's frontend dashboard campaigns page -->
+<!-- Lattefy's frontend dashboard gifts page -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Campaigns</title>
-    <meta property="og:title" content="Lattefy | Campaigns">
+    <title>Lattefy | Regalos</title>
+    <meta property="og:title" content="Lattefy | Cargar Compra">
     <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
@@ -18,11 +18,11 @@
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="campaigns" class="collapsed-sidebar">
+<body id="points" class="collapsed-sidebar">
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2>Campañas</h2>
+        <h2>Regalos</h2>
         <div class="nav-btns">
             <a class="reload">
                 <i class="ph ph-arrow-clockwise"></i>
@@ -57,46 +57,10 @@
     <!-- Main Content -->
     <main class="main full-width">
 
-        <div id="loader" style="display: block;"></div>
-
-        <div class="card">
-            <h3>Crear campaña via email.</h3>
-
-            <div class="filter-box">
-                <i class="ph ph-funnel-simple"></i>
-                <select id="filter-variable">
-                    <option value="name">Nombre</option>
-                    <option value="email">Email</option>
-                    <option value="phoneNumber">Celular</option>
-                </select>
-                <select id="filter-condition">
-                    <option value="contains">contiene</option>
-                    <option value="not-contains">no contiene</option>
-                </select>
-                <input type="text" id="filter-value" placeholder="Ingresar valor">
-    
-                <div class="filter-btns">
-                    <a href="#" id="apply-btn" class="btn">
-                        <i class="ph ph-check"></i>
-                    </a>
-                    <a href="#" id="reset-btn" class="btn">
-                        <i class="ph ph-trash"></i>
-                    </a>
-                </div>
-            </div>
-
-            <p id="audience-size"></p>
-
-            <div class="header">
-                <input type="text" id="title" placeholder="Titulo">
-                <div class="btn-file">
-                    <i class="ph ph-arrow-circle-up"></i>
-                    <span id="file-name">Subir Archivo</span>
-                    <input type="file" id="image-upload" accept="image/*">
-                </div>
-            </div>
-            <textarea id="content" placeholder="Contenido"></textarea>
-            <a id="campaign-btn" class="btn">Enviar Mensaje</a>
+        <div class="container">
+            <h2>Reclamar Regalo</h2>
+            <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
+            <a class="btn" id="claim-gift-btn">Reclamar</a>
         </div>
 
     </main>
@@ -108,14 +72,17 @@
 
     <script src="app/auth.js"></script>
 
+    <script src="app/utils/validation.js"></script>
+    <script src="app/utils/role.js"></script>
+    <script src="app/utils/custom.js"></script>
+    <script src="app/utils/emails.js"></script>
+
     <script src="app/database/templates.js"></script>
     <script src="app/database/business.js"></script>
     <script src="app/database/clients.js"></script>
+    <script src="app/database/cards.js"></script>
 
-    <script src="app/utils/role.js"></script>
-    <script src="app/utils/custom.js"></script>
-
-    <script src="app/pages/campaigns.js"></script>
+    <script src="app/pages/gifts.js"></script>
 
     <script src="app/dashboard.js"></script>
 

@@ -28,18 +28,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     const refreshToken = localStorage.getItem('dbRefreshToken')
     user = await authUser(accessToken, refreshToken)
 
-    console.log(user)
+    console.log('User: ', user)
 
     // clients
     const clients = await getAll('clients')
-    console.log(clients)
+    console.log('Clients: ', clients)
 
     // cards
     const cards = await getAll('cards')
-    console.log(cards)
+    console.log('Cards: ', cards)
 
     // business
     const business = await getBusinessById(user.businessId)
+    console.log('Business: ', business)
 
     // log-out
     const logOutBtn = document.getElementById('logout-btn')
@@ -59,8 +60,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Template 
     let templateId = null
+    let template = null
     if (business.templateIds.length >= 1) {
         templateId = business.templateIds[0] 
+        template = await getTemplateById(templateId)
     }
 
     // Specific templates
@@ -107,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Stats
         displayTotalClients(clients)
-        displayTotalType(cards, business) // points || discount/reward
+        displayTotalType(cards, business, fidelityTemplateId, giftTemplateId, discountTemplateId) // points || discount/reward
         displayTotalSpent(cards)
         displayAverageExpenditure(cards)
 
@@ -204,9 +207,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (document.getElementById("points")) {
         console.log("Initializing Points Page")
 
-        if (!fidelityTemplateId) {
-            console.error("Required template is missing. Redirecting...");
-            window.location.href = './index.html'; // Redirect to dashboard
+        // Template (points page)
+        let fidelityTemplate = null
+        console.log("Checking Fidelity Template ID:", fidelityTemplateId)
+
+        if (fidelityTemplateId) {
+            fidelityTemplate = await getTemplateById(fidelityTemplateId)
+        } else {
+            console.error("Required fidelity template is missing. Redirecting...")
+            alert("No se encontró la plantilla de fidelidad.") 
+            window.location.href = './index.html'
         }
 
         // Get button elements
@@ -232,15 +242,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Listen for amount input change (Update suggested points dynamically)
         amountSpentInput.addEventListener("input", async () => {
-            if (fidelityTemplateId) {
-                const template = await getTemplateById(fidelityTemplateId)
-                if (!template) return
-
-                const amountSpent = parseFloat(amountSpentInput.value)
+            if (fidelityTemplate) {
+                const amountSpent = parseFloat(amountSpentInput.value) || 0
                 window.userModifiedPoints = false
-                calculatePoints(template, amountSpent)
+                calculatePoints(fidelityTemplate, amountSpent)
             } else {
                 console.log('No fidelity template found')
+                return
             }
  
         
@@ -270,18 +278,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return
             }
             const amountSpent = parseFloat(amountSpentInput.value) || 0 
-            
-
-            const template = await getTemplateById(business.fidelityTemplateId)
-            if (!template) {
-                alert("No se encontró la plantilla de puntos.")
-                return
-            }
 
             // Get final points value (either suggested or manually updated)
-            const pointsToAdd = parseInt(suggestedPointsDisplay.textContent)
+            const pointsToAdd = parseInt(suggestedPointsDisplay.textContent) || 0
 
-            await addPoints(phoneNumber, business.businessId, template, amountSpent, pointsToAdd)
+            await addPoints(phoneNumber, business.businessId, fidelityTemplate, amountSpent, pointsToAdd)
 
             phoneInput.value = ""
             amountSpentInput.value = ""
@@ -297,16 +298,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return
             }
 
-            if (fidelityTemplateId) {
-                const template = await getTemplateById(business.fidelityTemplateId)
-                if (!template) {
-                    alert("Could not find template")
-                    return
-                }
-                await claimReward(phoneNumber, business.businessId, template)
+            if (fidelityTemplate) {
+                await claimReward(phoneNumber, business.businessId, fidelityTemplate)
                 phoneRewardInput.value = ""
             } else {
                 console.log('No fidelity template found')
+                return
             }
             
         })
