@@ -3,21 +3,6 @@
 
 // Card Info. Animation
 
-pointsBtn = document.getElementById('points-btn')
-discountBtn = document.getElementById('discount-btn')
-
-points = document.getElementById('points')
-dicount = document.getElementById('discount')
-
-function displayCardInfo (btn, card) {
-  btn.addEventListener('click', () => {
-    card.classList.toggle('active')
-  })
-}
-
-displayCardInfo(pointsBtn, points)
-displayCardInfo(discountBtn, discount)
-
 // FAQs Animation
 
 document.addEventListener('DOMContentLoaded', function () {
