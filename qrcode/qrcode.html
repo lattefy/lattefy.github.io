@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate QR Code</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+        #qrcode{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="qrcode"></div>
+    <script>
+        const url = "https://panda-lattefy.github.io/fidelity/path.html";
+
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: url,
+            width: 512,
+            height: 512,
+            colorDark : "#ffffff",
+            colorLight : "#000000",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+    </script>
+</body>
+</html>
