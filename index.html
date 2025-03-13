@@ -26,7 +26,7 @@
 
         <!-- Navigation Bar -->
         
-        <nav>
+        <nav id="nav">
             <a href="#">
                 <div class="logo">
                     <i class="ph ph-coffee"></i>
@@ -52,21 +52,11 @@
                 </a>
             </div>
             <div class="burger">
-                <div>
-                    <span class="line-1"></span>
-                    <span class="line-2"></span>
-                    <span class="line-3"></span>
-                </div>
+                <span class="line-1"></span>
+                <span class="line-2"></span>
+                <span class="line-3"></span>
             </div>
         </nav>
-
-        <!-- News -->
-
-        <div class="news" style="display: none;">
-            <h4>🎁 OFERTA LIMITADA </h4>
-            <span></span>
-            <p>Mes de prueba gratis.</p>
-        </div>
 
         <!-- Hero Section -->
 
@@ -109,7 +99,7 @@
                             <i class="ph ph-headset"></i>
                             <i class="ph ph-identification-card"></i>
                         </div>
-                        <h3>Programa de Fidelidad</h3>
+                        <h3>Plataforma de Fidelidad</h3>
                         <p>
                             Convierte a tus visitantes en clientes leales con un simple escaneo de código QR y recompensas que los harán volver. Multiplica x5 las chances de que vuelvan.
                         </p>
@@ -137,6 +127,35 @@
                     </div>
                     <div class="img">
                         
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards Section -->
+
+        <section id="cards">
+            <div class="reveal">
+                <h2>Nuestras fidelity cards</h2>
+                <p>Nuestros procesos se basan en tarjetas digitales llamadas fidelity cards.</p>
+                
+                <div class="selector">
+                    <div class="toggle" id="toggle-switch">
+                        <div class="option active" data-option="cuponera">Cuponera</div>
+                        <div class="option" data-option="regalo">Regalo</div>
+                        <div class="option" data-option="discount">Descuento</div>
+                    </div>
+                </div>            
+
+                <div class="cards">
+                    <div id="points-card" class="card">
+                        <img src="./assets/images/cards/points.png" alt="Tarjeta de Puntos">
+                    </div>
+                    <div id="gift-card" class="card hidden">
+                        <img src="./assets/images/cards/discount.png" alt="Tarjeta de Regalos">
+                    </div>
+                    <div id="discount-card" class="card hidden">
+                        <img src="./assets/images/cards/discount.png" alt="Tarjeta de Descuentos">
                     </div>
                 </div>
             </div>
@@ -188,122 +207,6 @@
                 </a>
             </div>
         </section>
-
-        
-        <!-- Clients section -->
-
-        <!-- <section id="clients">
-            <div class="reveal">
-                <h4>CONFIADO POR EQUIPOS EN</h4>
-                <div class="logos">
-                    <img src="assets/images/clients/billyburgers.png" alt="billyburgers">
-                    <img src="assets/images/clients/pandabar.png" alt="pandabar">
-                    <img src="assets/images/clients/churrosexpress.png" alt="churrosexpress">
-                </div>
-            </div>
-        </section> -->
-
-
-        <!-- Features Section -->
-
-        <!-- <section id="features">
-            <div class="reveal">
-                <h2>Todo lo que necesitas, en un solo lugar</h2>
-                <p>Lattefy se integra perfectamente en tus procesos existentes.</p>
-                <div class="grid">
-                    <div class="box">
-                        <i class="icon ph ph-paper-plane-tilt"></i>
-                        <h4>Gestioná Campañas</h4>
-                        <p>
-                            Convierte a tus visitantes en clientes frecuentes con campañas personalizadas y fáciles de administrar.
-                        </p>
-                        <div class="link">
-                            Mas Info.
-                            <i class="ph ph-caret-right"></i>
-                        </div>
-                        <img src="assets/images/animations/mail notification.svg" alt="notification">
-                    </div>
-                    <div class="box">
-                        <i class="icon ph ph-presentation-chart"></i>
-                        <h4>Análisis de Datos</h4>
-                        <p>
-                            Optimizá tus campañas con la información de tus clientes.
-                        </p>
-                        <div class="link">
-                            Mas Info.
-                            <i class="ph ph-caret-right"></i>
-                        </div>
-                        <img src="assets/images/animations/analytics img.svg" alt="analytics">
-                    </div>
-                    <div class="box">
-                        <i class="icon ph ph-link"></i>
-                        <h4>Dominio</h4>
-                        <p>
-                            Dominio personalizado respaldado por un certificado de seguridad SSL.
-                        </p>
-                        <img src="assets/images/animations/domain_animation.gif" alt="domain">
-                    </div>
-                    <div class="box">
-                        <i class="icon ph ph-eyedropper"></i>
-                        <h4>Flexible</h4>
-                        <p>
-                            Todo desde un único dashboard, accesible desde cualquier dispositivo. Diseñado para que puedas gestionar tu negocio de forma rápida y eficiente, estés donde estés.
-                        </p>
-                        <div class="link">
-                            Mas Info.
-                            <i class="ph ph-caret-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-        <!-- Stack Section -->
-
-        <!-- <section id="stack">
-            <div class="reveal">
-                <h2>Usamos las mejores tecnologías</h2>
-                <h2>Tecnologías</h2>
-            <div class="carousel">
-                <div class="item">
-                    <img src="assets/images/businesses/github.svg" alt="github">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/mongodb.svg" alt="mongodb">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/render.svg" alt="render">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/emailjs.svg" alt="emailjs">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/nodejs.svg" alt="nodejs">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/cloudinary.svg" alt="cloudinary">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/github.svg" alt="github">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/mongodb.svg" alt="mongodb">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/render.svg" alt="render">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/emailjs.svg" alt="emailjs">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/nodejs.svg" alt="nodejs">
-                </div>
-                <div class="item">
-                    <img src="assets/images/businesses/cloudinary.svg" alt="cloudinary">
-                </div>
-            </div>
-            </div>
-        </section>  -->
 
         <!-- Faqs Sections -->
 
