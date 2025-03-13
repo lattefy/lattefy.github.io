@@ -904,62 +904,6 @@ footer span {
         gap: 20px;
     }    
 
-    /* RESPONSIVE | FEATURES */
-
-    #features {
-        padding-top: 10vh;
-    }
-    #features .grid {
-        width: 80vw;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "b1"
-            "b2"
-            "b3"
-            "b4";
-    }
-    #features .grid .box {
-        padding: 6vh 20px;
-    }
-
-    #features .grid .box:nth-of-type(1) img{
-        width: 100%;
-        transform: translateX(0);
-    }
-    #features .grid .box:nth-of-type(2) {
-        height: 280px;
-        padding: 6vh 4vw 0 4vw;
-    }
-
-
-    /* RESPONSIVE | STACK */
-
-    #stack {
-        padding-top: 20vh;
-    }
-
-    #stack h2:nth-child(1) {
-        display: none;
-    }
-    #stack h2:nth-child(2) {
-        display: block;
-    }
-
-    #stack .carousel .item {
-        min-width: 200px; 
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(200px * 6)); 
-        }
-    }
-
-
     /* RESPONSIVE - FAQS */
 
     #faqs .reveal {
@@ -1029,6 +973,10 @@ footer span {
         height: 40px;
         width: 300px;
         font-size: 12px;
+    }
+    #cards .reveal .cards .card {
+        width: 80%;
+        height: auto;
     }
 
     /* RESPONSIVE | COMPATIBLE */
