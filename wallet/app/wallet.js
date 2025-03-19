@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             } else {
                 console.log('No cards to display')
                 noCardsMessage.classList.add("active") // Ensure this always runs when there are no cards
+                loader.style.display = 'none' 
             }
 
             // loader.style.display = 'none'
