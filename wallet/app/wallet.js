@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // Homepage 
+    // Homepage
     if (document.getElementById('home')) {
         const accessToken = localStorage.getItem('accessToken')
         const refreshToken = localStorage.getItem('refreshToken')
@@ -122,8 +122,30 @@ document.addEventListener('DOMContentLoaded', async function () {
             const cardBusinessId = sessionStorage.getItem('cardBusinessId')
             const cardTemplateId = sessionStorage.getItem('cardTemplateId')
 
-
             let cards = await getClientCards(clientData.phoneNumber) // Fetch cards 
+
+            if (cards.length === 0) {
+                console.log('No cards to display')
+                noCardsMessage.classList.add("active")
+                loader.style.display = 'none'
+                return
+            }
+
+            // 🚀 Fetch all templates in parallel to improve speed
+            const templates = await Promise.all(
+                cards.map(card => getTemplate(card.templateId))
+            )
+
+            // 🔥 Filter valid cards (only ACTIVE templates)
+            let validCards = cards.filter((card, index) => {
+                const template = templates[index]
+                if (template && template.status === 'ACTIVE') {
+                    return true
+                } else {
+                    console.warn(`Skipping card ${card.templateId}: ${template ? 'Inactive' : 'Not found'}`)
+                    return false
+                }
+            })
 
             if (storedBusinessId && storedTemplateId) {
                 console.log("QR scan detected. Handling business QR...")
@@ -138,32 +160,30 @@ document.addEventListener('DOMContentLoaded', async function () {
                     await sortCards(updatedCards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
                 } else {
                     console.log("Sorting the selected card to the front...")
-                    await sortCards(cards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
+                    await sortCards(validCards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
                 }
-
-            }
+            } 
 
             // Discover page / Display Cards
-            else if (cards.length > 0) {
+            else if (validCards.length > 0) {
                 if (cardBusinessId && cardTemplateId) {
                     console.log("Sorting the card to the front (Discover Page)...")
-                    await sortCards(cards, cardBusinessId, cardTemplateId, clientData.phoneNumber)
+                    await sortCards(validCards, cardBusinessId, cardTemplateId, clientData.phoneNumber)
                     sessionStorage.removeItem('cardBusinessId')
                     sessionStorage.removeItem('cardTemplateId') // Clear after sorting
                 } else {
-                    console.log("Displaying cards...")
-                    await displayClientCards(cards, clientData.phoneNumber)
+                    console.log("Displaying filtered cards...")
+                    await displayClientCards(validCards, clientData.phoneNumber)
                 }
             } else {
-                console.log('No cards to display')
-                noCardsMessage.classList.add("active") // Ensure this always runs when there are no cards
-                loader.style.display = 'none' 
+                console.log('No active cards to display')
+                noCardsMessage.classList.add("active")
+                loader.style.display = 'none'
             }
-
-            // loader.style.display = 'none'
         } catch (error) {
             console.error('Error fetching or displaying cards:', error)
             noCardsMessage.classList.add("active") // Display "No Cards" message on error
+            loader.style.display = 'none'
         }
     }
 
