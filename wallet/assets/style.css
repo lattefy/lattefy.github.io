@@ -714,6 +714,7 @@ section {
 }
 .template-text {
     flex: 1;
+    font-size: 12px !important;
     text-align: left;
 }
 .template-business-name {
@@ -736,6 +737,7 @@ section {
     font-size: 14px;
     color: var(--yellow);
     font-weight: bold;
+    cursor: pointer;
 }
 
 

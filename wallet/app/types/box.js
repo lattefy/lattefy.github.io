@@ -29,11 +29,14 @@ function fidelityTemplateHTML(template, imageUrl) {
                     <p class="template-text">
                         ${template.pointsNeeded} ${template.pointsName} = ${template.reward}
                     </p>
+                    <p class="template-text">
+                        ${template.footer}
+                    </p>
                 </div>
-                <div class="template-rating">
+                <a href="#" class="template-rating">
                     <i class="ph ph-star"></i>
                     <p><b>${template.rating}</b></p>
-                </div>
+                </a>
             </div>
         </div> 
     `
