@@ -1,0 +1,1288 @@
+/* Lattefy's frontend dashboard style file */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+:root {
+    /* colors */
+    --dark: #242424;
+    --dark-active: #3a3a3a;
+    --light: #f3f4f6;
+    --white: #fff;
+    --red: #ff0077;
+    --blue: #1778f2;
+    --green: #14d185;
+    --lightBlue: #ecf4ff;
+
+    --bg-color: var(--lightBlue);
+    --container-bg-color: var(--white);
+    --card-bg-color: var(--white);
+    --loader-bg-color: var(--lightBlue);
+
+    /* sidebar */
+    --sidebar-logo-color: var(--white);
+    --sidebar-burger-color: var(--white);
+    --sidebar-bg-color: var(--dark);
+    --sidebar-color: var(--white);
+    --sidebar-btn-bg-color: var(--dark);
+    --sidebar-btn-color: var(--light);
+    --sidebar-btn-bg-color-active: var(--light);
+    --sidebar-btn-color-active: var(--blue);
+    --sidebar-btn-hover: var(--dark-active);
+    --sidebar-logout-color: var(--light);
+    --sidebar-logout-btn-bg-color-hover: var(--light);
+    --sidebar-logout-btn-color-hover: var(--red);
+
+    /* navbar */
+    --navbar-bg-color: var(--lightBlue);
+    --navbar-color: var(--dark);
+    --reload-btn-bg-color: var(--white);
+    --reload-btn-color: var(--blue);
+
+    /* buttons */
+    --btn-bg-color: var(--dark);
+    --btn-color: var(--light);
+    --btn-border-color: var(--dark);
+
+    /* shadows */
+    --container-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --card-shadow: 0px 0px 10px rgba(50, 50, 50, 0.1);
+    --btn-shadow: 0px 0px 20px rgba(70, 70, 70, 0.2);
+}
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- GENERAL STYLING ---------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+
+    /* Grid Layout */
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 75px 1fr;
+    grid-template-areas: 
+        "side header"
+        "side main"
+    ;
+}
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+i {
+    font-size: 30px;
+}
+ul {
+    list-style: none;
+}
+p {
+    font-size: 12px;
+}
+
+
+
+
+
+/* --------------------------------------- Collapsed Sidebar --------------------------------------- */
+
+body.collapsed-sidebar {
+    grid-template-columns: 55px 1fr;
+}
+
+.main.full-width,
+.navbar.full-width {
+    grid-column: span 2;
+    margin-left: 75px; 
+}
+
+/* -------------------------------------------- Loader --------------------------------------------- */
+
+#loader {
+    background: var(--loader-bg-color) url(images/loaders/loader-black.svg) no-repeat center center;
+    display: block;
+    background-size: 5%;
+    height: 100%;
+    width: 100%;
+    /* height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px; */
+    border-radius: 10px;
+    z-index: 100;
+    position: absolute;
+}
+
+
+/* ------------------------------------------- Container ------------------------------------------- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--container-bg-color);
+    width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--container-shadow);
+}
+.card {
+    background-color: var(--card-bg-color);
+}
+
+/* ---------------------------------------------- Inputs ------------------------------------------- */
+
+input,
+textarea,
+select,
+.btn {
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+}
+input,
+textarea
+{
+    height: 45px;
+    border-radius: 8px;
+    border: solid 1.5px #ddd;
+    color: var(--dark);
+    background-color: #eee;
+}
+input:focus,
+textarea:focus
+{
+    border-color: var(--blue);
+}
+input {
+    padding: 0 15px;
+}
+textarea {
+    padding: 10px;
+}
+select {
+    padding: 5px 10px;
+    height: 45px;
+    border: 1px solid #ddd;
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+
+/* ----------------------------------------- Button Style ------------------------------------------ */
+
+.btn {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    border: solid var(--btn-border-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-color);
+}
+.btn:hover {
+    opacity: 0.6;
+}
+
+
+/* ----------------------------------------- Navigation Bar ---------------------------------------- */
+
+.navbar {
+    background-color: var(--navbar-bg-color);
+    grid-area: header; 
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 0;
+}
+.navbar h2 {
+    font-weight: 200;
+}
+.navbar .nav-btns {
+    display: flex;
+    gap: 20px;
+}
+.navbar .nav-btns .reload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    transform: translateY(10px);
+
+    border-radius: 100%;
+    background-color: var(--reload-btn-bg-color);
+}
+.navbar .nav-btns .reload i {
+    text-decoration: none;
+    color: var(--reload-btn-color);
+    font-size: 20px;
+}
+.navbar .nav-btns .btn {
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+    margin-bottom: 0;
+    border-radius: 30px;
+}
+
+
+/* ------------------------------------------- Side Bar -------------------------------------------- */
+
+.sidebar {
+    color: var(--sidebar-color);
+    background-color: var(--sidebar-bg-color);
+    transition: all 0.1s ease-in;
+
+    grid-area: side;
+    padding: 0px 20px;
+    height: 100vh;
+    width: 260px;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+
+    z-index: 1;
+}
+
+/* Sidebar Top */
+
+.sidebar .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .top #sidebar-btn {
+    cursor: pointer;
+}
+
+/* Sidebar - logo */
+
+.sidebar .top .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    cursor: pointer;
+}
+.sidebar .top .logo i {
+    margin: 0 10px 5px 0;
+    color: var(--sidebar-logo-color);
+}
+.sidebar .top .logo h1 {
+    color: var(--sidebar-logo-color);
+}
+
+/* Sidebar - burger */
+
+.sidebar .top .burger {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.sidebar .top .burger span {
+    width: 30px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--sidebar-burger-color);
+    transition: 0.4s;
+}
+.sidebar .top .burger .line-1 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.sidebar .top .burger .line-2 {
+    width: 0;
+}
+.sidebar .top .burger .line-3 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+/* Sidebar - Menu List */
+
+.sidebar .menu{
+    margin: 10px 0;
+    padding: 0;
+    flex: 1;
+}
+.sidebar .menu li {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin: 10px 0;
+
+    border-radius: 10px;
+    color: var(--sidebar-btn-color);
+    background-color: var(--sidebar-btn-bg-color);
+
+}
+.sidebar .menu li:hover {
+    background-color: var(--sidebar-btn-hover);
+}
+.sidebar .menu li a {
+    display: block;
+    color: var(--white);
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+/* .sidebar .menu li a:hover {
+    color: var(--dark);
+} */
+.sidebar .menu li a i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* Sidebar - log-out */
+
+.log-out {
+    margin: auto 0 20px 0;
+    display: block;
+    padding: 10px 10px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    color: var(--sidebar-logout-color);
+}
+.log-out:hover {
+    background-color: var(--sidebar-logout-btn-bg-color-hover);
+    color: var(--sidebar-logout-btn-color-hover);
+}
+.log-out i {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* ---------------------------------------- ACTIVE | Sidebar --------------------------------------- */
+
+/* ACTIVE | SIDEBAR */
+
+.sidebar.active {
+    padding: 10px;
+    width: 55px;
+}
+
+/* ACTIVE | Sidebar - Top */
+
+.sidebar.active .menu {
+    margin: 0 auto;
+}
+.sidebar.active .top .logo {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ACTIVE | Sidebar - burger */
+
+.sidebar.active .top .burger{
+    position: absolute;
+    transform: translate(12px, -10px);
+}
+
+.sidebar.active .top .burger .line-1 {
+    transform: translate(-50%, -10px);
+}
+.sidebar.active .top .burger .line-2 {
+    width: 30px;
+}
+.sidebar.active .top .burger .line-3 {
+    transform: translate(-50%, 7px);
+}
+
+/* ACTIVE | Sidebar - Menu List */
+
+.sidebar.active .menu li a {
+    justify-content: center !important;
+}
+.sidebar.active .menu li a i {
+    margin-right: 0;
+}
+.sidebar.active .menu li a .link {
+    display: none;
+}
+
+/* ACTIVE | Sidebar - log-out */
+
+.sidebar.active .log-out {
+    justify-content: center;
+    width: 50%;
+    margin-left: 3.5px;
+}
+.sidebar.active .log-out i {
+    margin-right: 0;
+    width: 90%;
+}
+.sidebar.active .log-out .link {
+    display: none;
+}
+
+
+/* ------------------------------------------ Main Content ----------------------------------------- */
+
+.main {
+    background-color: var(--bg-color);
+    padding: 10px 20px 20px 20px;
+    grid-area: main;
+
+    z-index: 0;
+    position: relative;
+}
+.main .card {
+    border-radius: 10px;
+    padding: 0px 20px;
+    overflow: hidden; 
+}
+.main .card p {
+    font-size: 15px;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- DASHBOARD ------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Dashboard grid layout */
+
+#dashboard .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3 c4"
+        "c5 c5 c6 c7"
+        "c5 c5 c6 c7"
+    ;
+    gap: 10px;
+}
+
+#dashboard .main .card:nth-child(2) {
+    grid-area: c1;
+}
+#dashboard .main .card:nth-child(3) {
+    grid-area: c2;
+}
+#dashboard .main .card:nth-child(4) {
+    grid-area: c3;
+}
+#dashboard .main .card:nth-child(5) {
+    grid-area: c4;
+}
+#dashboard .main .card:nth-child(6) {
+    grid-area: c5;
+}
+#dashboard .main .card:nth-child(7) {
+    grid-area: c6;
+}
+#dashboard .main .card:nth-child(8) {
+    grid-area: c7;
+}
+
+
+/* Dashboard Link */
+
+body#dashboard .sidebar .menu #dashboard-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+
+/* Dashboard Stats cards */
+
+#dashboard .main .card:nth-child(2) p,
+#dashboard .main .card:nth-child(3) p,
+#dashboard .main .card:nth-child(4) p,
+#dashboard .main .card:nth-child(5) p {
+    font-size: 30px;
+    margin: 0;
+}
+#dashboard .main .card:nth-child(2) h2,
+#dashboard .main .card:nth-child(3) h2,
+#dashboard .main .card:nth-child(4) h2,
+#dashboard .main .card:nth-child(5) h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
+.table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 10px;
+    max-height: 250px;
+}
+.table-container table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.table-container table th,
+.table-container table td {
+    padding: 5px;
+    text-align: left;
+}
+.table-container table thead {
+    color: var(--dark);
+    position: sticky;
+    background-color: var(--white);
+}
+
+
+/* Dashboard Campaigns card */
+
+#dashboard .main .card:nth-child(7),
+#dashboard .main .card:nth-child(8) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px;
+}
+#dashboard .main .card:nth-child(7) i,
+#dashboard .main .card:nth-child(8) i {
+    font-size: 40px;
+}
+#dashboard .main .card:nth-child(7) h2,
+#dashboard .main .card:nth-child(8) h2 {
+    margin: 0 0 10px 0;
+    font-size: 25px;
+}
+#dashboard .main .card:nth-child(7) p,
+#dashboard .main .card:nth-child(8) p {
+    font-size: 12px;
+}
+
+/* Dashboard paths */
+
+#dashboard .main .card:nth-child(7) .paths,
+#dashboard .main .card:nth-child(8) .paths {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+#dashboard .main .card:nth-child(7) .paths .path,
+#dashboard .main .card:nth-child(8) .paths .path {
+    width: 100%;
+    height: 6vh;
+    padding: 5px 10px;
+    text-align: left;
+    border-radius: 10px;
+    color: var(--dark);
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#dashboard .main .card:nth-child(7) .paths .path i,
+#dashboard .main .card:nth-child(8) .paths .path i {
+    font-size: 30px;
+}
+#dashboard .main .card:nth-child(7) .paths .path:nth-child(1),
+#dashboard .main .card:nth-child(8) .paths .path:nth-child(1) {
+    margin-bottom: 5px;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- CLIENTS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Clients grid Layout */
+
+#clients .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 1fr;
+    grid-template-areas: 
+        "c1"
+        "c2"    
+    ;
+    gap: 10px;
+}
+
+
+/* Clients Link */
+
+body#clients .sidebar .menu #clients-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#clients .sidebar .menu #clients-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+
+/* --------------------------------- Clients Database Table ---------------------------------------- */
+
+#clients .main .card {
+    grid-area: c2;
+}
+#clients .main .card .table-container {
+    flex-grow: 1;
+    overflow: auto;
+    margin: 10px;
+    max-height: 300px;
+}
+#clients .main .card table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: var(--white);
+}
+#clients .main .card table th,
+#clients .main .card table td {
+    padding: 5px; 
+    text-align: left; 
+}
+#clients .main .card table thead {
+    color: var(--dark); 
+}
+
+
+/* --------------------------------- Clients Sort & Filter ----------------------------------------- */
+
+#clients .main .sort-filter {
+    grid-area: c1;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#clients .main .sort-box, 
+#clients .main .filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+}
+#clients .main select,
+#clients .main input {
+    margin-bottom: 0;
+    height: 35px;
+    border-radius: 5px;
+}
+#clients .main .sort-box {
+    width: 35%;
+}
+#clients .main .sort-box select {
+    width: 55%;
+}
+#clients .main .filter-box {
+    width: 60%;
+}
+#clients .main .filter-box select {
+    width: 60%;
+}
+
+
+/* Sort Filter - Buttons */
+
+#clients .main .sort-filter .sort-filter-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#clients .main .sort-filter .sort-filter-btns a {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: none;
+    transform: translateY(5px);
+    transition: ease-in-out 0.2s;
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child {
+    background-color: var(--white);
+    color: rgb(3, 234, 138);
+}
+#clients .main .sort-filter .sort-filter-btns a:first-child:hover {
+    background-color: rgb(3, 234, 138);
+    color: var(--white);
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child {
+    background-color: var(--white);
+    color: rgb(234, 3, 126);
+}
+#clients .main .sort-filter .sort-filter-btns a:last-child:hover {
+    color: var(--white);
+    background-color: rgb(234, 3, 126);
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- Points ---------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+/* points - layout */
+
+#points .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+#points .main .container {
+    padding: 20px;
+    border-radius: 12px;
+    max-width:280px;
+}
+#points .main .container h2 {
+    margin: 0 0 15px 0;
+}
+#points .main .container #add-points-inputs,
+#points .main .container #claim-reward-inputs {
+    width: 100%;
+}
+#points select {
+    border-radius: 8px;
+}
+#points .add-points-inputs .point-amount {
+    display: flex;
+    flex-direction: row;
+}
+
+/* points Link */
+
+body#points .sidebar .menu #points-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#points .sidebar .menu #points-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+/* Point Amount Controls */
+
+#points .point-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+#points .point-amount h4 {
+    font-size: 20px;
+}
+#points .point-amount a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--blue);
+    color: var(--light);
+    border-radius: 8px;
+    cursor: pointer;
+
+    width: 50px;
+    height: 50px;
+    transform: translateY(-5px);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* --------------------------------------------- STATS --------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Stats grid Layout */
+
+#stats .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "c1 c2 c3"
+        "c4 c5 c6"
+    ;
+    gap: 10px;
+}
+#stats .main .card p {
+    font-size: 30px;
+}
+
+
+/* Stats - Link */
+
+body#stats .sidebar .menu #stats-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#stats .sidebar .menu #stats-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+
+/* Stats Cards */
+
+#stats .main .card:nth-child(1) {
+    grid-area: c1;
+}
+#stats .main .card:nth-child(2) {
+    grid-area: c2;
+}
+#stats .main .card:nth-child(3) {
+    grid-area: c3;
+}
+#stats .main .card:nth-child(4) {
+    grid-area: c4;
+}
+#stats .main .card:nth-child(5) {
+    grid-area: c5;
+}
+#stats .main .card:nth-child(6) {
+    grid-area: c6;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------ CAMPAIGNS -------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Campaigns - layout */
+
+#campaigns .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#campaigns .main .card:nth-child(2) {
+    grid-area: c1;
+}
+#campaigns .main .card:nth-child(3) {
+    grid-area: c2;
+    padding: 10px;
+    align-items: start;
+    justify-content: start;
+}
+
+/* Campaigns Link */
+
+body#campaigns .sidebar .menu #campaigns-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+
+/* Campaigns - cards */
+
+#campaigns .main .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 30px 40px;
+}
+#campaigns .main .card h3 {
+    margin: 0 0 10px 0;
+}
+#campaigns .main .card .header {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+#campaigns .main .card textarea {
+    resize: none; 
+    height: 80px;
+}
+#campaigns .main .card .btn {
+    margin: 0;
+}
+
+
+/* Campaigns - file upload */
+
+.btn-file {
+    height: 42px;
+    width: 100%;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--blue);
+    border-radius: 10px;
+
+    background-color: transparent;
+    color: var(--blue);
+    transition: ease-in-out 0.2s;
+}
+.btn-file:hover {
+    background-color: var(--blue);
+    color: var(--light);
+}
+.btn-file input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.btn-file i {
+    font-size: 30px !important;
+    margin-right: 10px;
+}
+
+
+/* --------------------------------- Campaigns audience Filter -------------------------------------- */
+
+#campaigns .main .filter-box i {
+    font-size: 30px;
+}
+#campaigns .main .filter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--light);
+    padding: 15px;
+    border-radius: 8px;
+    width: 95%;
+}
+#campaigns .main .filter-box select,
+#campaigns .main .filter-box input {
+    margin-bottom: 0;
+    height: 35px;
+    border-radius: 5px;
+}
+#campaigns .main .filter-box select {
+    width: 70%;
+}
+
+/* Sort Filter - Buttons */
+
+#campaigns .main .filter-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#campaigns .main .filter-btns a {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: none;
+    transition: ease-in-out 0.2s;
+    margin: 0;
+}
+#campaigns .main .filter-btns a i {
+    font-size: 20px;
+}
+#campaigns .main .filter-btns a:first-child {
+    background-color: var(--green);
+    color: var(--light);
+}
+#campaigns .main .filter-btns a:first-child:hover {
+    opacity: 0.6;
+}
+#campaigns .main .filter-btns a:last-child {
+    background-color: var(--red);
+    color: var(--light);
+}
+#campaigns .main .filter-btns a:last-child:hover {
+    opacity: 0.6;
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- DOWNLOAD -------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+/* Download - layout */
+
+#download .main .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "c1 c2"
+    ;
+    gap: 10px;
+}
+
+/* Download Link */
+
+body#download .sidebar .menu li:nth-child(6) {
+    background-color: var(--light);
+}
+body#download .sidebar .menu li:nth-child(6) a {
+    color: var(--dark);
+}
+
+/* Download cards */
+
+#download .main .cards,
+#download .main .cards .card {
+    height: 100%;
+}
+#download .main .cards .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: ease-in-out 0.2s;
+    border: 2px solid var(--white);
+    cursor: pointer;
+}
+#download .main .cards .card i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- RESPONSIVE ------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 950px) {
+
+    body {
+        overflow-y: scroll;
+
+        display: grid;
+        grid-template-columns: 55px 1fr;
+        grid-template-rows: 75px 1fr;
+        grid-template-areas: 
+            "side header"
+            "side main"
+        ;
+    }
+
+    /* RESPONSIVE | Loader */
+
+    #loader {
+        background-size: 15%;
+        height: calc(100vh - 75px);
+    }
+
+
+    /* RESPONSIVE | NAVBAR */
+
+    .navbar {
+        grid-column: span 2;
+        margin-left: 75px; 
+    }
+    .navbar .nav-btns .reload {
+        transform: translateY(0);
+    }
+    .navbar .nav-btns .reload i {
+        font-size: 20px;
+        margin: 5px;
+    }
+    .navbar .nav-btns .btn {
+        display: none;
+    }
+
+
+    /* RESPONSIVE | SIDEBAR */
+
+    .sidebar.active {
+        padding: 10px;
+        width: 55px;
+    }
+
+    /* RESPONSIVE | Sidebar - Top */
+
+    .sidebar.active .menu {
+        margin: 0 auto;
+    }
+    .sidebar.active .top .logo {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* RESPONSIVE | Sidebar - Burger */
+
+    .sidebar.active .top .burger{
+        position: absolute;
+        transform: translate(12px, -10px);
+    }
+
+    /* RESPONSIVE | Sidebar - Menu List */
+
+    .sidebar.active .menu li a {
+        justify-content: center !important;
+    }
+    .sidebar.active .menu li a i {
+        margin-right: 0;
+    }
+    .sidebar.active .menu li a .link {
+        display: none;
+    }
+
+    /* RESPONSIVE | Sidebar - log-out */
+
+    .sidebar.active .log-out {
+        transform: translateY(-100%);
+        justify-content: center;
+        width: 50%;
+        margin-left: 3.5px;
+    }
+    .sidebar.active .log-out i {
+        margin-right: 0;
+        width: 90%;
+    }
+    .sidebar.active .log-out .link {
+        display: none;
+    }
+
+
+    /* RESPONSIVE | MAIN CONTENT */
+
+    .main {
+        grid-column: span 2;
+        margin-left: 75px;
+    }
+
+
+    /* RESPONSIVE | DASHBOARD */
+
+    #dashboard .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas: 
+            "c1"
+            "c2"
+            "c3"
+            "c4"
+            "c5"
+            "c6"
+            "c7"
+        ;
+        gap: 20px;
+    }
+    #dashboard .main .card {
+        padding: 10px 20px;
+    }
+    #dashboard .main .card h2 {
+        margin: 0;
+    }
+    #dashboard .main .card:nth-child(6) {
+        height: 400px;
+    }
+    #dashboard .main .card:nth-child(6) .table-container {
+        max-height: 350px;
+    }
+    
+
+    /* RESPONSIVE | CLIENTS */
+
+    #clients .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas: 
+            "c2"
+        ;
+    }
+    #clients .main .sort-filter {
+        display: none;
+    }
+
+    /* RESPONSIVE | STATS */
+
+    #stats .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 180px);
+        grid-template-areas: initial;
+    }
+    #stats .main .card {
+        grid-area: initial !important;
+    }
+
+    /* RESPONSIVE | CAMPAIGNS */
+
+    #campaigns .main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #campaigns .main .card {
+        padding:30px;
+    }
+    #campaigns .main .card h3,
+    #campaigns .main .card p {
+        margin: 0 0 10px 0;
+    }
+    #campaigns .main .card .header {
+        flex-direction: column;
+        gap: 0px;
+        margin-bottom: 10px;
+    }
+    #campaigns .main .card textarea {
+        height: 100px;
+    }
+    #campaigns .main .card .filter-box {
+        display: none;
+    }
+    #campaigns .card:nth-child(3) {
+        display: none;
+    }
+
+
+    /* RESPONSIVE | DOWNLOAD */
+
+    #download .main .cards {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+            "c1"
+            "c2"
+        ;
+        gap: 20px;
+    }
+
+}

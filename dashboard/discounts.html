@@ -1,0 +1,94 @@
+<!-- Lattefy's frontend dashboard discounts page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Lattefy | Descuentos</title>
+    <meta property="og:title" content="Lattefy | Cargar Compra">
+    <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
+    
+    <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- PHOSPHORICONS -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body id="points" class="collapsed-sidebar">
+
+    <!-- Navigation Bar -->
+    <header class="navbar full-width">
+        <h2>Descuentos</h2>
+        <div class="nav-btns">
+            <a class="reload">
+                <i class="ph ph-arrow-clockwise"></i>
+            </a>
+            <a id="wallet-btn" class="btn">Cargar Cliente</a>
+        </div>
+    </header>
+
+    <!-- Side Bar -->
+    <section class="sidebar active">
+        <div class="top">
+            <div class="logo">
+                <i class="ph ph-coffee"></i>
+                <h1>Lattefy</h1>
+            </div>
+            <div class="burger" id="sidebar-btn">
+                <span class="line-1"></span>
+                <span class="line-2"></span>
+                <span class="line-3"></span>
+            </div>
+        </div>
+
+        <ul class="menu"></ul>
+
+        <a id="logout-btn" class="log-out">
+            <i class="ph ph-sign-out"></i>
+            <span class="link">Cerrar sesión</span>
+        </a>
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="main full-width">
+
+        <div class="container">
+            <h2>Reclamar Descuento</h2>
+            <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
+            <input type='number' id='amount-spent' placeholder='Importe' required>
+            <p id="discount-output"></p>
+            <a class="btn" id="claim-gift-btn">Reclamar</a>
+        </div>
+
+    </main>
+
+    <script src="./config.js"></script>
+
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script src="app/auth.js"></script>
+
+    <script src="app/utils/validation.js"></script>
+    <script src="app/utils/role.js"></script>
+    <script src="app/utils/custom.js"></script>
+    <script src="app/utils/emails.js"></script>
+
+    <script src="app/database/templates.js"></script>
+    <script src="app/database/business.js"></script>
+    <script src="app/database/clients.js"></script>
+    <script src="app/database/cards.js"></script>
+
+    <script src="app/pages/discounts.js"></script>
+
+    <script src="app/dashboard.js"></script>
+
+    <script src="assets/script.js"></script>
+
+</body>
+</html>
