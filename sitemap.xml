@@ -9,23 +9,38 @@
 
 <url>
   <loc>https://lattefy.com.uy/</loc>
-  <lastmod>2024-10-09T22:50:00+00:00</lastmod>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://lattefy.com.uy/auth/signup.html</loc>
-  <lastmod>2024-10-09T22:50:00+00:00</lastmod>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://lattefy.com.uy/auth/login.html</loc>
-  <lastmod>2024-10-09T22:50:00+00:00</lastmod>
+  <loc>https://lattefy.com.uy/dashboard/login.html</loc>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://lattefy.com.uy/index.html</loc>
-  <lastmod>2024-10-09T22:50:00+00:00</lastmod>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lattefy.com.uy/auth/index.html</loc>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lattefy.com.uy/dashboard/index.html</loc>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lattefy.com.uy/dashboard/campaigns.html</loc>
+  <lastmod>2025-03-20T03:07:45+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 
