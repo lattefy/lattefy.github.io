@@ -36,9 +36,6 @@ async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
         } else {
             cardAdded = true
 
-            // Send email
-            await sendBusinessEmail(clientPhoneNumber, templateId, 'card')
-
             // Add the business ID to the client only if a new card was added
             await fetch(`${apiUrl}/clients/${clientPhoneNumber}`, {
                 method: 'PUT',
@@ -50,6 +47,9 @@ async function handleBusinessQR(clientPhoneNumber, businessId, templateId) {
                     newBusinessId: businessId
                 })
             })
+
+            // Send email
+            await sendBusinessEmail(clientPhoneNumber, templateId, 'card')
 
             alert('Tarjeta agregada con éxito')
         }

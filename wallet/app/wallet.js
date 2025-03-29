@@ -131,12 +131,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return
             }
 
-            // 🚀 Fetch all templates in parallel to improve speed
+            // Fetch all templates in parallel to improve speed
             const templates = await Promise.all(
-                cards.map(card => getTemplate(card.templateId))
+                cards.map(card => getTemplateById(card.templateId))
             )
 
-            // 🔥 Filter valid cards (only ACTIVE templates)
+            // Filter valid cards (only ACTIVE templates)
             let validCards = cards.filter((card, index) => {
                 const template = templates[index]
                 if (template && template.status === 'ACTIVE') {
@@ -152,8 +152,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 // QR Code Scan
                 const updatedCards = await handleBusinessQR(clientData.phoneNumber, storedBusinessId, storedTemplateId)
-                sessionStorage.removeItem('storedBusinessId')
-                sessionStorage.removeItem('storedTemplateId')
 
                 if (updatedCards.length > 0) {
                     console.log("Sorting the added card to the front...")
@@ -162,6 +160,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                     console.log("Sorting the selected card to the front...")
                     await sortCards(validCards, storedBusinessId, storedTemplateId, clientData.phoneNumber)
                 }
+
+                sessionStorage.removeItem('storedBusinessId')
+                sessionStorage.removeItem('storedTemplateId')
             } 
 
             // Discover page / Display Cards
