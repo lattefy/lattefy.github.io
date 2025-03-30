@@ -33,10 +33,15 @@ function fidelityTemplateHTML(template, imageUrl) {
                         ${template.footer}
                     </p>
                 </div>
-                <a href="#" class="template-rating">
-                    <i class="ph ph-star"></i>
-                    <p><b>${template.rating}</b></p>
-                </a>
+                <div class="template-buttons">
+                    <a href="" class="template-rating">
+                        <i class="ph ph-star"></i>
+                        <p><b>${template.rating}</b></p>
+                    </a>
+                    <a href="${template.actionBtnUrl}" class="template-action-btn" target="_blank">
+                        <i class="${template.actionBtnIcon}" style="color: ${template.actionBtnColor};"></i>
+                    </a>
+                </div>
             </div>
         </div> 
     `
