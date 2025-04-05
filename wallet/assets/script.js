@@ -25,7 +25,6 @@ menu.onclick = function(){
     burger.classList.toggle("active")
 }
 
-
 // Check animation
 
 if (document.getElementById("done")) {
@@ -42,4 +41,13 @@ if (document.getElementById("discover")) {
             document.querySelector("#discover #confirmation").classList.add("show-text")
         }, 600) 
     })
+}
+
+// Discover Icon animation
+
+const navIconBtn = document.querySelector('.btn.nav-btn')
+if (navIconBtn) {
+    setInterval(() => {
+        navIconBtn.classList.toggle('active')
+    }, 3000)
 }
