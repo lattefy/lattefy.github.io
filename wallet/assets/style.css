@@ -51,6 +51,7 @@ div {
     /* colors */
     --blue: #1778f2;
     --green: #1db97b;
+    --red: #ff307f;
     --yellow: #ffd500;
     --white: #fff;
     --light: #dfdfdf;
@@ -63,6 +64,10 @@ div {
     --loader-bg-color: var(--white);
     --nav-bg-color: var(--white);
     --container-bg-color: white;
+
+    --nav-menu-boxes-bg-color: rgba(0, 0, 0, 0.1);
+    --nav-menu-boxes-color: var(--dark);
+    --nav-menu-footer-color: #999;
 
     /* card */
     --card-section-bg-color: white;
@@ -262,25 +267,119 @@ nav .menu {
 
     left: 0;
     right: 4.5vw;
-    top: 55px;
+    top: 50px;
+    padding-top: 30px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: top;
     position: absolute;
 
-    overflow: hidden;
+    overflow-x: hidden;
     opacity: 0;
     transition: 0.4s;
     background-color: var(--light);
 }
 nav .menu.active {
-    height: calc(100vh - 55px);
-    background-color: rgba(255, 255, 255, 0.80);
+    height: calc(100vh - 50px);
+    background-color: rgba(255, 255, 255, 1);
     opacity: 1;
     backdrop-filter: blur(10px);
 }
+
+nav .menu .search-container {
+    transform: translateY(0);
+    margin: 0 0 20px 0;
+    padding: 0 10px 0 5px;
+}
+nav .menu .boxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+        "b1 b2"
+        "b3 b4"
+    ;  
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+    height: 180px;
+    margin: 0 auto 60px auto;
+}
+nav .menu .boxes .box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    justify-content: flex-end;
+
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0;
+    gap: 10px;
+
+    cursor: pointer;
+    /* opacity: 0.6; */
+    color: var(--dark);
+    background-color: var(--nav-menu-boxes-bg-color);
+}
+nav .menu .boxes .box i {
+    font-size: 30px;
+}
+
+/* nav .menu .boxes .box:nth-child(1){
+    background-color: var(--red);
+}
+nav .menu .boxes .box:nth-child(2){
+    background-color: var(--blue);
+}
+nav .menu .boxes .box:nth-child(3){
+    background-color: var(--green);
+}
+nav .menu .boxes .box:nth-child(4){
+    background-color: var(--yellow);
+} */
+
+nav .menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    padding: 0;
+    gap: 15px;
+}
+nav .menu ul li {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    gap: 5px;
+}
+nav .menu ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    background-color: var(--nav-menu-boxes-bg-color);
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 45px;
+    margin: 0 0 5px 0;
+    gap: 5px;
+}
+nav .menu ul li a i {
+    font-size: 20px;
+}
+
+nav .menu span {
+    font-size: 12px;
+    margin: 30px auto;
+    color: var(--nav-menu-footer-color);
+}
+
+/* Old Menu */
 nav .menu a {
     margin-bottom: 10px;
     text-align: center;
@@ -357,6 +456,10 @@ nav .nav-btn {
     color: var(--white);
     background-color: var(--btn-bg-color);
 }
+nav .nav-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
 nav .nav-btn p {
     opacity: 0;
     width: 0;
@@ -382,16 +485,12 @@ nav .nav-btn p {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
-nav .nav-btn:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-}
-nav .nav-btn.active {
+#home nav .nav-btn.active {
     width: 110px;
     padding: 5px 10px;
     gap: 10px;
 }
-nav .nav-btn.active p {
+#home nav .nav-btn.active p {
     width: auto;
     visibility: visible;
     opacity: 1;
@@ -813,7 +912,7 @@ section {
 #discover .popup-btns {
     gap: -10px;
 }
-#discover .btn:nth-child(2) {
+#discover .popup-btns .btn:nth-child(2) {
     background: rgba(0, 0, 0, 0.2);
     color: red;
 }
