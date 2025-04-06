@@ -18,11 +18,7 @@ menu = document.querySelector(".menu")
 burger.onclick = function(){
     menu.classList.toggle("active")
     burger.classList.toggle("active")
-}
-
-menu.onclick = function(){
-    menu.classList.toggle("active")
-    burger.classList.toggle("active")
+    console.log("Burger clicked")
 }
 
 // Check animation

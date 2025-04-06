@@ -1,4 +1,4 @@
-<!-- Lattefy's discover page -->
+<!-- Lattefy's account page -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,22 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>Lattefy | Discover</title>
-    <meta property="og:title" content="Lattefy | Discover">
+    <title>Lattefy | Cuenta</title>
+    <meta property="og:title" content="Lattefy | Cuenta">
     <meta property="og:image" content="assets/images/meta/meta-img.png"/>
     
     <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
+    
     <link rel="stylesheet" href="assets/style.css">
     
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body id="discover">
+<body id="account">
     
     <main>
+
         <div id="loader" style="display: none;"></div>
 
         <!-- Navigation Bar -->
+        
         <nav>
             <a href="./index.html">
                 <div class="logo">
@@ -31,7 +35,7 @@
             </a>
             <div class="menu">
                 <!-- Search Bar -->
-                <a href="#" class="search-bar">
+                <a href="./discover.html" class="search-bar">
                     <p>Buscar Restaurantes...</p>
                     <i class="ph ph-magnifying-glass"></i>
                 </a>
@@ -41,9 +45,9 @@
                     <i class="ph ph-cardholder"></i>
                     <h4>Mi Wallet</h4>
                 </a>
-                <a href="./account.html" class="box">
-                    <i class="ph ph-user-circle"></i>
-                    <h4>Cuenta</h4>
+                <a href="./discover.html" class="box">
+                    <i class="ph ph-gift"></i>
+                    <h4>Beneficios</h4>
                 </a>
                 <a href="#" class="box" id="invite-btn">
                     <i class="ph ph-user-plus"></i>
@@ -92,9 +96,9 @@
                 </span>
             </div>
             <div class="nav-actions">
-                <a href="./index.html" class="btn nav-btn">
-                    <i class="ph ph-cardholder"></i>
-                    <p>Tarjetas</p>
+                <a href="./discover.html" class="btn nav-btn" id="discover-icon">
+                    <i class="ph ph-gift"></i>
+                    <p>Regalos</p>
                 </a>
                 <a href="#" class="burger">
                     <span class="line-1"></span>
@@ -104,57 +108,25 @@
             </div>
         </nav>
 
-        <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Buscar restaurantes" />
-            <i class="ph ph-magnifying-glass"></i>
-        </div>
-
-        <!-- Templates Display -->
-        <section id="templates-container"></section>
-
-        <!-- Background Blur Overlay -->
-        <div id="popup-overlay" class="popup-overlay"></div>
-
-        <!-- Popup -->
-        <div class="container" id="popup">
-            <h2>¿Quieres esta tarjeta?</h2>
-            <div id="popup-template-header"></div>
-            <div class="popup-btns">
-                <a class="btn" id="add-card-btn">
-                    <span id="btn-loader" class="hidden"></span>
-                    Agregar tarjeta
-                </a>
-                <a class="btn" id="cancel-btn">Cancelar</a>
-            </div>
-        </div>
-
-        <!-- Success Confirmation -->
-        <div class="container" id="confirmation">
-            <i class="ph ph-check-circle check-icon"></i>
-            <h2>Tarjeta agregada con éxito</h2>
-        </div>
-
     </main>
 
     <script src="config.js"></script>
 
-      <!-- Js File to send EmailJS email -->
+    <!-- Js File to send EmailJS email -->
     <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <script src="app/utils/search.js"></script>
+    
+    <script src="app/utils/business.js"></script>
     <script src="app/utils/emails.js"></script>
     <script src="app/utils/invite.js"></script>
 
-    <script src="app/types/box.js"></script>
-
+    <script src="app/types/card.js"></script>
+    
     <script src="app/auth.js"></script>
     <script src="app/cards.js"></script>
-    <script src="app/discover.js"></script>
-
     <script src="app/wallet.js"></script>
 
+    <!-- General Js File -->
     <script src="assets/script.js"></script>
 
 </body>

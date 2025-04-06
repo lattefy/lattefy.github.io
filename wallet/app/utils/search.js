@@ -10,6 +10,7 @@ function setupSearch(inputId, containerId, itemClass, textClass) {
     }
 
     searchInput.addEventListener("input", function () {
+        console.log("Search input changed:", searchInput.value) // Debugging line
         const searchTerm = searchInput.value.toLowerCase()
         const items = container.getElementsByClassName(itemClass)
 

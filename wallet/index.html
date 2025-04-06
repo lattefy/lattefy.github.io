@@ -35,8 +35,8 @@
             </a>
             <div class="menu">
                 <!-- Search Bar -->
-                <a href="./discover.html" class="search-container">
-                    <input type="text" id="search-bar" placeholder="Buscar restaurantes" />
+                <a href="./discover.html" class="search-bar">
+                    <p>Buscar Restaurantes...</p>
                     <i class="ph ph-magnifying-glass"></i>
                 </a>
                 <!-- Boxes -->
@@ -45,11 +45,11 @@
                     <i class="ph ph-gift"></i>
                     <h4>Beneficios</h4>
                 </a>
-                <a href="#" class="box">
+                <a href="./account.html" class="box">
                     <i class="ph ph-user-circle"></i>
                     <h4>Cuenta</h4>
                 </a>
-                <a href="#" class="box">
+                <a href="#" class="box" id="invite-btn">
                     <i class="ph ph-user-plus"></i>
                     <h4>Invitar amigos</h4>
                 </a>
@@ -61,14 +61,11 @@
                 <!-- List -->
                 <ul>
                     <li>
-                        <h5>Website</h5>
-                        <a href="https://lattefy.com.uy" target="_blank">
-                           <i class="ph ph-globe-simple"></i>
-                           <p>lattefy.com.uy</p>
-                        </a>
-                    </li>
-                    <li>
                         <h5>Contacto</h5>
+                        <a href="https://lattefy.com.uy" target="_blank">
+                            <i class="ph ph-globe-simple"></i>
+                            <p>lattefy.com.uy</p>
+                         </a>
                         <a>
                             <i class="ph ph-envelope-simple"></i>
                             <p>lattefy.ai@gmail.com</p>
@@ -80,7 +77,7 @@
                     </li>
                     <li>
                         <h5>Legal</h5>
-                        <a href="https://lattefy.com.uy/terms" target="_blank">
+                        <a href="https://lattefy.com.uy/terms" target="_blank" class="text-box">
                            <i class="ph ph-scales"></i>
                            <p>Terminos y Condiciones</p>
                         </a>
@@ -134,6 +131,7 @@
     
     <script src="app/utils/business.js"></script>
     <script src="app/utils/emails.js"></script>
+    <script src="app/utils/invite.js"></script>
 
     <script src="app/types/card.js"></script>
     

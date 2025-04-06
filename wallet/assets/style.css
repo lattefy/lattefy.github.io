@@ -65,7 +65,7 @@ div {
     --nav-bg-color: var(--white);
     --container-bg-color: white;
 
-    --nav-menu-boxes-bg-color: rgba(0, 0, 0, 0.1);
+    --nav-menu-boxes-bg-color: rgba(30, 30, 30, 0.1);
     --nav-menu-boxes-color: var(--dark);
     --nav-menu-footer-color: #999;
 
@@ -267,8 +267,7 @@ nav .menu {
 
     left: 0;
     right: 4.5vw;
-    top: 50px;
-    padding-top: 30px;
+    top: 55px;
 
     display: flex;
     flex-direction: column;
@@ -282,16 +281,33 @@ nav .menu {
     background-color: var(--light);
 }
 nav .menu.active {
-    height: calc(100vh - 50px);
+    height: auto;
+    min-height: calc(100vh + 50px);
     background-color: rgba(255, 255, 255, 1);
     opacity: 1;
     backdrop-filter: blur(10px);
 }
 
-nav .menu .search-container {
-    transform: translateY(0);
-    margin: 0 0 20px 0;
-    padding: 0 10px 0 5px;
+nav .menu .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 14px;
+    color: var(--search-box-color);
+    opacity: 0.9;
+    background-color: var(--nav-menu-boxes-bg-color);
+    
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 45px;
+    width: 100%;
+    max-width: 350px;
+    margin: 10px 0 20px 0;
+    gap: 5px;
+}
+nav .menu .search-bar i {
+    font-size: 20px;
 }
 nav .menu .boxes {
     display: grid;
@@ -373,9 +389,14 @@ nav .menu ul li a i {
     font-size: 20px;
 }
 
+nav .menu ul li .text-box {
+    background-color: transparent;
+    opacity: 0.8;
+}
+
 nav .menu span {
     font-size: 12px;
-    margin: 30px auto;
+    margin: 30px auto 60px;
     color: var(--nav-menu-footer-color);
 }
 
