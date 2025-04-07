@@ -281,7 +281,7 @@ nav .menu {
     background-color: var(--light);
 }
 nav .menu.active {
-    height: calc(100vh);
+    height: calc(100vh + 55px);
     background-color: rgba(255, 255, 255, 1);
     opacity: 1;
     backdrop-filter: blur(10px);
@@ -294,12 +294,12 @@ nav .menu .search-bar {
 
     font-size: 14px;
     color: var(--search-box-color);
-    opacity: 0.9;
+    opacity: 0.8;
     background-color: var(--nav-menu-boxes-bg-color);
     
     border-radius: 10px;
     padding: 0 10px;
-    height: 45px;
+    height: 40px;
     width: 100%;
     max-width: 350px;
     margin: 10px 0 20px 0;
@@ -395,7 +395,7 @@ nav .menu ul li .text-box {
 
 nav .menu span {
     font-size: 12px;
-    margin: 30px auto 60px;
+    margin: 30px auto 80px;
     color: var(--nav-menu-footer-color);
 }
 
