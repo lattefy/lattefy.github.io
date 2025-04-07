@@ -1,14 +1,14 @@
 // Lattefy's frontend wallet invite file
 
-const inviteBtn = document.getElementById('invite-btn') // or querySelector if you prefer
+const inviteBtn = document.getElementById('invite-btn') 
 
 inviteBtn.addEventListener('click', async () => {
     if (navigator.share) {
         try {
             await navigator.share({
                 title: 'Lattefy',
-                text: 'Mirá esta app que te da beneficios en restaurantes favoritos!!!',
-                url: 'https://lattefy.com.uy' // Your website link
+                text: 'Mirá esta app que te da beneficios en tus restaurantes favoritos!!!    ',
+                url: 'https://lattefy.com.uy' 
             })
             console.log('Thanks for sharing!')
         } catch (error) {
