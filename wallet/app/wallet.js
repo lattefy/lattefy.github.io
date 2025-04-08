@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Logout
-    if (document.getElementById('home') || document.getElementById('discover')) {
+    if (document.getElementById('logout-btn')) {
         document.getElementById('logout-btn').addEventListener('click', async () => {
             localStorage.removeItem('accessToken')
             localStorage.removeItem('refreshToken')

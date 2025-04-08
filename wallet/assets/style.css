@@ -50,7 +50,8 @@ div {
 
     /* colors */
     --blue: #1778f2;
-    --green: #1db97b;
+    --green: #2de79d;
+    --darkGreen: #00ff99;
     --red: #ff307f;
     --yellow: #ffd500;
     --white: #fff;
@@ -67,6 +68,8 @@ div {
 
     --nav-menu-boxes-bg-color: rgba(30, 30, 30, 0.1);
     --nav-menu-boxes-color: var(--dark);
+    --nav-menu-businesss-bg-color: var(--green);
+    --nav-menu-businesss-color: var(--white);
     --nav-menu-footer-color: #999;
 
     /* card */
@@ -86,6 +89,9 @@ div {
     --link-color: var(--blue);
     --btn-text-color: #fff;
     --btn-bg-color: var(--dark);
+
+    --logout-btn-bg-color: rgba(30, 30, 30, 0.1);
+    --logout-btn-color: var(--red);
 
     /* shadows */
     --card-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
@@ -266,22 +272,25 @@ nav .menu {
     width: 100vw;
 
     left: 0;
-    right: 4.5vw;
+    right: 0;
     top: 55px;
+    padding: 0;
+    margin: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: top;
+    justify-content: flex-start; 
     position: absolute;
 
     overflow-x: hidden;
     opacity: 0;
-    transition: 0.4s;
+    transition: 0s;
     background-color: var(--light);
 }
+
 nav .menu.active {
-    height: calc(100vh + 55px);
+    height: calc(100vh - 55px);
     background-color: rgba(255, 255, 255, 1);
     opacity: 1;
     backdrop-filter: blur(10px);
@@ -296,36 +305,51 @@ nav .menu .search-bar {
     color: var(--search-box-color);
     opacity: 0.8;
     background-color: var(--nav-menu-boxes-bg-color);
-    
     border-radius: 10px;
-    padding: 0 10px;
+
+    flex-shrink: 0; 
+    padding: 0 10px; 
     height: 40px;
     width: 100%;
     max-width: 350px;
-    margin: 10px 0 20px 0;
+    margin: 5px 0 20px 0;
     gap: 5px;
 }
+
 nav .menu .search-bar i {
     font-size: 20px;
+    margin-right: 10px;
 }
+
+nav .menu .search-bar p {
+    margin-left: 15px;
+}
+
 nav .menu .boxes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas: 
         "b1 b2"
-        "b3 b4"
-    ;  
+        "b3 b4";  
     gap: 10px;
     width: 100%;
     max-width: 350px;
     height: 180px;
     margin: 0 auto 60px auto;
 }
+
+#done nav .menu .boxes,
+#login nav .menu .boxes,
+#signup nav .menu .boxes {
+    height: 90px;
+    margin-bottom: 30px;
+}
+
 nav .menu .boxes .box {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start; 
     text-align: left;
     justify-content: flex-end;
 
@@ -335,26 +359,50 @@ nav .menu .boxes .box {
     gap: 10px;
 
     cursor: pointer;
-    /* opacity: 0.6; */
     color: var(--dark);
     background-color: var(--nav-menu-boxes-bg-color);
 }
+
 nav .menu .boxes .box i {
     font-size: 30px;
 }
 
-/* nav .menu .boxes .box:nth-child(1){
-    background-color: var(--red);
+/* Business Btn */
+
+nav .menu .business-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    height: 60px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 0 20px 0;
+    flex-shrink: 0;
+
+    border-radius: 10px;
+    background-color: var(--nav-menu-businesss-bg-color);
+    color: var(--nav-menu-businesss-color);
+
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
 }
-nav .menu .boxes .box:nth-child(2){
-    background-color: var(--blue);
+
+nav .menu .business-btn i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    color: var(--white);
+    background-color: var(--darkGreen);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-left: 10px; 
 }
-nav .menu .boxes .box:nth-child(3){
-    background-color: var(--green);
-}
-nav .menu .boxes .box:nth-child(4){
-    background-color: var(--yellow);
-} */
 
 nav .menu ul {
     display: flex;
@@ -365,32 +413,35 @@ nav .menu ul {
     padding: 0;
     gap: 15px;
 }
+
 nav .menu ul li {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 0;
-    gap: 5px;
+    gap: 10px;
 }
+
+nav .menu ul li h5 {
+    margin-bottom: 5px;
+}
+
 nav .menu ul li a {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: flex-start;
 
-    background-color: var(--nav-menu-boxes-bg-color);
     border-radius: 10px;
     padding: 0 10px;
-    height: 45px;
-    margin: 0 0 5px 0;
     gap: 5px;
-}
-nav .menu ul li a i {
-    font-size: 20px;
-}
 
-nav .menu ul li .text-box {
     background-color: transparent;
     opacity: 0.8;
+    color: var(--dark);
+}
+
+nav .menu ul li a i {
+    font-size: 20px;
 }
 
 nav .menu span {
@@ -399,26 +450,6 @@ nav .menu span {
     color: var(--nav-menu-footer-color);
 }
 
-/* Old Menu */
-nav .menu a {
-    margin-bottom: 10px;
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    box-sizing: border-box;
-    color: var(--dark);
-    font-style: bold;
-}
-nav .menu .btn {
-    color: var(--btn-text-color);
-    width: auto;
-    padding: 0 20px;
-    border-radius: 30px;
-}
-nav .menu .btn i {
-    font-size: 20px;
-    margin: 0 10px 0 0;
-}
 
 /* Navigation Bar - burger */
 
@@ -486,6 +517,7 @@ nav .nav-btn p {
     visibility: hidden;
     transition: 0.1s ease-in-out;
 }
+
 #home nav .nav-btn {
     background: linear-gradient(135deg, 
     #FF3B30, /* Red */
@@ -994,7 +1026,6 @@ section {
     position: relative;
     transform: translateY(60px);
 }
-
 .search-container input {
     flex: 1;
     border: none;
@@ -1004,13 +1035,37 @@ section {
     font-family: "Poppins", sans-serif;
     color: var(--dark);
 }
-
 .search-container i {
     font-size: 18px;
     color: var(--dark);
 }
 
 
+
+/* ACCOUNT */
+
+#account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#account #logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 350px;
+    height: 45px;
+    padding: 0 10px 0 20px;
+    margin: 0 auto 10px auto; 
+
+    border-radius: 10px;
+    background-color: var(--logout-btn-bg-color);
+    color: var(--logout-btn-color);
+}
 
 /* ----------------------------------------- Responsive -------------------------------------------- */
 
