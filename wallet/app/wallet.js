@@ -194,12 +194,44 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // Logout
-    if (document.getElementById('logout-btn')) {
-        document.getElementById('logout-btn').addEventListener('click', async () => {
-            localStorage.removeItem('accessToken')
-            localStorage.removeItem('refreshToken')
-            window.location.href = './login.html'
-        })
+    if (document.getElementById('account')) {
+
+        loader.style.display = 'block'
+
+        const accessToken = localStorage.getItem('accessToken')
+        const refreshToken = localStorage.getItem('refreshToken')
+
+        try {
+
+            const clientData = await authClient(accessToken, refreshToken)
+            if (!clientData || !clientData.phoneNumber) {
+                throw new Error('Client authentication failed or missing phone number')
+            }
+
+            console.log("Authenticated Client for Account Page:", clientData)
+            const client = await getClient(clientData.phoneNumber)
+            if (!client) {
+                throw new Error('Failed to fetch client details')
+            }
+            console.log('Client details:', client)
+
+            // Display client data
+            await displayClientData(client)
+
+            loader.style.display = 'none'
+        } catch (error) {
+            console.error("Error authenticating Discover Page:", error)
+            window.location.href = './login.html' // Redirect if authentication fails
+        }
+
+        // Logout
+        if (document.getElementById('logout-btn')) {
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                localStorage.removeItem('accessToken')
+                localStorage.removeItem('refreshToken')
+                window.location.href = './login.html'
+            })
+        }
     }
+
 })
