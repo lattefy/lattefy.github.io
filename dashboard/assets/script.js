@@ -2,6 +2,7 @@
 
 // Auth menu
 if (document.getElementById('login')) {
+
     burger = document.querySelector(".burger")
     menu = document.querySelector(".menu")
 
@@ -14,6 +15,7 @@ if (document.getElementById('login')) {
         menu.classList.toggle("active")
         burger.classList.toggle("active")
     }
+
 } else {
 
     // Side bar

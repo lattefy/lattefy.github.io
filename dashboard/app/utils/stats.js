@@ -53,7 +53,8 @@ function displayAverageExpenditure(cards) {
 
     let sum
     if (totalSpent && totalPurchases) {
-        sum = `$ ${totalSpent / totalPurchases}`
+        const avg = totalSpent / totalPurchases
+        sum = `$ ${avg.toFixed(2)}`
     } else sum = 'N/A'
 
     output.textContent = sum

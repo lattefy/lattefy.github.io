@@ -4,45 +4,71 @@
 
 
 :root {
+
+    --color: var(--blue);
+    --color-active: var(--blue-active);
+    --lightColor: var(--lightBlue);
+
+    --dark: ;
+    --white: ;
+
     /* colors */
+    --black: #181818;
     --dark: #242424;
     --dark-active: #3a3a3a;
+
     --light: #f3f4f6;
     --white: #fff;
+
     --red: #ff0077;
+    --lightRed: #f89fc9;
+
     --blue: #1778f2;
-    --green: #14d185;
+    --blue-active: #69acfd;
     --lightBlue: #ecf4ff;
 
-    --bg-color: var(--lightBlue);
+    --green: #14d185;
+    --green-active: #a4f2d7;
+    --lightGreen: #e6ffed;
+
+    /* main */
+    --bg-color: var(--lightColor);
     --container-bg-color: var(--white);
     --card-bg-color: var(--white);
-    --loader-bg-color: var(--lightBlue);
+    --loader-bg-color: var(--lightColor);
 
     /* sidebar */
-    --sidebar-logo-color: var(--white);
-    --sidebar-burger-color: var(--white);
-    --sidebar-bg-color: var(--dark);
-    --sidebar-color: var(--white);
-    --sidebar-btn-bg-color: var(--dark);
-    --sidebar-btn-color: var(--light);
-    --sidebar-btn-bg-color-active: var(--light);
-    --sidebar-btn-color-active: var(--blue);
-    --sidebar-btn-hover: var(--dark-active);
-    --sidebar-logout-color: var(--light);
-    --sidebar-logout-btn-bg-color-hover: var(--light);
-    --sidebar-logout-btn-color-hover: var(--red);
+    --sidebar-logo-color: var(--dark);
+    --sidebar-burger-color: var(--dark);
+
+    --sidebar-bg-color: var(--white);
+    --sidebar-color: var(--color);
+
+    --sidebar-btn-bg-color: var(--lightColor);
+    --sidebar-btn-color: var(--color);
+
+    --sidebar-btn-bg-color-hover: var(--color-active);
+    --sidebar-btn-color-hover: var(--white);
+
+    --sidebar-btn-bg-color-active: var(--color);
+    --sidebar-btn-color-active: var(--white);
+
+    --sidebar-logout-color: var(--red);
+    --sidebar-logout-bg-color: var(--white);
+    --sidebar-logout-btn-bg-color-hover: var(--lightRed);
+    --sidebar-logout-btn-color-hover: var(--white);
 
     /* navbar */
-    --navbar-bg-color: var(--lightBlue);
+    --navbar-bg-color: var(--lightColor);
     --navbar-color: var(--dark);
+    
     --reload-btn-bg-color: var(--white);
-    --reload-btn-color: var(--blue);
+    --reload-btn-color: var(--color);
 
     /* buttons */
-    --btn-bg-color: var(--dark);
+    --btn-bg-color: var(--color);
     --btn-color: var(--light);
-    --btn-border-color: var(--dark);
+    --btn-border-color: var(--color);
 
     /* shadows */
     --container-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -125,6 +151,7 @@ body.collapsed-sidebar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: var(--container-color);
     background-color: var(--container-bg-color);
     width: 350px;
     padding: 30px;
@@ -132,6 +159,7 @@ body.collapsed-sidebar {
     box-shadow: var(--container-shadow);
 }
 .card {
+    color: var(--card-color);
     background-color: var(--card-bg-color);
 }
 
@@ -162,7 +190,7 @@ textarea
 input:focus,
 textarea:focus
 {
-    border-color: var(--blue);
+    border-color: var(--color);
 }
 input {
     padding: 0 15px;
@@ -200,6 +228,7 @@ select {
 /* ----------------------------------------- Navigation Bar ---------------------------------------- */
 
 .navbar {
+    color: var(--nav-color);
     background-color: var(--navbar-bg-color);
     grid-area: header; 
     padding: 20px;
@@ -224,9 +253,9 @@ select {
 
     width: 30px;
     height: 30px;
-    transform: translateY(10px);
 
     border-radius: 100%;
+    cursor: pointer;
     background-color: var(--reload-btn-bg-color);
 }
 .navbar .nav-btns .reload i {
@@ -240,6 +269,8 @@ select {
     padding: 10px 15px;
     margin-bottom: 0;
     border-radius: 30px;
+
+    display: none;
 }
 
 
@@ -342,22 +373,21 @@ select {
     background-color: var(--sidebar-btn-bg-color);
 
 }
-.sidebar .menu li:hover {
-    background-color: var(--sidebar-btn-hover);
-}
 .sidebar .menu li a {
     display: block;
-    color: var(--white);
+    color: var(--sidebar-btn-color);
     padding: 10px 10px;
     cursor: pointer;
 
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    border-radius: 10px;
 }
-/* .sidebar .menu li a:hover {
-    color: var(--dark);
-} */
+.sidebar .menu li a:hover {
+    background-color: var(--sidebar-btn-bg-color-hover);
+    color: var(--sidebar-btn-color-hover);
+}
 .sidebar .menu li a i {
     margin-right: 10px;
     font-size: 25px;
@@ -376,6 +406,7 @@ select {
     justify-content: flex-start;
     border-radius: 10px;
     color: var(--sidebar-logout-color);
+    background-color: var(--sidebar-logout-bg-color);
 }
 .log-out:hover {
     background-color: var(--sidebar-logout-btn-bg-color-hover);
@@ -454,7 +485,7 @@ select {
 
 .main {
     background-color: var(--bg-color);
-    padding: 10px 20px 20px 20px;
+    padding: 0 20px 20px 20px;
     grid-area: main;
 
     z-index: 0;
@@ -483,10 +514,16 @@ select {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
         "c1 c2 c3 c4"
-        "c5 c5 c6 c7"
-        "c5 c5 c6 c7"
+        "c5 c5 c6 c6"
+        "c5 c5 c6 c6"
     ;
-    gap: 10px;
+/* 
+    grid-template-areas: 
+        "c1 c2 c6 c6"
+        "c3 c4 c6 c6"
+        "c5 c5 c6 c6"
+    ; */
+     gap: 10px;
 }
 
 #dashboard .main .card:nth-child(2) {
@@ -575,8 +612,8 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 10px 30px;
+    justify-content: flex-start;
+    padding: 20px 30px;
 }
 #dashboard .main .card:nth-child(7) i,
 #dashboard .main .card:nth-child(8) i {
@@ -634,14 +671,19 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
 /* Clients grid Layout */
 
 #clients .main {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 15% 1fr;
-    grid-template-areas: 
-        "c1"
-        "c2"    
-    ;
-    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clients .main .container {
+    padding: 30px 40px;
+}
+#clients .main .container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 
@@ -654,107 +696,6 @@ body#clients .sidebar .menu #clients-sidebar-btn a {
     color: var(--sidebar-btn-color-active);
 }
 
-
-/* --------------------------------- Clients Database Table ---------------------------------------- */
-
-#clients .main .card {
-    grid-area: c2;
-}
-#clients .main .card .table-container {
-    flex-grow: 1;
-    overflow: auto;
-    margin: 10px;
-    max-height: 300px;
-}
-#clients .main .card table {
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse; 
-    border-radius: 10px;
-    font-size: 12px;
-    margin-top: 10px;
-    background-color: var(--white);
-}
-#clients .main .card table th,
-#clients .main .card table td {
-    padding: 5px; 
-    text-align: left; 
-}
-#clients .main .card table thead {
-    color: var(--dark); 
-}
-
-
-/* --------------------------------- Clients Sort & Filter ----------------------------------------- */
-
-#clients .main .sort-filter {
-    grid-area: c1;
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
-#clients .main .sort-box, 
-#clients .main .filter-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background-color: var(--white);
-    padding: 15px;
-    border-radius: 8px;
-}
-#clients .main select,
-#clients .main input {
-    margin-bottom: 0;
-    height: 35px;
-    border-radius: 5px;
-}
-#clients .main .sort-box {
-    width: 35%;
-}
-#clients .main .sort-box select {
-    width: 55%;
-}
-#clients .main .filter-box {
-    width: 60%;
-}
-#clients .main .filter-box select {
-    width: 60%;
-}
-
-
-/* Sort Filter - Buttons */
-
-#clients .main .sort-filter .sort-filter-btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-#clients .main .sort-filter .sort-filter-btns a {
-    width: 45px;
-    height: 45px;
-    border-radius: 100%;
-    border: none;
-    transform: translateY(5px);
-    transition: ease-in-out 0.2s;
-}
-#clients .main .sort-filter .sort-filter-btns a:first-child {
-    background-color: var(--white);
-    color: rgb(3, 234, 138);
-}
-#clients .main .sort-filter .sort-filter-btns a:first-child:hover {
-    background-color: rgb(3, 234, 138);
-    color: var(--white);
-}
-#clients .main .sort-filter .sort-filter-btns a:last-child {
-    background-color: var(--white);
-    color: rgb(234, 3, 126);
-}
-#clients .main .sort-filter .sort-filter-btns a:last-child:hover {
-    color: var(--white);
-    background-color: rgb(234, 3, 126);
-}
 
 
 
@@ -815,7 +756,7 @@ body#points .sidebar .menu #points-sidebar-btn a {
     align-items: center;
     justify-content: center;
 
-    background: var(--blue);
+    background: var(--color);
     color: var(--light);
     border-radius: 8px;
     cursor: pointer;
@@ -949,15 +890,15 @@ body#campaigns .sidebar .menu #campaigns-sidebar-btn a {
     align-items: center;
     justify-content: center;
 
-    border: 2px solid var(--blue);
+    border: 2px solid var(--color);
     border-radius: 10px;
 
     background-color: transparent;
-    color: var(--blue);
+    color: var(--color);
     transition: ease-in-out 0.2s;
 }
 .btn-file:hover {
-    background-color: var(--blue);
+    background-color: var(--color);
     color: var(--light);
 }
 .btn-file input[type="file"] {

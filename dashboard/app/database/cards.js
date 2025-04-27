@@ -57,3 +57,29 @@ async function updateCard(phoneNumber, businessId, templateId, updates) {
     }
 }
 
+// Display card
+function displayCardsTable(cards) {
+
+    const cardsOutput = document.getElementById('allCards')
+    cardsOutput.innerHTML = ''
+    const fieldsToAvoid = [
+        '_id', 'businessid', 'createdat', 'updatedat', 'templateid', 'status', '__v'
+    ]
+
+    let rows = cards.map(card => {
+        let row = '<tr>'
+        Object.entries(card).forEach(([key, value]) => {
+            if (!fieldsToAvoid.includes(key.toLowerCase())) {
+                row += `<td data-label="${capitalizeFirstLetter(key)}">${value}</td>`
+            }
+        })
+        row += '</tr>'
+        return row
+    }).join('')
+    
+    cardsOutput.innerHTML = rows
+    
+}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}

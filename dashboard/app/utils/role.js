@@ -2,6 +2,6 @@
 
 async function checkRole(userRole, authRoles) {
     if (!authRoles.includes(userRole)) {
-        window.location.href = './index.html'
+        window.location.href = './points.html'
     }
 }

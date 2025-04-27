@@ -1,7 +1,7 @@
 // Lattefy's frontend dashboard clients file
 
 // Display clients
-function displayClientsDashboard(clients) {
+function displayClientsTable(clients) {
 
     const clientOutput = document.getElementById('allClients')
     clientOutput.innerHTML = ''

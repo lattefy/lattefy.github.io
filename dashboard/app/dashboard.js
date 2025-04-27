@@ -101,9 +101,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Sidebar
     displaySidebarBtns(business, user.role)
         
-
     // Dashboard
     if (document.getElementById('dashboard')) {
+
+        // Handle role
+        const allowedRoles = ['admin', 'manager']
+        await checkRole(user.role, allowedRoles)
 
         // Custom
         displayBusinessName(user)
@@ -115,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         displayAverageExpenditure(cards)
 
         // Table
-        displayClientsDashboard(clients)
+        displayClientsTable(clients)
 
     }
 
@@ -201,6 +204,11 @@ document.addEventListener('DOMContentLoaded', async function () {
       
           }) 
 
+    }
+
+    // Clients
+    if (document.getElementById('clients')) {
+        
     }
 
     // Points
@@ -303,6 +311,45 @@ document.addEventListener('DOMContentLoaded', async function () {
                 phoneRewardInput.value = ""
             } else {
                 console.log('No fidelity template found')
+                return
+            }
+            
+        })
+    }
+
+    // Gifts Page
+    if (document.getElementById('gift')) {
+
+        // Template (gifts page)
+        let giftTemplate = null
+        console.log("Checking Gift Template ID:", giftTemplateId)
+
+        if (giftTemplateId) {
+            giftTemplate = await getTemplateById(giftTemplateId)
+        } else {
+            console.error("Required gift template is missing. Redirecting...")
+            alert("No se encontró la plantilla de regalos.") 
+            window.location.href = './index.html'
+        }
+
+        // Inputs
+        const getGiftBtn = document.getElementById("claim-reward-btn")
+        const phoneInput = document.getElementById("phone-add")
+
+        // Handle getting a Gift
+        getGiftBtn.addEventListener("click", async () => {
+            const phoneNumber = phoneInput.value.trim()
+            if (!phoneNumber) {
+                alert("Por favor, ingresa un número de celular.")
+                return
+            }
+
+            if (giftTemplate) {
+                await claimReward(phoneNumber, business.businessId, giftTemplate)
+                phoneInput.value = ""
+            } else {
+                console.log('No gift template found')
+                alert("No se encontró la plantilla de regalo.")
                 return
             }
             
