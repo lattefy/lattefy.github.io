@@ -302,32 +302,6 @@ nav .auth a:first-of-type {
     align-items: center;
 }
 
-#hero .poc-icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 0 30px 0;
-}
-#hero .poc-icons .poc-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px;
-    font-size: 18px;
-    color: var(--poc-color);
-    border: solid 2px var(--green);
-    background-color: var(--poc-bg-color);
-    opacity: 0.8;
-    border-radius: 20px;
-}
-#hero .poc-icons .poc-icon:nth-child(1) {
-    padding: 10px 20px;
-    background-color: transparent;
-    color: var(--green)
-}
-
 /* Hero Section - text */
 
 #hero h1{
@@ -870,9 +844,9 @@ footer span {
     }
     nav .menu.active {
       height: 100vh;
-      background-color: rgba(255, 255, 255, 0.90);
-      opacity: 1;
-      backdrop-filter: blur(20px);
+      background-color: rgba(255, 255, 255, 1);
+      opacity: 0.9;
+      backdrop-filter: blur(50px);
     }
     nav .menu a {
       margin-bottom: 10px;
