@@ -1,16 +1,13 @@
-/* Lattefy's frontend dashboard style file */
+/* Lattefy's frontend Manager style file */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 
 :root {
 
-    --color: var(--blue);
-    --color-active: var(--blue-active);
-    --lightColor: var(--lightBlue);
-
-    --dark: ;
-    --white: ;
+    --color: var(--dark);
+    --color-active: var(--dark-active);
+    --lightColor: var(--light);
 
     /* colors */
     --black: #181818;
@@ -33,7 +30,7 @@
 
     /* main */
     --bg-color: var(--lightColor);
-    --container-bg-color: var(--white);
+    --container-bg-color: var(--light);
     --card-bg-color: var(--white);
     --loader-bg-color: var(--lightColor);
 
@@ -503,12 +500,49 @@ select {
 
 
 /* --------------------------------------------------------------------------------------------------*/
-/* ------------------------------------------- DASHBOARD ------------------------------------------- */
+/* --------------------------------------------- Admin --------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
-/* Dashboard grid layout */
+#admin .main {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-x: auto;
+}
 
-#dashboard .main {
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+}
+
+
+
+
+/* Admin Link */
+
+body#admin .sidebar .menu #admin-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#admin .sidebar .menu #admin-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- Manager ------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+/* Manager grid layout */
+
+#manager .main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -517,61 +551,52 @@ select {
         "c5 c5 c6 c6"
         "c5 c5 c6 c6"
     ;
-/* 
-    grid-template-areas: 
-        "c1 c2 c6 c6"
-        "c3 c4 c6 c6"
-        "c5 c5 c6 c6"
-    ; */
      gap: 10px;
 }
 
-#dashboard .main .card:nth-child(2) {
+#manager .main .card:nth-child(2) {
     grid-area: c1;
 }
-#dashboard .main .card:nth-child(3) {
+#manager .main .card:nth-child(3) {
     grid-area: c2;
 }
-#dashboard .main .card:nth-child(4) {
+#manager .main .card:nth-child(4) {
     grid-area: c3;
 }
-#dashboard .main .card:nth-child(5) {
+#manager .main .card:nth-child(5) {
     grid-area: c4;
 }
-#dashboard .main .card:nth-child(6) {
+#manager .main .card:nth-child(6) {
     grid-area: c5;
 }
-#dashboard .main .card:nth-child(7) {
+#manager .main .card:nth-child(7) {
     grid-area: c6;
 }
-#dashboard .main .card:nth-child(8) {
-    grid-area: c7;
-}
 
 
-/* Dashboard Link */
+/* Manager Link */
 
-body#dashboard .sidebar .menu #dashboard-sidebar-btn {
+body#manager .sidebar .menu #manager-sidebar-btn {
     background-color: var(--sidebar-btn-bg-color-active);
 }
-body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
+body#manager .sidebar .menu #manager-sidebar-btn a {
     color: var(--sidebar-btn-color-active);
 }
 
 
-/* Dashboard Stats cards */
+/* Manager Stats cards */
 
-#dashboard .main .card:nth-child(2) p,
-#dashboard .main .card:nth-child(3) p,
-#dashboard .main .card:nth-child(4) p,
-#dashboard .main .card:nth-child(5) p {
+#manager .main .card:nth-child(2) p,
+#manager .main .card:nth-child(3) p,
+#manager .main .card:nth-child(4) p,
+#manager .main .card:nth-child(5) p {
     font-size: 30px;
     margin: 0;
 }
-#dashboard .main .card:nth-child(2) h2,
-#dashboard .main .card:nth-child(3) h2,
-#dashboard .main .card:nth-child(4) h2,
-#dashboard .main .card:nth-child(5) h2 {
+#manager .main .card:nth-child(2) h2,
+#manager .main .card:nth-child(3) h2,
+#manager .main .card:nth-child(4) h2,
+#manager .main .card:nth-child(5) h2 {
     margin-bottom: 10px;
     font-size: 20px;
 }
@@ -605,42 +630,36 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
 }
 
 
-/* Dashboard Campaigns card */
+/* Manager Campaigns card */
 
-#dashboard .main .card:nth-child(7),
-#dashboard .main .card:nth-child(8) {
+#manager .main .card:nth-child(7) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     padding: 20px 30px;
 }
-#dashboard .main .card:nth-child(7) i,
-#dashboard .main .card:nth-child(8) i {
+#manager .main .card:nth-child(7) i {
     font-size: 40px;
 }
-#dashboard .main .card:nth-child(7) h2,
-#dashboard .main .card:nth-child(8) h2 {
+#manager .main .card:nth-child(7) h2 {
     margin: 0 0 10px 0;
     font-size: 25px;
 }
-#dashboard .main .card:nth-child(7) p,
-#dashboard .main .card:nth-child(8) p {
+#manager .main .card:nth-child(7) p {
     font-size: 12px;
 }
 
-/* Dashboard paths */
+/* Manager paths */
 
-#dashboard .main .card:nth-child(7) .paths,
-#dashboard .main .card:nth-child(8) .paths {
+#manager .main .card:nth-child(7) .paths {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
 }
-#dashboard .main .card:nth-child(7) .paths .path,
-#dashboard .main .card:nth-child(8) .paths .path {
+#manager .main .card:nth-child(7) .paths .path {
     width: 100%;
     height: 6vh;
     padding: 5px 10px;
@@ -652,12 +671,10 @@ body#dashboard .sidebar .menu #dashboard-sidebar-btn a {
     align-items: center;
     justify-content: space-between;
 }
-#dashboard .main .card:nth-child(7) .paths .path i,
-#dashboard .main .card:nth-child(8) .paths .path i {
+#manager .main .card:nth-child(7) .paths .path i {
     font-size: 30px;
 }
-#dashboard .main .card:nth-child(7) .paths .path:nth-child(1),
-#dashboard .main .card:nth-child(8) .paths .path:nth-child(1) {
+#manager .main .card:nth-child(7) .paths .path:nth-child(1) {
     margin-bottom: 5px;
 }
 
@@ -765,6 +782,31 @@ body#points .sidebar .menu #points-sidebar-btn a {
     height: 50px;
     transform: translateY(-5px);
 }
+
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- Points ---------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
+
+/* points - layout */
+
+#gifts .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* points Link */
+
+body#gifts .sidebar .menu #gifts-sidebar-btn {
+    background-color: var(--sidebar-btn-bg-color-active);
+}
+body#gifts .sidebar .menu #gifts-sidebar-btn a {
+    color: var(--sidebar-btn-color-active);
+}
+
 
 
 
@@ -1130,9 +1172,9 @@ body#download .sidebar .menu li:nth-child(6) a {
     }
 
 
-    /* RESPONSIVE | DASHBOARD */
+    /* RESPONSIVE | Manager */
 
-    #dashboard .main {
+    #manager .main {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, auto);
         grid-template-areas: 
@@ -1146,16 +1188,16 @@ body#download .sidebar .menu li:nth-child(6) a {
         ;
         gap: 20px;
     }
-    #dashboard .main .card {
+    #manager .main .card {
         padding: 10px 20px;
     }
-    #dashboard .main .card h2 {
+    #manager .main .card h2 {
         margin: 0;
     }
-    #dashboard .main .card:nth-child(6) {
+    #manager .main .card:nth-child(6) {
         height: 400px;
     }
-    #dashboard .main .card:nth-child(6) .table-container {
+    #manager .main .card:nth-child(6) .table-container {
         max-height: 350px;
     }
     

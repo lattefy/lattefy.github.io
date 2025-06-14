@@ -1,0 +1,130 @@
+<!-- Lattefy's frontend dashboard manager page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Lattefy | Dashboard</title>
+    <meta property="og:title" content="Lattefy | Dashboard">
+    <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
+    
+    <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- PHOSPHORICONS -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body id="manager" class="collapsed-sidebar">
+
+    <!-- Navigation Bar -->
+    <header class="navbar full-width">
+        <h2 id="business-name"></h2>
+        <div class="nav-btns">
+            <a class="reload">
+                <i class="ph ph-arrow-clockwise"></i>
+            </a>
+            <a id="wallet-btn" class="btn">Cargar Cliente</a>
+        </div>
+    </header>
+
+    <!-- Side Bar -->
+    <section class="sidebar active">
+        <div class="top">
+            <div class="logo">
+                <i class="ph ph-coffee"></i>
+                <h1>Lattefy</h1>
+            </div>
+            <div class="burger" id="sidebar-btn">
+                <span class="line-1"></span>
+                <span class="line-2"></span>
+                <span class="line-3"></span>
+            </div>
+        </div>
+
+        <ul class="menu"></ul>
+
+        <a id="logout-btn" class="log-out">
+            <i class="ph ph-sign-out"></i>
+            <span class="link">Cerrar sesión</span>
+        </a>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main full-width">
+
+        <div id="loader" style="display: block;"></div>
+
+        <a class="card">
+            <h3>Clientes Totales</h3>
+            <p id="total-clients"></p>
+        </a>
+        <a class="card">
+            <h3 id="total-points-title"></h3>
+            <p id="total-points"></p>
+        </a>
+        <a class="card">
+            <h3>Total Facturado</h3>
+            <p id="total-spent"></p>
+        </a>
+        <a class="card">
+            <h3>Consumo Promedio</h3>
+            <p id="average-expenditure"></p>
+        </a>
+        <a class="card">
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Celular</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allClients"></tbody>
+                </table>
+            </div>
+
+        </a> 
+        <a class="card">
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allUsers"></tbody>
+                </table>
+            </div>
+
+        </a>
+        
+    </main>
+
+    <script src="./config.js"></script>
+
+    <script src="app/auth.js"></script>
+
+    <script src="app/utils/stats.js"></script>
+    <script src="app/utils/custom.js"></script>
+    <script src="app/utils/role.js"></script>
+
+    <script src="app/database/templates.js"></script>
+    <script src="app/database/business.js"></script>
+    <script src="app/database/clients.js"></script>
+    <script src="app/database/users.js"></script>
+    <script src="app/database/cards.js"></script>
+
+    <script src="app/dashboard.js"></script>
+
+    <script src="assets/script.js"></script>
+
+</body>
+</html>

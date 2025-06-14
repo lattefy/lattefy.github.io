@@ -28,19 +28,22 @@ document.addEventListener('DOMContentLoaded', async function () {
     const refreshToken = localStorage.getItem('dbRefreshToken')
     user = await authUser(accessToken, refreshToken)
 
-    console.log('User: ', user)
+    // Index (redirect user)
+    if (document.getElementById('index')) {
 
-    // clients
-    const clients = await getAll('clients')
-    console.log('Clients: ', clients)
+        // Check if user has a businessId
+        if (!user) {
+            console.error("User does not exist")
+            window.location.href = './login.html'
+            return
+        }
 
-    // cards
-    const cards = await getAll('cards')
-    console.log('Cards: ', cards)
+        // Redirect to the main page
+        await redirectToMainPage(user)
+    }
 
-    // business
     const business = await getBusinessById(user.businessId)
-    console.log('Business: ', business)
+
 
     // log-out
     const logOutBtn = document.getElementById('logout-btn')
@@ -100,16 +103,71 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Sidebar
     displaySidebarBtns(business, user.role)
+
+    // Admin Dashboard
+    if (document.getElementById('admin')) {
+
+        // Handle role
+        const allowedRoles = ['admin']
+        await checkRole(user.role, allowedRoles)
+
+        // Cards: (admin, manager), display total cards
+        const cards = await getAll('cards')
+        console.log('Cards: ', cards) 
         
-    // Dashboard
-    if (document.getElementById('dashboard')) {
+        // Clients (1): (admin, manager), display total clients
+        const clients = await getAll('clients')
+        console.log('Clients: ', clients)
+                
+        const businesses = await getAll('business')
+        console.log('Businesses:', businesses)
+
+        const grid = document.getElementById('businessGrid')
+        grid.innerHTML = ''
+
+        // General Stats
+        displayTotalClients(clients)
+        displayTotalCards(cards)
+        displayTotalPurchases(cards)
+        displayTotalPoints(cards)
+        displayTotalRewardsClaimed(cards)
+
+        // Business Stats
+        businesses.forEach(business => {
+            if (business.status !== 'ACTIVE') return; 
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            card.innerHTML = `
+                <h2>${business.name}</h2>
+                `
+            grid.appendChild(card);
+        })
+    
+    }
+        
+    // Manager Dashboard
+    if (document.getElementById('manager')) {
 
         // Handle role
         const allowedRoles = ['admin', 'manager']
         await checkRole(user.role, allowedRoles)
 
+        // Cards (2): (admin, manager), display total cards
+        const cards = await getAll('cards')
+        console.log('Cards: ', cards) 
+        
+        // Clients (2): (admin, manager), display total clients
+        const clients = await getAll('clients')
+        console.log('Clients: ', clients)
+
+        // Users (1): (manager), display total users
+        const users = await getAll('users')
+        console.log('Users: ', users)
+
         // Custom
-        displayBusinessName(user)
+        displayBusinessName(business)
 
         // Stats
         displayTotalClients(clients)
@@ -119,6 +177,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Table
         displayClientsTable(clients)
+        displayUsersTable(users)
 
     }
 
@@ -128,6 +187,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Handle role
         const allowedRoles = ['admin', 'manager']
         await checkRole(user.role, allowedRoles)
+
+        // Clients (2): (admin, manager), handle campaigns
+        const clients = await getAll('clients')
+        console.log('Clients: ', clients)
 
         const fileInput = document.getElementById('image-upload')
         const fileName = document.getElementById('file-name')
@@ -206,18 +269,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     }
 
-    // Clients
-    if (document.getElementById('clients')) {
-        
-    }
-
     // Points
     if (document.getElementById("points")) {
-        console.log("Initializing Points Page")
 
         // Template (points page)
         let fidelityTemplate = null
-        console.log("Checking Fidelity Template ID:", fidelityTemplateId)
+        console.log("Fidelity Template ID:", fidelityTemplateId)
 
         if (fidelityTemplateId) {
             fidelityTemplate = await getTemplateById(fidelityTemplateId)
@@ -258,19 +315,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.log('No fidelity template found')
                 return
             }
- 
-        
         })
 
         // Handle Point Adjustment Buttons
+
         addPointBtn.addEventListener("click", () => {
-            let currentPoints = parseInt(suggestedPointsDisplay.textContent)
+            let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
             suggestedPointsDisplay.textContent = currentPoints + 1
             window.userModifiedPoints = true // Mark as manually modified
         })
 
         subtractPointBtn.addEventListener("click", () => {
-            let currentPoints = parseInt(suggestedPointsDisplay.textContent)
+            let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
             if (currentPoints > 0) {
                 suggestedPointsDisplay.textContent = currentPoints - 1
                 window.userModifiedPoints = true // Mark as manually modified
@@ -290,7 +346,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Get final points value (either suggested or manually updated)
             const pointsToAdd = parseInt(suggestedPointsDisplay.textContent) || 0
 
-            await addPoints(phoneNumber, business.businessId, fidelityTemplate, amountSpent, pointsToAdd)
+            await addPoints(phoneNumber, user.businessId, fidelityTemplate, amountSpent, pointsToAdd)
 
             phoneInput.value = ""
             amountSpentInput.value = ""
@@ -307,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
 
             if (fidelityTemplate) {
-                await claimReward(phoneNumber, business.businessId, fidelityTemplate)
+                await claimReward(phoneNumber, user.businessId, fidelityTemplate)
                 phoneRewardInput.value = ""
             } else {
                 console.log('No fidelity template found')
@@ -345,7 +401,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
 
             if (giftTemplate) {
-                await claimReward(phoneNumber, business.businessId, giftTemplate)
+                await claimReward(phoneNumber, user.businessId, giftTemplate)
                 phoneInput.value = ""
             } else {
                 console.log('No gift template found')

@@ -21,7 +21,7 @@ async function authUser(accessToken, refreshToken) {
 
         if (response.ok) {
             const userData = await response.json()
-            console.log('Token valid. User:', userData)
+            console.log('Token valid. User: ', userData)
             return userData
         } else if (response.status === 403) {
             console.log('Access token expired, attempting refresh...')

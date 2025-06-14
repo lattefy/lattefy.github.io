@@ -6,9 +6,44 @@ function displayTotalClients(clients) {
     output.innerHTML = clients.length
 }
 
+// total Cards
+function displayTotalCards(cards) {
+    const output = document.getElementById('total-cards')
+    output.innerHTML = cards.length
+}
+
+// total Purhcases
+function displayTotalPurchases(cards) {
+    const output = document.getElementById('total-purchases')
+
+    const purchasesArray = cards.map(card => card.purchases || 0)
+    const sum = purchasesArray.reduce((acc, value) => acc + value, 0)
+
+    output.innerHTML = sum
+}
+
+// total Points
+function displayTotalPoints(cards) {
+    const output = document.getElementById('total-points')
+
+    const totalPointsArray = cards.map(card => card.totalPoints || 0)
+    const sum = totalPointsArray.reduce((acc, value) => acc + value, 0)
+
+    output.innerHTML = sum
+}
+
+// total Rewards Claimed
+function displayTotalRewardsClaimed(cards) {
+    const output = document.getElementById('total-rewards')
+
+    const totalRewardsArray = cards.map(card => card.rewardsClaimed || 0)
+    const sum = totalRewardsArray.reduce((acc, value) => acc + value, 0)
+
+    output.innerHTML = sum
+}
+
 // Total Points / Rewards Claimed
 async function displayTotalType(cards, business, fidelityTemplateId, giftTemplateId, discountTemplateId) {
-    const output = document.getElementById('total-spent')
 
     const totalPointsArray = cards.map(card => card.totalPoints || 0)
     const sum = totalPointsArray.reduce((acc, value) => acc + value, 0)
