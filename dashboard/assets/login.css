@@ -84,7 +84,7 @@ div {
 #loader {
     background: var(--loader-bg-color) url(../assets/images/loaders/loader-black.svg) no-repeat center center;
     display: block;
-    background-size: 5%;
+    background-size: 50px;
     position: fixed;
     height: 100vh;
     width: 100vw;
