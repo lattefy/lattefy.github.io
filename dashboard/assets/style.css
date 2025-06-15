@@ -140,7 +140,6 @@ body.collapsed-sidebar {
     position: absolute;
 }
 
-
 /* ------------------------------------------- Container ------------------------------------------- */
 
 .container {
@@ -158,6 +157,7 @@ body.collapsed-sidebar {
 .card {
     color: var(--card-color);
     background-color: var(--card-bg-color);
+    border: 1px rgba(0, 0, 0, 0.1) solid;
 }
 
 /* ---------------------------------------------- Inputs ------------------------------------------- */
@@ -506,23 +506,54 @@ select {
 #admin .main {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 20px;
     overflow-x: auto;
 }
 
-.stats-grid {
+#admin .main .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 10px;
 }
+#admin .main .stats-grid .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+}
+#admin .main .stats-grid .card-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+#admin .main .stats-grid .card i {
+    font-size: 20px;
+}
 
-.admin-grid {
+#admin .main h2 {
+    margin: 20px 0 0 10px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+#admin .main .businesses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
 }
-
-
+#admin .main .businesses-grid .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 30px;
+}
+#admin .main .businesses-grid .card h3 {
+    margin: 0 0 10px 0;
+}
+#admin .main .businesses-grid .card div p {
+    margin: 0 0 5px 0;
+}
 
 
 /* Admin Link */
@@ -1170,6 +1201,21 @@ body#download .sidebar .menu li:nth-child(6) a {
         grid-column: span 2;
         margin-left: 75px;
     }
+
+
+    /* RESPONSIVE | Admin */
+    
+    #admin .main {
+        gap: 20px;
+
+    }
+    #admin .main,
+    #admin .main .stats-grid,
+    #admin .main .businesses-grid {
+        grid-template-columns: 1fr;
+    }
+
+
 
 
     /* RESPONSIVE | Manager */

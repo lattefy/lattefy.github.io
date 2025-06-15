@@ -131,16 +131,35 @@ document.addEventListener('DOMContentLoaded', async function () {
         displayTotalPurchases(cards)
         displayTotalPoints(cards)
         displayTotalRewardsClaimed(cards)
+        displayAverageExpenditure(cards)
+        displayTotalSpent(cards)
 
         // Business Stats
-        businesses.forEach(business => {
+        businesses.forEach(async (business) => {
             if (business.status !== 'ACTIVE') return; 
 
             const card = document.createElement('div');
             card.className = 'card';
 
+            const businessClients = await getClientsByBusinessId(business.businessId)
+            const businessCards = await getCardsByBusinessId(business.businessId)
+            const totalPoints = await sumField(businessCards, 'totalPoints')
+            const totalPurchases = await sumField(businessCards, 'purchases')
+            const totalGifts = await sumField(businessCards, 'rewardsClaimed')
+            const totalSpent = await sumField(businessCards, 'totalSpent')
+
+            console.log(businessCards)
+
             card.innerHTML = `
-                <h2>${business.name}</h2>
+                <h3>${business.name}</h3>
+                <div>
+                    <p>Clients: ${businessClients.length}</p>
+                    <p>Puntos: ${totalPoints}</p>
+                    <p>Compras: ${totalPurchases}</p>
+                    <p>Regalos: ${totalGifts}</p>
+                    <p>Facturación: $${totalSpent}</p>
+                    <p>Promedio: $${(totalSpent / totalPurchases).toFixed(2)}</p>
+                </div>
                 `
             grid.appendChild(card);
         })

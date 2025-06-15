@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', async function (){
         try {
             const data = await userLogin(username, password)
             if (data) {
-                window.location.href = './index.html'
+                // window.location.href = './index.html'
+                await redirectToMainPage(data)
             } else {
                 alert('Error al iniciar sesión')
                 loader.style.display = 'none'

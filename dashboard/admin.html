@@ -21,7 +21,7 @@
 
     <!-- Navigation Bar -->
     <header class="navbar full-width">
-        <h2 id="business-name">Admin Dashboard</h2>
+        <h2 id="business-name">Dashboard</h2>
         <div class="nav-btns">
             <a class="reload">
                 <i class="ph ph-arrow-clockwise"></i>
@@ -59,34 +59,59 @@
 
         <div class="stats-grid">
             <div class="card">
-                <h3>Clientes</h3>
-                <p id="total-clients"></p>
+                <div class="card-label">
+                    <i class="ph ph-users-three"></i> 
+                    <p>Clientes</p>
+                </div>
+                <h4 id="total-clients"></h4>
             </div>
             <div class="card">
-                <h3>Tarjetas</h3>
-                <p id="total-cards"></p>
+                <div class="card-label">
+                    <i class="ph ph-identification-card"></i> 
+                    <p>Tarjetas</p> 
+                </div>               
+                <h4 id="total-cards"></h4>
             </div>
             <div class="card">
-                <h3>Compras</h3>
-                <p id="total-purchases"></p>
+                <div class="card-label">
+                    <i class="ph ph-shopping-cart"></i> 
+                    <p>Compras</p>
+                </div>
+                <h4 id="total-purchases"></h4>
             </div>
             <div class="card">
-                <h3>Puntos</h3>
-                <p id="total-points"></p>
+                <div class="card-label">
+                    <i class="ph ph-tag"></i> 
+                    <p>Puntos</p>
+                </div>
+                <h4 id="total-points"></h4>
             </div>
             <div class="card">
-                <h3>Regalos</h3>
-                <p id="total-rewards"></p>
+                <div class="card-label">
+                    <i class="ph ph-gift"></i> 
+                    <p>Regalos</p>
+                </div>
+                <h4 id="total-rewards"></h4>
+            </div>
+            <div class="card">
+                <div class="card-label">
+                    <i class="ph ph-chart-pie"></i> 
+                    <p>Consumo Promedio</p>
+                </div>
+                <h4 id="average-expenditure"></h4>
+            </div>
+            <div class="card">
+                <div class="card-label">
+                    <i class="ph ph-money"></i> 
+                    <p>Facturación</p>
+                </div>
+                <h4 id="total-spent"></h4>
             </div>
         </div>
 
-        <div class="business-grid"></div>
+        <h2>Info. Empresas</h2>
 
-        
-        <div class="admin-grid" id="businessGrid">
-            <!-- Business cards will be inserted here -->
-        </div
-
+        <div class="businesses-grid" id="businessGrid"></div>
 
     </main>
 

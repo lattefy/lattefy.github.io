@@ -33,8 +33,8 @@ async function displaySidebarBtns(business, role) {
 
     if (role === "admin") {
         buttons.push(
-            { id: "admin-sidebar-btn", href: "admin.html", icon: "ph-stack", label: "Admin. Dashboard" },
-            { id: "manager-sidebar-btn", href: "manager.html", icon: "ph-squares-four", label: "Manager Dashboard" }
+            { id: "admin-sidebar-btn", href: "admin.html", icon: "ph-stack", label: "Dashboard" },
+            { id: "manager-sidebar-btn", href: "manager.html", icon: "ph-squares-four", label: "Manager View" }
         )
     }
 
