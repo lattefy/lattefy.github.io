@@ -10,18 +10,59 @@ document.addEventListener('DOMContentLoaded', function () {
   // NavBar Menu
   if (document.getElementById('nav')) {
     burger = document.querySelector(".burger")
-    navBar = document.querySelector(".menu")
+    menu = document.querySelector(".menu")
   
     burger.onclick = function(){
-        navBar.classList.toggle("active")
-        burger.classList.toggle("active")
+      burger.classList.toggle("active")
+      menu.classList.toggle("active")
     }
   
-    navBar.onclick = function(){
-        navBar.classList.toggle("active")
-        burger.classList.toggle("active")
+    menu.onclick = function(){
+      menu.classList.toggle("active")
+      burger.classList.toggle("active")
     }
+
   }
+
+  // At top NavBar
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (window.scrollY === 0) {
+      nav.classList.add('at-top');
+    } else {
+      nav.classList.remove('at-top');
+    }
+  });
+
+  // Hide NavBar on Scroll
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  function handleScroll() {
+    const nav = document.getElementById("nav");
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down
+      nav.classList.add("nav-hidden");
+    } else {
+      // Scrolling up
+      nav.classList.remove("nav-hidden");
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
 
   // On Scroll effects
   window.addEventListener('scroll', reveal)
@@ -40,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
         reveals[i].classList.remove('active')
       }
     }
+
   }
 
   // Card Selector
