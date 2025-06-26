@@ -535,6 +535,75 @@ nav.at-top .auth {
 
 
 
+
+/* --------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------- STATS ---------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------*/
+
+#stats .reveal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#stats .reveal .header h2 {
+    margin-bottom: 10px;
+}
+#stats .reveal .header p {
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+#stats .reveal .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "s1 s2"
+        "s3 s4";
+    gap: 10px;
+    width: 100%;
+}
+#stats .reveal .stats .stat:nth-child(1) {
+    grid-area: s1;
+}
+#stats .reveal .stats .stat:nth-child(2) {
+    grid-area: s2;
+}
+#stats .reveal .stats .stat:nth-child(3) {
+    grid-area: s3;
+}
+#stats .reveal .stats .stat:nth-child(4) {
+    grid-area: s4;
+}
+
+#stats .reveal .stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+
+    width: 100%;
+    height: 200px;
+    padding: 0 40px;
+}
+#stats .reveal .stats .stat .number {
+    margin-bottom: 10px;
+}
+#stats .reveal .stats .stat .number b {
+    font-size: 18px;
+}
+#stats .reveal .stats .stat .number h2 {
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+
+
+
+
 /* --------------------------------------------------------------------------------------------------*/
 /* ----------------------------------------- COMPATIBLE -------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
@@ -579,7 +648,8 @@ nav.at-top .auth {
     justify-content: center;
 
     width: calc(100vw / 3 - 80px);
-    height: calc(100vw / 5 - 80px);
+    /* height: calc(100vw / 5 - 80px); */
+    height: auto;
 
     padding: 20px 30px;
     border-radius: var(--border-radius);
@@ -1146,6 +1216,23 @@ footer span {
     #software .reveal .box:nth-of-type(1),
     #software .reveal .box:nth-of-type(3) {
         flex-direction: column;
+    }
+
+    /* RESPONSIVE | STATS */
+
+    #stats .reveal .stats {
+        gap: 10px;
+    }
+    #stats .reveal .stats .stat {
+        width: 100%;
+        height: auto;
+        padding: 20px 10px;
+    }
+    #stats .reveal .stats .stat .number h2 {
+        font-size: 40px;
+    }
+    #stats .reveal .stats .stat .number b {
+        font-size: 16px;
     }
 
     /* RESPONSIVE | CARDS */
