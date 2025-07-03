@@ -1,22 +1,26 @@
 // Lattefy's wallet card.js
 
-// Fetch client cards by phone number
+
+// Fetch client cards + template by phone number
 async function getClientCards(clientPhoneNumber) {
     try {
         const token = localStorage.getItem('accessToken')
-        
-        // Now fetch client cards using the phone number
-        const response = await fetch(`${apiUrl}/cards/${clientPhoneNumber}`, {
+
+        const response = await fetch(`${apiUrl}/cards/with-templates/${clientPhoneNumber}`, {
             method: 'GET',
             headers: { 
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
+
         if (!response.ok) {
-            throw new Error('Failed to fetch client cards')
+            throw new Error('Failed to fetch client cards with templates')
         }
-        return await response.json()
+
+        const cards = await response.json()
+        console.log('Fetched client cards with templates:', cards)
+        return cards
     } catch (error) {
         console.error(error)
         return []
@@ -47,30 +51,7 @@ async function getClient(clientPhoneNumber) {
     }
 }
 
-// Fetch template by templateId
-async function getTemplate(templateId) {
-    try {
-        console.log('Fetching template for templateId:', templateId)
-        const token = localStorage.getItem('accessToken')
-        const response = await fetch(`${apiUrl}/templates/${templateId}`, {
-            method: 'GET',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        if (response.ok) {
-            const templateData = await response.json()
-            console.log('Fetched template:', templateData)
-            return templateData[0]
-        }
-    } catch (error) {
-        console.error(error)
-        return null
-    }
-}
-
-
+// Display client cards 
 async function displayClientCards(cards, clientPhoneNumber) {
     const container = document.getElementById('cards-container')
     container.innerHTML = ''
@@ -96,16 +77,16 @@ async function displayClientCards(cards, clientPhoneNumber) {
     for (let index = 0; index < cards.length; index++) {
         const card = cards[index]
         console.log('Processing card:', card)
-        const template = await getTemplate(card.templateId)
-       
+        
+        const template = card.template
         if (!template) {
             console.warn(`Skipping card ${card.templateId}: Template not found`)
             continue
         }
-        if (template.status !== 'ACTIVE') {
-            console.warn(`Skipping card ${card.templateId}: Template is ${template.status}`)
-            continue
-        }
+        // if (template.status !== 'ACTIVE') {
+        //     console.warn(`Skipping card ${card.templateId}: Template is ${template.status}`)
+        //     continue
+        // }
         
         const cardImage = template.cardUrl ? template.cardUrl : 'assets/images/brand/default-logo.png'
 
@@ -145,17 +126,9 @@ async function displayClientCards(cards, clientPhoneNumber) {
         }
     }
     
-    // const carouselContainer = document.createElement('div')
-    // carouselContainer.className = 'carousel-container'
-    // carouselContainer.appendChild(carouselWrapper)
-    // carouselContainer.appendChild(indicators)
-    // container.appendChild(carouselContainer)
-
-    // setActiveCard(0)
-    // loader.style.display = 'none'
 }
 
-
+// Card Dots
 function setActiveCard(index) {
     const wrapper = document.querySelector('.carousel-wrapper')
     const dots = document.querySelectorAll('.carousel-dot')
