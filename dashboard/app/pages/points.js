@@ -39,7 +39,7 @@ function calculatePoints(template, amountSpent) {
 
 // 3) Function to add points to a card
 async function addPoints(phoneNumber, businessId, template, amountSpent) {
-    const card = await getSpecificCard(phoneNumber)
+    const card = await getSpecificCard(phoneNumber, template.templateId)
     console.log(card)
     if (!card) {
         alert("No se encontró la tarjeta del cliente.")
@@ -91,7 +91,7 @@ async function addPoints(phoneNumber, businessId, template, amountSpent) {
 
 // 4) Function to claim reward
 async function claimReward(phoneNumber, businessId, template) {
-    const card = await getSpecificCard(phoneNumber)
+    const card = await getSpecificCard(phoneNumber, template.templateId)
 
     if (!card) {
         alert("No se encontró la tarjeta del cliente.")

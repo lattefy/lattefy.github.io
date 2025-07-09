@@ -58,9 +58,14 @@
     <main class="main full-width">
 
         <div class="container">
-            <h2>Canjear Regalo</h2>
+            <select id="function-selector">
+                <option value="claim-gift">Canjear Regalo</option>
+                <option value="check-gift">Verificar Regalo</option>
+            </select>
             <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
-            <a class="btn" id="claim-gift-btn">Canjear</a>
+            <h4>Detalles</h4>
+            <ul id="gift-details"></ul>
+            <a class="btn" id="gift-btn"></a>
         </div>
 
     </main>

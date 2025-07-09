@@ -1,9 +1,10 @@
 // Lattefy's frontend dashboard cards file
 
+
 // Get Card
-async function getSpecificCard(phoneNumber) {
+async function getSpecificCard(phoneNumber, templateId) {
     try {
-        const response = await fetch(`${apiUrl}/cards/${phoneNumber}`, {
+        const response = await fetch(`${apiUrl}/cards/card?p=${phoneNumber}&t=${templateId}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('dbAccessToken')}`,
@@ -19,13 +20,14 @@ async function getSpecificCard(phoneNumber) {
         }
 
         const card = await response.json()
-        return card[0]
+        return card
 
     } catch (error) {
         console.error("Error fetching card:", error)
         return null
     }
 }
+
 
 // Update Card
 async function updateCard(phoneNumber, businessId, templateId, updates) {
@@ -56,6 +58,7 @@ async function updateCard(phoneNumber, businessId, templateId, updates) {
         return null
     }
 }
+
 
 // Display card
 function displayCardsTable(cards) {

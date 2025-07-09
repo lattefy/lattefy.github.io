@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Gifts Page
-    if (document.getElementById('gift')) {
+    if (document.getElementById('gifts')) {
 
         // Template (gifts page)
         let giftTemplate = null
@@ -407,12 +407,18 @@ document.addEventListener('DOMContentLoaded', async function () {
             window.location.href = './index.html'
         }
 
+        handleGiftsUI() // Initialize UI logic
+        const functionSelector = document.getElementById("function-selector")
+        functionSelector.addEventListener("change", handleGiftsUI)
+
+        updateGiftDetails(giftTemplateId)
+
         // Inputs
-        const getGiftBtn = document.getElementById("claim-reward-btn")
-        const phoneInput = document.getElementById("phone-add")
+        const giftBtn = document.getElementById("gift-btn")
+        const phoneInput = document.getElementById("phone-claim")
 
         // Handle getting a Gift
-        getGiftBtn.addEventListener("click", async () => {
+        giftBtn.addEventListener("click", async () => {
             const phoneNumber = phoneInput.value.trim()
             if (!phoneNumber) {
                 alert("Por favor, ingresa un número de celular.")

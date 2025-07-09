@@ -58,9 +58,6 @@
     /* navbar */
     --navbar-bg-color: var(--lightColor);
     --navbar-color: var(--dark);
-    
-    --reload-btn-bg-color: var(--white);
-    --reload-btn-color: var(--color);
 
     /* buttons */
     --btn-bg-color: var(--color);
@@ -187,7 +184,7 @@ textarea
 input:focus,
 textarea:focus
 {
-    border-color: var(--color);
+    border-color: var(--blue);
 }
 input {
     padding: 0 15px;
@@ -199,6 +196,7 @@ select {
     padding: 5px 10px;
     height: 45px;
     border: 1px solid #ddd;
+    border-radius: 8px;
     color: var(--dark);
     background-color: var(--light);
 }
@@ -220,7 +218,6 @@ select {
 .btn:hover {
     opacity: 0.6;
 }
-
 
 /* ----------------------------------------- Navigation Bar ---------------------------------------- */
 
@@ -253,11 +250,11 @@ select {
 
     border-radius: 100%;
     cursor: pointer;
-    background-color: var(--reload-btn-bg-color);
+    background-color: var(--white);
 }
 .navbar .nav-btns .reload i {
     text-decoration: none;
-    color: var(--reload-btn-color);
+    color: var(--blue);
     font-size: 20px;
 }
 .navbar .nav-btns .btn {
@@ -713,7 +710,7 @@ body#manager .sidebar .menu #manager-sidebar-btn a {
 
 
 /* --------------------------------------------------------------------------------------------------*/
-/* -------------------------------------------- CLIENTS -------------------------------------------- */
+/* -------------------------------------------- Clients -------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------*/
 
 /* Clients grid Layout */
@@ -733,7 +730,6 @@ body#manager .sidebar .menu #manager-sidebar-btn a {
     justify-content: center;
     gap: 20px;
 }
-
 
 /* Clients Link */
 
@@ -762,7 +758,7 @@ body#clients .sidebar .menu #clients-sidebar-btn a {
 #points .main .container {
     padding: 20px;
     border-radius: 12px;
-    max-width:280px;
+    max-width: 280px;
 }
 #points .main .container h2 {
     margin: 0 0 15px 0;
@@ -817,7 +813,7 @@ body#points .sidebar .menu #points-sidebar-btn a {
 
 
 /* ------------------------------------------------------------------------------------------------- */
-/* ------------------------------------------- Points ---------------------------------------------- */
+/* -------------------------------------------- Gifts ---------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------- */
 
 /* points - layout */
@@ -827,6 +823,30 @@ body#points .sidebar .menu #points-sidebar-btn a {
     align-items: center;
     justify-content: center;
     gap: 15px;
+}
+#gifts .main .container {
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: center;
+}
+#gifts .main .container h4 {
+    margin: 10px 0 0 0;
+}
+#gifts .main .container ul {
+    padding: 0;
+    margin: 0 0 20px 0;
+    font-size: 14px;
+}
+#gifts .main .continer .cancel-btn {
+    background-color: transparent !important;
+    border: 1px solid var(--dark);
+    color: var(--dark);
 }
 
 /* points Link */
