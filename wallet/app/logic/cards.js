@@ -154,6 +154,8 @@ async function displayClientCards({cards, clientName}) {
         const card = cards[index]
         const template = card.template
         if (!template) continue
+        if (!template || template.status !== 'ACTIVE') continue
+        if (card.status !== 'ACTIVE') continue
 
         const cardImage = template.cardUrl || 'assets/images/brand/default-logo.png'
 
@@ -188,6 +190,18 @@ async function displayClientCards({cards, clientName}) {
         if (index === 0) {
             loader.style.display = 'none'
             setActiveCard(0)
+        }
+
+    }
+    loader.style.display = 'none'
+
+    if (carouselWrapper.children.length > 0) {
+        setActiveCard(0)
+    } else {
+        console.log('No valid cards to display')
+        const noCardsMessage = document.getElementById("no-cards-message")
+        if (noCardsMessage) {
+            noCardsMessage.classList.add("active")
         }
     }
 }
