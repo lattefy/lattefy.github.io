@@ -12,11 +12,13 @@ async function getSpecificCard(phoneNumber, templateId) {
             }
         })
 
+        if (response.status === 404) {
+            console.warn('Card not found')
+            return null
+        }
+
         if (!response.ok) {
-            if (response.status === 404) {
-                return { message: "Card not found" }
-            }
-            throw new Error(`Error fetching card: ${response.statusText}`)
+            throw new Error('Failed to fetch card')
         }
 
         const card = await response.json()
