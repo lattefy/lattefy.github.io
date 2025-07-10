@@ -1,4 +1,5 @@
-// Lattefy's frontend types file
+// Lattefy's frontend card types file
+
 
 // cardTemplates.js
 
@@ -68,8 +69,6 @@ function discountCardHTML(card, clientName, template, cardImage) {
         </p>
     `
 }
-
-
 
 
 

@@ -21,3 +21,33 @@ inviteBtn.addEventListener('click', async () => {
 })
 
 
+
+// Share Card
+
+function setupCardSharing(card, template) {
+    const shareBtn = document.getElementById('share-card-btn')
+    if (!shareBtn) return
+
+    shareBtn.addEventListener('click', async () => {
+    const { templateId, businessId } = card || {}
+    if (!templateId || !businessId) {
+        return alert('Faltan datos para compartir esta tarjeta.')
+    }
+
+    const shareUrl = `https://lattefy.com.uy/wallet?t=${templateId}&b=${businessId}`
+
+    if (navigator.share) {
+        try {
+        await navigator.share({
+            title: `Conseguí tu ${template.header} y lleváte una ${template.reward || template.gift} de regalo!`,
+            url: shareUrl
+        })
+        console.log('Tarjeta compartida con éxito')
+        } catch (err) {
+        console.error('Error al compartir:', err)
+        }
+    } else {
+        alert('Tu dispositivo no soporta la función de compartir.')
+    }
+    })
+}

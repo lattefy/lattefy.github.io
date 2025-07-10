@@ -78,7 +78,7 @@ async function getClientCards(clientPhoneNumber) {
 //     carouselContainer.appendChild(indicators)
 //     container.appendChild(carouselContainer)
 
-//     for (let index = 0; index < cards.length; index++) {
+//     for (let index = 0 index < cards.length index++) {
 //         const card = cards[index]
 //         console.log('Processing card:', card)
         
@@ -192,6 +192,10 @@ async function displayClientCards({cards, clientName}) {
             setActiveCard(0)
         }
 
+        cardElement.addEventListener('click', () => {
+            displayExpandedCard(card, clientName)
+        })
+
     }
     loader.style.display = 'none'
 
@@ -286,3 +290,48 @@ async function sortCards(cardsData, businessId, templateId) {
     }
 }
 
+
+
+function displayExpandedCard(card, clientName) {
+    const existing = document.getElementById('expanded-card')
+    if (existing) existing.remove()
+  
+    const template = card.template
+    const points = card.totalPoints ?? 0
+
+    let pointName
+    if (points == 1) {
+        pointName = template.pointName ?? 'punto'
+    } else {
+        pointName = template.pointsName ?? 'puntos'
+    }
+  
+    const overlay = document.createElement('div')
+    overlay.id = 'expanded-card'
+    overlay.className = 'expanded-card'
+    overlay.innerHTML = expandedCard(template, clientName, pointName, points)
+  
+    document.body.appendChild(overlay)
+
+
+    const qrContainer = document.getElementById("wallet-qr")
+    qrContainer.innerHTML = ""
+  
+    new QRCode(qrContainer, {
+        text: card.clientPhoneNumber,
+        width: 150,
+        height: 150,
+        colorDark: template.textColor,
+        colorLight: template.bgColor,
+        correctLevel: QRCode.CorrectLevel.H
+    })
+  
+    document.querySelector('.wallet-done').onclick = () => {
+      overlay.remove()
+      document.body.style.overflow = ''
+    }
+
+    setupCardSharing(card, template)
+  
+    document.body.style.overflow = 'hidden'
+  }
