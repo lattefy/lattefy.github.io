@@ -857,7 +857,6 @@ section {
     padding: 10px 20px;
     z-index: 2;
 }
-
 .wallet-done {
     background: none;
     border: none;
@@ -865,28 +864,37 @@ section {
     font-weight: 500;
     cursor: pointer;
 }
-
 .wallet-expanded-header .wallet-header-icons {
     display: flex;
     font-size: 22px;
     gap: 15px;
+    cursor: pointer;
 }
 
 /* === CARD CONTAINER === */
 .wallet-card-expanded {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+
     width: 92%;
     max-width: 420px;
-    height: auto;
-    min-height: 570px;
     min-width: 350px;
+    height: auto;
+
+    padding: 10px 0 25px 0;
+    margin-top: 40px;
+
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
     transition: all 0.3s ease;
-    text-align: center;
+}
+.wallet-card-header,
+.wallet-card-name,
+.wallet-card-footer {
+    padding: 0 15px;
 }
 
 /* === HEADER: TITLE + POINTS === */
@@ -894,15 +902,13 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
     font-size: 16px;
+    padding: 10px 15px;
     font-weight: 600;
 }
-
 .wallet-header-text {
     font-weight: 600;
 }
-
 .wallet-points {
     font-size: 14px;
     font-weight: bold;
@@ -918,20 +924,17 @@ section {
 
 /* === TITULAR / CLIENTE === */
 .wallet-card-name {
-    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-size: 14px;
 }
-
 .wallet-name-label {
     opacity: 0.6;
     font-weight: 500;
     font-size: 13px;
     margin-bottom: 2px;
 }
-
 .wallet-name-value {
     font-weight: 600;
     font-size: 16px;
@@ -944,11 +947,9 @@ section {
     flex-direction: column;
     gap: 4px;
 }
-
 .wallet-footer-text {
     font-weight: 600;
 }
-
 .wallet-description {
     font-weight: 400;
     opacity: 0.9;
@@ -959,8 +960,8 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0 40px;
     background-color: inherit;
+    margin: 20px 0;
 }
 
 
