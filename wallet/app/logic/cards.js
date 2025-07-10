@@ -309,7 +309,20 @@ function displayExpandedCard(card, clientName) {
     const overlay = document.createElement('div')
     overlay.id = 'expanded-card'
     overlay.className = 'expanded-card'
-    overlay.innerHTML = expandedCard(template, clientName, pointName, points)
+
+    switch (template.type) {
+        case 'FIDELITY':
+            overlay.innerHTML = expandedFidelityCard(template, clientName, pointName, points)
+            break
+        case 'GIFT':
+            overlay.innerHTML = expandedGiftCard(template, clientName)
+            break
+        case 'DISCOUNT':
+            overlay.innerHTML = expandedGiftCard(template, clientName)
+            break
+        default:
+            overlay.innerHTML = '<p>Tipo de tarjeta desconocido</p>'
+    }
   
     document.body.appendChild(overlay)
 
