@@ -62,7 +62,7 @@ function giftTemplateHTML(template, imageUrl) {
                     </p>
                 </div>
                 <div class="template-rating">
-                    <i class="ph ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
                     <p><b>${template.rating}</b></p>
                 </div>
             </div>

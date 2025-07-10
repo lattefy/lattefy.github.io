@@ -9,7 +9,15 @@ function expandedFidelityCard (template, clientName, pointName, points) {
         </div>
         <div class="wallet-header-icons"> 
             <i id="share-card-btn" class="ph ph-export"></i>
-            <!-- <i class="ph ph-dots-three-circle"></i> -->
+            <div class="dropdown">
+              <i id="menu-toggle" class="ph ph-dots-three-circle"></i>
+                <ul class="dropdown-menu" id="menu-options">
+                  <li id="card-action-btn">
+                    <span>Hacer pedido</span>
+                    <i class="${template.actionBtnIcon}"></i>
+                  </li>
+                </ul>
+            </div>
         </div>
       </div>
   
@@ -51,7 +59,14 @@ function expandedGiftCard (template, clientName) {
         </div>
         <div class="wallet-header-icons"> 
             <i id="share-card-btn" class="ph ph-export"></i>
-            <!-- <i class="ph ph-dots-three-circle"></i> -->
+            <div class="dropdown">
+              <i id="menu-toggle" class="ph ph-dots-three-circle"></i>
+              <ul class="dropdown-menu" id="menu-options">
+                <li id="card-details">Ver detalles</li>
+                <li id="card-notifications">Notificaciones</li>
+                <li id="remove-card" class="danger">Eliminar tarjeta</li>
+              </ul>
+            </div>
         </div>
       </div>
   

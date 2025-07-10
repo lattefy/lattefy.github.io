@@ -345,6 +345,31 @@ function displayExpandedCard(card, clientName) {
     }
 
     setupCardSharing(card, template)
+    setupCardMenu(card)
   
     document.body.style.overflow = 'hidden'
+  }
+
+
+
+  function setupCardMenu(card) {
+    const toggle = document.getElementById('menu-toggle')
+    const menu = document.getElementById('menu-options')
+  
+    if (!toggle || !menu) return
+  
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation()
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block'
+    })
+  
+    document.addEventListener('click', () => {
+      menu.style.display = 'none'
+    })
+  
+    // Opciones del menú
+    // document.getElementById('card-details')?.addEventListener('click', () => {
+    //   alert('Detalles de la tarjeta:\n' + JSON.stringify(card, null, 2))
+    // })
+  
   }
