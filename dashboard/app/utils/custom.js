@@ -52,19 +52,37 @@ async function displaySidebarBtns(business, role) {
     }
 
     // Check templateIds and add corresponding buttons
-    if (business.templateIds) {
-        business.templateIds.forEach(templateId => {
-            const firstDigit = templateId.toString().charAt(0);
 
-            if (firstDigit === "1") {
-                buttons.push({ id: "points-sidebar-btn", href: "points.html", icon: "ph-plus-circle", label: "Sumar Puntos" });
-            } else if (firstDigit === "2") {
-                buttons.push({ id: "gifts-sidebar-btn", href: "gifts.html", icon: "ph-gift", label: "Reclamar Regalos" });
-            } else if (firstDigit === "3") {
-                buttons.push({ id: "discounts-sidebar-btn", href: "discounts.html", icon: "ph-tag", label: "Descuentos" });
-            }
-        })
-    }
+    const addedTypes = new Set()
+
+    business.templateIds.forEach(templateId => {
+        const firstDigit = templateId.toString().charAt(0)
+    
+        if (firstDigit === "1" && !addedTypes.has("1")) {
+            buttons.push({ id: "points-sidebar-btn", href: "points.html", icon: "ph-plus-circle", label: "Sumar Puntos" })
+            addedTypes.add("1")
+        } else if (firstDigit === "2" && !addedTypes.has("2")) {
+            buttons.push({ id: "gifts-sidebar-btn", href: "gifts.html", icon: "ph-gift", label: "Reclamar Regalos" })
+            addedTypes.add("2")
+        } else if (firstDigit === "3" && !addedTypes.has("3")) {
+            buttons.push({ id: "discounts-sidebar-btn", href: "discounts.html", icon: "ph-tag", label: "Descuentos" })
+            addedTypes.add("3")
+        }
+    })
+
+    // if (business.templateIds) {
+    //     business.templateIds.forEach(templateId => {
+    //         const firstDigit = templateId.toString().charAt(0);
+
+    //         if (firstDigit === "1") {
+    //             buttons.push({ id: "points-sidebar-btn", href: "points.html", icon: "ph-plus-circle", label: "Sumar Puntos" });
+    //         } else if (firstDigit === "2") {
+    //             buttons.push({ id: "gifts-sidebar-btn", href: "gifts.html", icon: "ph-gift", label: "Reclamar Regalos" });
+    //         } else if (firstDigit === "3") {
+    //             buttons.push({ id: "discounts-sidebar-btn", href: "discounts.html", icon: "ph-tag", label: "Descuentos" });
+    //         }
+    //     })
+    // }
 
     buttons.push(
         { id: "clients-sidebar-btn", href: "https://lattefy.com.uy/wallet/signup.html", target: '_blank', icon: "ph-user-plus", label: "Registrar Cliente" }

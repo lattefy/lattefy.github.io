@@ -70,16 +70,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Specific templates
-    let fidelityTemplateId = null
+    // let fidelityTemplateId = null
+    let fidelityTemplates = []
     let giftTemplateId = null
     let discountTemplateId = null
+
+    // if (business.templateIds && Array.isArray(business.templateIds)) {
+    //     business.templateIds.forEach(templateId => {
+    //         const firstDigit = templateId.toString().charAt(0)
+
+    //         if (firstDigit === "1") {
+    //             fidelityTemplateId = templateId
+    //         } else if (firstDigit === "2") {
+    //             giftTemplateId = templateId
+    //         } else if (firstDigit === "3") {
+    //             discountTemplateId = templateId
+    //         }
+    //     })
+    // }
 
     if (business.templateIds && Array.isArray(business.templateIds)) {
         business.templateIds.forEach(templateId => {
             const firstDigit = templateId.toString().charAt(0)
-
+    
             if (firstDigit === "1") {
-                fidelityTemplateId = templateId
+                fidelityTemplates.push(templateId)
             } else if (firstDigit === "2") {
                 giftTemplateId = templateId
             } else if (firstDigit === "3") {
@@ -288,92 +303,90 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     }
 
+    // // Points
+
     // Points
     if (document.getElementById("points")) {
 
-        // Template (points page)
-        let fidelityTemplate = null
-        console.log("Fidelity Template ID:", fidelityTemplateId)
+        // Fidelity Templates
+        const templateObjects = await setupFidelityTemplates(business)
+        if (!templateObjects || templateObjects.length === 0) return
 
-        if (fidelityTemplateId) {
-            fidelityTemplate = await getTemplateById(fidelityTemplateId)
-        } else {
-            console.error("Required fidelity template is missing. Redirecting...")
-            alert("No se encontró la plantilla de fidelidad.") 
-            window.location.href = './index.html'
+        let currentTemplate = templateObjects[0] // Template actualmente seleccionado
+
+        const templateSelector = document.getElementById("template-selector")
+        const amountSpentInput = document.getElementById("amount-spent")
+        const suggestedPointsDisplay = document.getElementById("point-amount")
+
+        // Si hay más de un template, habilitar el cambio dinámico
+        if (templateObjects.length > 1) {
+            templateSelector.addEventListener("change", () => {
+                const selectedId = parseInt(templateSelector.value)
+                currentTemplate = templateObjects.find(t => t.templateId === selectedId)
+
+                // Recalcular puntos sugeridos al cambiar template
+                const amountSpent = parseFloat(amountSpentInput.value) || 0
+                window.userModifiedPoints = false
+                calculatePoints(currentTemplate, amountSpent)
+            })
         }
 
-        // Get button elements
+        // Botones
         const purchaseBtn = document.getElementById("add-points-btn")
         const claimRewardBtn = document.getElementById("claim-reward-btn")
         const addPointBtn = document.getElementById("add-point")
         const subtractPointBtn = document.getElementById("subtract-point")
 
-        // Get input elements
+        // Inputs
         const functionSelector = document.getElementById("function-selector")
-        const amountSpentInput = document.getElementById("amount-spent")
-        const suggestedPointsDisplay = document.getElementById("point-amount")
         const phoneInput = document.getElementById("phone-add")
         const phoneRewardInput = document.getElementById("phone-claim")
 
-        window.userModifiedPoints = false // Global flag to track manual changes
+        window.userModifiedPoints = false
 
-        // Initialize UI logic
         handlePointsUI()
-
-        // Listen for function type change (Add Points / Claim Reward)
         functionSelector.addEventListener("change", handlePointsUI)
 
-        // Listen for amount input change (Update suggested points dynamically)
-        amountSpentInput.addEventListener("input", async () => {
-            if (fidelityTemplate) {
+        amountSpentInput.addEventListener("input", () => {
+            if (currentTemplate) {
                 const amountSpent = parseFloat(amountSpentInput.value) || 0
                 window.userModifiedPoints = false
-                calculatePoints(fidelityTemplate, amountSpent)
-            } else {
-                console.log('No fidelity template found')
-                return
+                calculatePoints(currentTemplate, amountSpent)
             }
         })
-
-        // Handle Point Adjustment Buttons
 
         addPointBtn.addEventListener("click", () => {
             let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
             suggestedPointsDisplay.textContent = currentPoints + 1
-            window.userModifiedPoints = true // Mark as manually modified
+            window.userModifiedPoints = true
         })
 
         subtractPointBtn.addEventListener("click", () => {
             let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
             if (currentPoints > 0) {
                 suggestedPointsDisplay.textContent = currentPoints - 1
-                window.userModifiedPoints = true // Mark as manually modified
+                window.userModifiedPoints = true
             }
         })
 
-        // Handle Adding Points
         purchaseBtn.addEventListener("click", async () => {
             const phoneNumber = phoneInput.value.trim()
-
             if (!phoneNumber) {
                 alert("Por favor, ingresa un número de celular válido.")
                 return
             }
-            const amountSpent = parseFloat(amountSpentInput.value) || 0 
 
-            // Get final points value (either suggested or manually updated)
+            const amountSpent = parseFloat(amountSpentInput.value) || 0
             const pointsToAdd = parseInt(suggestedPointsDisplay.textContent) || 0
 
-            await addPoints(phoneNumber, user.businessId, fidelityTemplate, amountSpent, pointsToAdd)
+            await addPoints(phoneNumber, user.businessId, currentTemplate, amountSpent, pointsToAdd)
 
             phoneInput.value = ""
             amountSpentInput.value = ""
             suggestedPointsDisplay.textContent = "0"
-            window.userModifiedPoints = false // Reset flag
+            window.userModifiedPoints = false
         })
 
-        // Handle Claiming Reward
         claimRewardBtn.addEventListener("click", async () => {
             const phoneNumber = phoneRewardInput.value.trim()
             if (!phoneNumber) {
@@ -381,16 +394,117 @@ document.addEventListener('DOMContentLoaded', async function () {
                 return
             }
 
-            if (fidelityTemplate) {
-                await claimReward(phoneNumber, user.businessId, fidelityTemplate)
+            if (currentTemplate) {
+                await claimReward(phoneNumber, user.businessId, currentTemplate)
                 phoneRewardInput.value = ""
-            } else {
-                console.log('No fidelity template found')
-                return
             }
-            
         })
     }
+
+    // if (document.getElementById("points")) {
+
+    //     // Template (points page)
+    //     let fidelityTemplate = null
+    //     console.log("Fidelity Template ID:", fidelityTemplateId)
+
+    //     if (fidelityTemplateId) {
+    //         fidelityTemplate = await getTemplateById(fidelityTemplateId)
+    //     } else {
+    //         console.error("Required fidelity template is missing. Redirecting...")
+    //         alert("No se encontró la plantilla de fidelidad.") 
+    //         window.location.href = './index.html'
+    //     }
+
+    //     // Get button elements
+    //     const purchaseBtn = document.getElementById("add-points-btn")
+    //     const claimRewardBtn = document.getElementById("claim-reward-btn")
+    //     const addPointBtn = document.getElementById("add-point")
+    //     const subtractPointBtn = document.getElementById("subtract-point")
+
+    //     // Get input elements
+    //     const functionSelector = document.getElementById("function-selector")
+    //     const amountSpentInput = document.getElementById("amount-spent")
+    //     const suggestedPointsDisplay = document.getElementById("point-amount")
+    //     const phoneInput = document.getElementById("phone-add")
+    //     const phoneRewardInput = document.getElementById("phone-claim")
+
+    //     window.userModifiedPoints = false // Global flag to track manual changes
+
+    //     // Initialize UI logic
+    //     handlePointsUI()
+
+    //     // Listen for function type change (Add Points / Claim Reward)
+    //     functionSelector.addEventListener("change", handlePointsUI)
+
+    //     // Listen for amount input change (Update suggested points dynamically)
+    //     amountSpentInput.addEventListener("input", async () => {
+    //         if (fidelityTemplate) {
+    //             const amountSpent = parseFloat(amountSpentInput.value) || 0
+    //             window.userModifiedPoints = false
+    //             calculatePoints(fidelityTemplate, amountSpent)
+    //         } else {
+    //             console.log('No fidelity template found')
+    //             return
+    //         }
+    //     })
+
+    //     // Handle Point Adjustment Buttons
+
+    //     addPointBtn.addEventListener("click", () => {
+    //         let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
+    //         suggestedPointsDisplay.textContent = currentPoints + 1
+    //         window.userModifiedPoints = true // Mark as manually modified
+    //     })
+
+    //     subtractPointBtn.addEventListener("click", () => {
+    //         let currentPoints = parseInt(suggestedPointsDisplay.textContent) || 0
+    //         if (currentPoints > 0) {
+    //             suggestedPointsDisplay.textContent = currentPoints - 1
+    //             window.userModifiedPoints = true // Mark as manually modified
+    //         }
+    //     })
+
+    //     // Handle Adding Points
+    //     purchaseBtn.addEventListener("click", async () => {
+    //         const phoneNumber = phoneInput.value.trim()
+
+    //         if (!phoneNumber) {
+    //             alert("Por favor, ingresa un número de celular válido.")
+    //             return
+    //         }
+    //         const amountSpent = parseFloat(amountSpentInput.value) || 0 
+
+    //         // Get final points value (either suggested or manually updated)
+    //         const pointsToAdd = parseInt(suggestedPointsDisplay.textContent) || 0
+
+    //         await addPoints(phoneNumber, user.businessId, fidelityTemplate, amountSpent, pointsToAdd)
+
+    //         phoneInput.value = ""
+    //         amountSpentInput.value = ""
+    //         suggestedPointsDisplay.textContent = "0"
+    //         window.userModifiedPoints = false // Reset flag
+    //     })
+
+    //     // Handle Claiming Reward
+    //     claimRewardBtn.addEventListener("click", async () => {
+    //         const phoneNumber = phoneRewardInput.value.trim()
+    //         if (!phoneNumber) {
+    //             alert("Por favor, ingresa un número de celular.")
+    //             return
+    //         }
+
+    //         if (fidelityTemplate) {
+    //             await claimReward(phoneNumber, user.businessId, fidelityTemplate)
+    //             phoneRewardInput.value = ""
+    //         } else {
+    //             console.log('No fidelity template found')
+    //             return
+    //         }
+            
+    //     })
+    // }
+
+    
 
     // Gifts Page
     if (document.getElementById('gifts')) {

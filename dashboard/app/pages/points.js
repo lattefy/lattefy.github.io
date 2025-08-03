@@ -98,7 +98,7 @@ async function claimReward(phoneNumber, businessId, template) {
         return
     }
     if (!card.rewardAvailable || card.currentPoints < template.pointsNeeded) {
-        alert(`${card.currentPoints}/${template.pointsNeeded}: El cliente no tiene recompensas disponibles.`)
+        alert(`${card.currentPoints || 0}/${template.pointsNeeded}: El cliente no tiene recompensas disponibles.`)
         return
     }
 
@@ -111,4 +111,33 @@ async function claimReward(phoneNumber, businessId, template) {
     await updateCard(phoneNumber, businessId, template.templateId, updates)
     await sendBusinessEmail(phoneNumber, template.templateId, 'reward')
     alert(`El cliente ha reclamado su ${template.reward}!`)
+}
+
+
+// 5) Setup fidelity templates for points.html
+async function setupFidelityTemplates(business) {
+    const templateSelector = document.getElementById("template-selector")
+
+    const fidelityTemplateIds = business.templateIds?.filter(id => id.toString().startsWith("1")) || []
+
+    if (fidelityTemplateIds.length === 0) {
+        alert("No se encontró la plantilla de fidelidad.")
+        window.location.href = './index.html'
+        return []
+    }
+
+    const templateObjects = await Promise.all(fidelityTemplateIds.map(id => getTemplateById(id)))
+
+    if (templateObjects.length > 1) {
+        templateSelector.style.display = "block"
+
+        templateObjects.forEach(tpl => {
+            const option = document.createElement("option")
+            option.value = tpl.templateId
+            option.textContent = tpl.header
+            templateSelector.appendChild(option)
+        })
+    }
+
+    return templateObjects
 }
