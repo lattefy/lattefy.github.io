@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 // QR Code Scan
                 const updatedCardsData = await handleBusinessQR(clientData.phoneNumber, storedBusinessId, storedTemplateId)
+                console.log("Updated cards after QR scan:", updatedCardsData)
                 sessionStorage.removeItem('storedBusinessId')
                 sessionStorage.removeItem('storedTemplateId')
 

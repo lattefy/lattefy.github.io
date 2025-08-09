@@ -352,10 +352,31 @@ function displayExpandedCard(card, clientName) {
 
 
 
-  function setupCardMenu(card) {
+//   function setupCardMenu(card) {
+//     const toggle = document.getElementById('menu-toggle')
+//     const menu = document.getElementById('menu-options')
+  
+//     if (!toggle || !menu) return
+  
+//     toggle.addEventListener('click', (e) => {
+//       e.stopPropagation()
+//       menu.style.display = menu.style.display === 'block' ? 'none' : 'block'
+//     })
+  
+//     document.addEventListener('click', () => {
+//       menu.style.display = 'none'
+//     })
+  
+//     // Opciones del menú
+//     // document.getElementById('card-details')?.addEventListener('click', () => {
+//     //   alert('Detalles de la tarjeta:\n' + JSON.stringify(card, null, 2))
+//     // })
+  
+//   }
+
+function setupCardMenu(card) {
     const toggle = document.getElementById('menu-toggle')
     const menu = document.getElementById('menu-options')
-  
     if (!toggle || !menu) return
   
     toggle.addEventListener('click', (e) => {
@@ -367,9 +388,34 @@ function displayExpandedCard(card, clientName) {
       menu.style.display = 'none'
     })
   
-    // Opciones del menú
-    // document.getElementById('card-details')?.addEventListener('click', () => {
-    //   alert('Detalles de la tarjeta:\n' + JSON.stringify(card, null, 2))
-    // })
+    const template = card.template || {}
   
+    // Hacer pedido (actionBtnUrl) – only if the item exists
+    const actionBtn = document.getElementById('card-action-btn')
+    if (actionBtn && template.actionBtnUrl) {
+      actionBtn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const url = template.actionBtnUrl
+        window.open(url, '_blank')
+        menu.style.display = 'none'
+      })
+    }
+  
+    // Instagram – only if the item exists
+    const igBtn = document.getElementById('instagram-btn')
+    if (igBtn && template.instagram) {
+      igBtn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        let url = template.instagram
+        if (!/^https?:\/\//i.test(url)) {
+          const handle = url.replace(/^@/, '')
+          url = `https://instagram.com/${handle}`
+        }
+        window.open(url, '_blank')
+        menu.style.display = 'none'
+      })
+    }
+  
+    // NOTE: Share remains bound by setupCardSharing(card, template) elsewhere,
+    // and still uses id="share-card-btn" (now inside the menu).
   }
