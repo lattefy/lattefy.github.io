@@ -3,107 +3,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Lattefy | Puntos</title>
-    <meta property="og:title" content="Lattefy | Cargar Compra">
-    <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
-    
-    <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
+  <title>Lattefy | Puntos</title>
+  <meta property="og:title" content="Lattefy | Cargar Compra">
+  <meta property="og:image" content="assets/images/meta/meta_logo.png"/>
 
-    <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="assets/images/meta/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/meta/favicon.png">
 
-    <!-- PHOSPHORICONS -->
-    <script src="https://unpkg.com/phosphor-icons"></script>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <!-- PHOSPHORICONS -->
+  <script src="https://unpkg.com/phosphor-icons"></script>
+  <!-- QR Scanner Library -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 </head>
+
 <body id="points" class="collapsed-sidebar">
 
-    <!-- Navigation Bar -->
-    <header class="navbar full-width">
-        <h2>Puntos</h2>
-        <div class="nav-btns">
-            <a class="reload">
-                <i class="ph ph-arrow-clockwise"></i>
-            </a>
-            <a id="wallet-btn" class="btn">Cargar Cliente</a>
+  <!-- Navigation Bar -->
+  <header class="navbar full-width">
+    <h2>Puntos</h2>
+    <div class="nav-btns">
+      <a class="reload"><i class="ph ph-arrow-clockwise"></i></a>
+      <a id="wallet-btn" class="btn">Cargar Cliente</a>
+    </div>
+  </header>
+
+  <!-- Side Bar -->
+  <section class="sidebar active">
+    <div class="top">
+      <div class="logo">
+        <i class="ph ph-coffee"></i>
+        <h1>Lattefy</h1>
+      </div>
+      <div class="burger" id="sidebar-btn">
+        <span class="line-1"></span>
+        <span class="line-2"></span>
+        <span class="line-3"></span>
+      </div>
+    </div>
+
+    <ul class="menu"></ul>
+
+    <a id="logout-btn" class="log-out">
+      <i class="ph ph-sign-out"></i>
+      <span class="link">Cerrar sesión</span>
+    </a>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main full-width">
+    <div class="container">
+      <h2 id="function-header"></h2>
+
+      <select id="template-selector" style="display: none;"></select>
+
+      <select id="function-selector">
+        <option value="add-points">Sumar Puntos</option>
+        <option value="claim-reward">Canjear Regalo</option>
+        <option value="check-points">Consultar Puntos</option>
+      </select>
+
+      <div class="input-with-icon">
+        <input type="text" id="phone-input" placeholder="Celular: 091234567" required>
+        <button type="button" class="icon-btn scan-phone" data-target="phone-input" title="Escanear QR">
+        <i class="ph ph-camera"></i>
+        </button>
+      </div>
+
+      <!-- Add Points -->
+      <div id="add-points-inputs" style="display: flex; flex-direction: column;">
+
+        <input type="number" id="amount-spent" placeholder="importe" step="100" required>
+
+        <div class="point-amount">
+          <a id="add-point">+</a>
+          <h4 id="point-amount"></h4>
+          <a id="subtract-point">-</a>
         </div>
-    </header>
 
-    <!-- Side Bar -->
-    <section class="sidebar active">
-        <div class="top">
-            <div class="logo">
-                <i class="ph ph-coffee"></i>
-                <h1>Lattefy</h1>
-            </div>
-            <div class="burger" id="sidebar-btn">
-                <span class="line-1"></span>
-                <span class="line-2"></span>
-                <span class="line-3"></span>
-            </div>
-        </div>
+        <a class="btn" id="add-points-btn">Sumar</a>
+      </div>
 
-        <ul class="menu"></ul>
+      <!-- Claim Reward -->
+      <div id="claim-reward-inputs" style="display: none; flex-direction: column;">
+        <a class="btn" id="claim-reward-btn">Canjear</a>
+      </div>
 
-        <a id="logout-btn" class="log-out">
-            <i class="ph ph-sign-out"></i>
-            <span class="link">Cerrar sesión</span>
-        </a>
-    </section>
+      <!-- Check Points -->
+      <div id="check-points-inputs" style="display: none; flex-direction: column;">
+        <a class="btn" id="check-points-btn">Consultar</a>
+      </div>
 
+    </div>
+  </main>
 
-    <!-- Main Content -->
-    <main class="main full-width">
+  <!-- QR Scanner Modal (shared) -->
+  <div id="qr-scanner-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#111; color:#fff; width:min(520px,90vw); border-radius:14px; padding:16px; position:relative;">
+    <button id="qr-close" style="position:absolute; right:10px; top:10px; background:transparent; border:none; font-size:22px; cursor:pointer; color:#fff;">
+        <i class="ph ph-x"></i>
+    </button>
+    <h3 style="margin:0 0 8px 0;">Escanear Código QR</h3>
+    <video id="qr-video" playsinline style="width:100%; border-radius:10px; background:#000;"></video>
+    <canvas id="qr-canvas" style="display:none;"></canvas>
+    <p id="qr-status" style="margin:10px 0 0 0; font-size:12px; opacity:0.85;">Apuntá al QR en la tarjeta del cliente.</p>
+    </div>
+  </div>
 
-        <div class="container">
-            <h2 id="function-header"></h2>
-            <select id="template-selector" style="display: none;"></select>
-            <select id="function-selector">
-                <option value="add-points">Sumar Puntos</option>
-                <option value="claim-reward">Canjear Regalo</option>
-            </select>
-            <div id="add-points-inputs" style="display: flex; flex-direction: column;">
-                <input type='text' id='phone-add' placeholder='Celular: 091234567' required>
-                <input type='number' id='amount-spent' placeholder='importe' step='100' required>
-                <div class="point-amount">
-                    <a id="add-point">+</a>
-                    <h4 id="point-amount"></h4>
-                    <a id="subtract-point">-</a>
-                </div>
-                <a class="btn" id="add-points-btn">Sumar</a>
-            </div>
-            <div id="claim-reward-inputs" style="display: none; flex-direction: column;">
-                <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
-                <a class="btn" id="claim-reward-btn">Canjear</a>
-            </div>
-        </div>
+  <!-- Scripts (order matters) -->
+  <script src="./config.js"></script>
 
-    </main>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 
-    <script src="./config.js"></script>
+  <script src="app/auth.js"></script>
 
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="app/utils/validation.js"></script>
+  <script src="app/utils/role.js"></script>
+  <script src="app/utils/custom.js"></script>
+  <script src="app/utils/emails.js"></script>
+  <script src="app/utils/qrScanner.js"></script>
 
-    <script src="app/auth.js"></script>
+  <script src="app/database/templates.js"></script>
+  <script src="app/database/business.js"></script>
+  <script src="app/database/clients.js"></script>
+  <script src="app/database/cards.js"></script>
 
-    <script src="app/utils/validation.js"></script>
-    <script src="app/utils/role.js"></script>
-    <script src="app/utils/custom.js"></script>
-    <script src="app/utils/emails.js"></script>
+  <script src="app/pages/points.js"></script>
 
-    <script src="app/database/templates.js"></script>
-    <script src="app/database/business.js"></script>
-    <script src="app/database/clients.js"></script>
-    <script src="app/database/cards.js"></script>
-
-    <script src="app/pages/points.js"></script>
-
-    <script src="app/dashboard.js"></script>
-
-    <script src="assets/script.js"></script>
-
+  <script src="app/dashboard.js"></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>

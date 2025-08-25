@@ -336,11 +336,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         const claimRewardBtn = document.getElementById("claim-reward-btn")
         const addPointBtn = document.getElementById("add-point")
         const subtractPointBtn = document.getElementById("subtract-point")
+        const checkPointsBtn = document.getElementById("check-points-btn")
 
         // Inputs
         const functionSelector = document.getElementById("function-selector")
-        const phoneInput = document.getElementById("phone-add")
-        const phoneRewardInput = document.getElementById("phone-claim")
+        const phoneInput = document.getElementById("phone-input")
 
         window.userModifiedPoints = false
 
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         })
 
         claimRewardBtn.addEventListener("click", async () => {
-            const phoneNumber = phoneRewardInput.value.trim()
+            const phoneNumber = phoneInput.value.trim()
             if (!phoneNumber) {
                 alert("Por favor, ingresa un número de celular.")
                 return
@@ -396,7 +396,20 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             if (currentTemplate) {
                 await claimReward(phoneNumber, user.businessId, currentTemplate)
-                phoneRewardInput.value = ""
+                phoneInput.value = ""
+            }
+        })
+
+        checkPointsBtn.addEventListener("click", async () => {
+            const phoneNumber = phoneInput.value.trim()
+            if (!phoneNumber) {
+                alert("Por favor, ingresa un número de celular.")
+                return
+            }
+
+            if (currentTemplate) {
+                await checkPoints(phoneNumber, currentTemplate)
+                phoneInput.value = ""
             }
         })
     }
@@ -426,7 +439,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     //     const amountSpentInput = document.getElementById("amount-spent")
     //     const suggestedPointsDisplay = document.getElementById("point-amount")
     //     const phoneInput = document.getElementById("phone-add")
-    //     const phoneRewardInput = document.getElementById("phone-claim")
+    //     const phoneInput = document.getElementById("phone-claim")
 
     //     window.userModifiedPoints = false // Global flag to track manual changes
 
@@ -487,7 +500,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     //     // Handle Claiming Reward
     //     claimRewardBtn.addEventListener("click", async () => {
-    //         const phoneNumber = phoneRewardInput.value.trim()
+    //         const phoneNumber = phoneInput.value.trim()
     //         if (!phoneNumber) {
     //             alert("Por favor, ingresa un número de celular.")
     //             return
@@ -495,7 +508,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     //         if (fidelityTemplate) {
     //             await claimReward(phoneNumber, user.businessId, fidelityTemplate)
-    //             phoneRewardInput.value = ""
+    //             phoneInput.value = ""
     //         } else {
     //             console.log('No fidelity template found')
     //             return
@@ -504,7 +517,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     //     })
     // }
 
-    
 
     // Gifts Page
     if (document.getElementById('gifts')) {

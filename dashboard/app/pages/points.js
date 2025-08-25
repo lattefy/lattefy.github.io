@@ -5,13 +5,20 @@ function handlePointsUI() {
     const functionSelector = document.getElementById("function-selector")
     const addInputs = document.getElementById("add-points-inputs")
     const claimInputs = document.getElementById("claim-reward-inputs")
+    const checkInputs = document.getElementById("check-points-inputs")
 
     if (functionSelector.value === "add-points") {
         addInputs.style.display = "flex"
         claimInputs.style.display = "none"
-    } else {
+        checkInputs.style.display = "none"
+    } else if (functionSelector.value === "claim-reward") {
         addInputs.style.display = "none"
         claimInputs.style.display = "flex"
+        checkInputs.style.display = "none"
+    } else {
+        addInputs.style.display = "none"
+        claimInputs.style.display = "none"
+        checkInputs.style.display = "flex"
     }
 }
 
@@ -140,4 +147,18 @@ async function setupFidelityTemplates(business) {
     }
 
     return templateObjects
+}
+
+
+// 6) Function to return client points
+async function checkPoints(phoneNumber, template) {
+    const card = await getSpecificCard(phoneNumber, template.templateId)
+
+    if (!card) {
+        alert("No se encontró la tarjeta del cliente.")
+        return
+    }
+
+    const currentPoints = card.currentPoints ?? 0
+    alert(`El cliente tiene ${currentPoints}/${template.pointsNeeded} ${template.pointsName}.`)
 }

@@ -17,6 +17,9 @@
 
     <!-- PHOSPHORICONS -->
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <!-- QR Scanner Library -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
 </head>
 <body id="gifts" class="collapsed-sidebar">
 
@@ -62,7 +65,12 @@
                 <option value="claim-gift">Canjear Regalo</option>
                 <option value="check-gift">Verificar Regalo</option>
             </select>
-            <input type='text' id='phone-claim' placeholder='Celular: 091234567' required>
+            <div class="input-with-icon">
+                <input type="text" id="phone-claim" placeholder="Celular: 091234567" required>
+                <button type="button" class="icon-btn scan-phone" data-target="phone-claim" title="Escanear QR">
+                <i class="ph ph-camera"></i>
+                </button>
+            </div>
             <h4>Detalles</h4>
             <ul id="gift-details"></ul>
             <a class="btn" id="gift-btn"></a>
@@ -70,10 +78,22 @@
 
     </main>
 
+    <!-- QR Scanner Modal (shared) -->
+    <div id="qr-scanner-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#111; color:#fff; width:min(520px,90vw); border-radius:14px; padding:16px; position:relative;">
+        <button id="qr-close" style="position:absolute; right:10px; top:10px; background:transparent; border:none; font-size:22px; cursor:pointer; color:#fff;">
+            <i class="ph ph-x"></i>
+        </button>
+        <h3 style="margin:0 0 8px 0;">Escanear Código QR</h3>
+        <video id="qr-video" playsinline style="width:100%; border-radius:10px; background:#000;"></video>
+        <canvas id="qr-canvas" style="display:none;"></canvas>
+        <p id="qr-status" style="margin:10px 0 0 0; font-size:12px; opacity:0.85;">Apuntá al QR en la tarjeta del cliente.</p>
+        </div>
+    </div>
+
     <script src="./config.js"></script>
 
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script src="app/auth.js"></script>
 
@@ -81,6 +101,7 @@
     <script src="app/utils/role.js"></script>
     <script src="app/utils/custom.js"></script>
     <script src="app/utils/emails.js"></script>
+    <script src="app/utils/qrScanner.js"></script>
 
     <script src="app/database/templates.js"></script>
     <script src="app/database/business.js"></script>
